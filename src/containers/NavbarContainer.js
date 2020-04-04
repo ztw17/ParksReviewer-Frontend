@@ -1,0 +1,92 @@
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom'
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import NavDropdown from '../components/NavDropdown'
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+    root: {
+      flexGrow: 1,
+      backgroundColor: 'white',
+    //   backgroundColor: '#DEE0E3',
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+      color: '#434C5C',
+    },
+    title: {
+      flexGrow: 1,
+      color: '#434C5C',
+      textAlign: 'center',
+    },
+    navbarStyles: {
+        textDecoration: "none", color: '#434C5C'
+    },
+});
+  
+class Navbar extends React.Component {
+    state = {
+        drawerOpen: false
+    }
+
+    toggleDrawer = () => {
+        this.setState((prevState) => {
+            return {drawerOpen: !prevState.drawerOpen}
+        }) 
+    };    
+
+    render() {
+        const {classes} = this.props
+
+        return (
+        <div className={classes.root}>
+            <Fragment>
+                <AppBar className={classes.root} position="static">
+                    <Toolbar>
+                        <IconButton onClick={this.toggleDrawer} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                            <MenuIcon/>
+                        </IconButton>
+                        <Typography onClick={this.props.handleLogoClick} variant="h6" className={classes.title}>
+                            Explore
+                        </Typography>
+                        {
+                            this.props.loggedIn ?
+                            <Fragment>
+                                <Link to="/profile" className={classes.navbarStyles}>
+                                    <Button color="inherit">Profile</Button>
+                                </Link>
+                                <Link to="/" className={classes.navbarStyles}>
+                                    <Button onClick={this.props.handleLogout} color="inherit">Logout</Button>
+                                </Link>
+                            </Fragment>
+                            :
+                            <Fragment>
+                                <Link to="/signup" className={classes.navbarStyles}>
+                                    <Button onClick={this.props.handleSignUp} color="inherit">Sign Up</Button>
+                                </Link>
+                                <Link to="/login" className={classes.navbarStyles}>
+                                    <Button color="inherit">Login</Button>
+                                </Link>
+                            </Fragment>
+                        }
+                    </Toolbar>
+                </AppBar>
+                <NavDropdown
+                    drawerOpen={this.state.drawerOpen}
+                    toggleDrawer={this.toggleDrawer}
+                    parks={this.props.parks}
+                    history={this.props.history}
+                    handleParkClick={this.props.handleParkClick}
+                />
+            </Fragment>
+        </div>
+    ); 
+    }
+}
+
+export default withStyles(styles)(Navbar)
