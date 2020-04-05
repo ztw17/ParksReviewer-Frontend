@@ -30,7 +30,7 @@ export default function SignUp(props) {
           </Typography>
           <form className={classes.form} noValidate onSubmit={props.validateSignUpUser}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={5} sm={6}>
                 <TextField
                   onChange={event => props.handleInputChange("signUpFirstName", event.target.value)}
                   autoComplete="fname"
@@ -91,7 +91,7 @@ export default function SignUp(props) {
                   autoComplete="current-password"
                 />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <Input
                   onChange={event => props.handleInputChange("signUpAvatar", event.target.files[0])}
                   variant="outlined"
@@ -102,7 +102,7 @@ export default function SignUp(props) {
                   type="file"
                   id="avatar"
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
             <Button
               type="submit"

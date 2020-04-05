@@ -11,6 +11,7 @@ class Tag extends React.Component {
         this.props.history.push(`/tag/${id}`)
         const clickedTagObj = this.props.tags.find(tag => tag.id === id)
         this.props.handleTagClick(clickedTagObj)
+        console.log(clickedTagObj)
     }
 
     render() {

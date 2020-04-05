@@ -30,7 +30,7 @@ class App extends React.Component {
       signUpUsername: appState.signUpUsername || "",
       signUpEmail: appState.signUpEmail || "",
       signUpPassword: appState.signUpPassword || "",
-      signUpAvatar: appState.signUpAvatar || "",
+      // signUpAvatar: appState.signUpAvatar || "",
       parks: [],
       tags: [],
       showPark:{},
@@ -75,11 +75,12 @@ class App extends React.Component {
   }
 
   handleTagClick = (tag) => {
-    console.info('You clicked the Chip.');
+    // console.info('You clicked the Chip.');
     console.log(tag)
     this.setState({
       showTag: tag
     })
+    // console.log(showTag)
   };
 
   validateUserLogin = (event) => {
@@ -155,18 +156,19 @@ class App extends React.Component {
       }
       this.setState({
         loggedIn: true,
-        user: resp.first_name,
+        firstName: resp.first_name,
+        lastName: resp.last_name,
+        username: resp.username,
         userId: resp.id,
         email: resp.email,
-        userReviews: resp.reviews,
         signUpFirstName: "",
         signUpLastName: "",
         signUpUsername: "",
         signUpEmail: "",
         signUpPassword: "",
-        signUpAvatar: "",
+        // signUpAvatar: "",
         loginEmail: "",
-        loginPassword: ""
+        loginPassword: "",
       })
       this.props.history.push('/')
     })
@@ -202,6 +204,7 @@ class App extends React.Component {
 
   render() {
     // console.log(this.appState)
+    console.log(this.state.tags)
 
     return (
       <div>
@@ -210,7 +213,7 @@ class App extends React.Component {
             <Route path='/login' render={() => <Login appState={this.state} handleInputChange={this.handleInputChange} validateUserLogin={this.validateUserLogin}/>}/>
             <Route path='/signup' render={() => <SignUp appState={this.state} handleInputChange={this.handleInputChange} validateSignUpUser={this.validateSignUpUser} fileSelectedHandler={this.fileSelectedHandler}/>}/>
             <Route path='/profile' render={() => <ProfileContainer appState={this.state}/>}/>
-            <Route path='/park/:id' render={() => <ParkContainer appState={this.state} showPark={this.state.showPark} handleTagClick={this.handleTagClick} tags={this.state.parks} history={this.props.history}/>}/>
+            <Route path='/park/:id' render={() => <ParkContainer appState={this.state} showPark={this.state.showPark} handleTagClick={this.handleTagClick} tags={this.state.tags} history={this.props.history}/>}/>
             <Route path='/tag/:id' render={() => <TagPageContainer appState={this.state} showTag={this.state.showTag}/>}/>
             <Route path='/' render={() => <LandingPage appState={this.state} />}/>
           </Switch>
