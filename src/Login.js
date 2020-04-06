@@ -13,7 +13,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Image from './images/Zion.jpg';
+import Image from './images/Zion2.jpeg';
 
 export default function Login(props) {
   const classes = useStyles();
@@ -106,6 +106,7 @@ const useStyles = makeStyles((theme) => ({
     },
     submit: {
       margin: theme.spacing(3, 0, 2),
+      background: "#527CD0",
     },
     backGroundImg: {
       backgroundImage: `url(${Image})`,

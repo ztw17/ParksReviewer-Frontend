@@ -50,10 +50,11 @@ export default function ReviewContainer(props) {
                   {props.reviewInfo.visit_date}
                 </Typography>
                 <Typography>
-                    User Rating
+                    Rating
                 </Typography>
                 <Divider/>
                 <Typography variant="body2" color="textSecondary">
+                  <Rating />
                   {props.reviewInfo.rating}
                 </Typography>
               </Grid>
@@ -64,7 +65,7 @@ export default function ReviewContainer(props) {
             </Grid>
           </Grid>
           <Grid item>
-              <img className={classes.img} alt="complex" src="/static/images/grid/complex.jpg" />
+              <img className={classes.img} src="/static/images/grid/complex.jpg" />
           </Grid>
         </Grid>
       </Paper>

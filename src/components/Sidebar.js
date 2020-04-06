@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { Divider } from '@material-ui/core';
+import AddTag from './AddTag';
 
 const useStyles = makeStyles((theme) => ({
   sidebarAboutBox: {
@@ -24,12 +25,13 @@ export default function Sidebar(props) {
     // <Grid item xs={12} md={4}>
       <Paper elevation={0} className={classes.sidebarAboutBox}>
         <Typography variant="h6" gutterBottom>
-            Tags for {props.showPark.name}:
+            Tags for {props.showPark.name}
         </Typography>
         <Divider/>
-        <Typography>
-            {props.renderTags()}
-        </Typography>
+        <p>
+          {props.renderTags()}
+        </p>
+        <AddTag tags={props.tags} parks={props.parks}/>
       </Paper>
     // </Grid>
   );

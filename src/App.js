@@ -6,7 +6,8 @@ import SignUp from './SignUp';
 import NavbarContainer from './containers/NavbarContainer';
 import ParkContainer from './containers/ParkContainer';
 import ProfileContainer from './containers/ProfileContainer';
-import TagPageContainer from './containers/TagPageContainer'
+import TagPageContainer from './containers/TagPageContainer';
+import AddReivewForm from './components/AddReviewForm';
 import './App.css';
 
 class App extends React.Component {
@@ -33,7 +34,7 @@ class App extends React.Component {
       // signUpAvatar: appState.signUpAvatar || "",
       parks: [],
       tags: [],
-      showPark:{},
+      showPark: {},
       showUser: {},
       showTag: {},
     }
@@ -61,7 +62,7 @@ class App extends React.Component {
   }
 
   handleInputChange = (input, value) => {
-    console.log(input, value) 
+    // console.log(input, value) 
     this.setState({
       [input]: value
     })
@@ -76,12 +77,63 @@ class App extends React.Component {
 
   handleTagClick = (tag) => {
     // console.info('You clicked the Chip.');
-    console.log(tag)
+    // console.log(tag)
     this.setState({
       showTag: tag
     })
     // console.log(showTag)
   };
+
+  handleTagAdd = (name) => {
+    fetch("http://localhost:3000/tags", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accepts": "application/json"
+        },
+        body: JSON.stringify({
+            name: name,
+            park_id: this.state.showPark.id
+        })
+    })
+    .then( resp => resp.json() )
+    .then( newTag => {
+        const newShowPark = this.state.showPark
+        newShowPark.tags = [...newShowPark.tags, newTag]
+        
+        this.setState({
+          tags: [...this.state.tags, newTag], 
+          showPark: newShowPark
+        })
+    // .catch(error => {
+    //     console.log("Error:", error)
+    //   })
+    })
+  }
+
+  handleTagDelete = (id) => {
+    fetch(`http://localhost:3000/tags/${id}`, {
+      method: "DELETE"
+    })
+    .then( resp => resp.json())
+    .then( deletedTag => {
+      const newTags = this.state.tags.filter(tag => tag.id !== deletedTag.id)
+      const newShowPark = this.state.showPark
+      newShowPark.tags = newShowPark.tags.filter(tag => tag.id !== deletedTag.id)
+
+      this.setState({
+        tags: newTags,
+        showPark: newShowPark
+      })
+    })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
+      const json = JSON.stringify(this.state);
+      localStorage.setItem("appState", json);
+    }
+  }
 
   validateUserLogin = (event) => {
     event.preventDefault()
@@ -156,11 +208,11 @@ class App extends React.Component {
       }
       this.setState({
         loggedIn: true,
-        firstName: resp.first_name,
-        lastName: resp.last_name,
-        username: resp.username,
-        userId: resp.id,
-        email: resp.email,
+        firstName: resp.user.first_name,
+        lastName: resp.user.last_name,
+        username: resp.user.username,
+        userId: resp.user.id,
+        email: resp.user.email,
         signUpFirstName: "",
         signUpLastName: "",
         signUpUsername: "",
@@ -203,8 +255,8 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log(this.appState)
-    console.log(this.state.tags)
+    // console.log(this.state.userReviews)
+    // console.log(this.state.tags)
 
     return (
       <div>
@@ -212,9 +264,10 @@ class App extends React.Component {
           <Switch>
             <Route path='/login' render={() => <Login appState={this.state} handleInputChange={this.handleInputChange} validateUserLogin={this.validateUserLogin}/>}/>
             <Route path='/signup' render={() => <SignUp appState={this.state} handleInputChange={this.handleInputChange} validateSignUpUser={this.validateSignUpUser} fileSelectedHandler={this.fileSelectedHandler}/>}/>
-            <Route path='/profile' render={() => <ProfileContainer appState={this.state}/>}/>
-            <Route path='/park/:id' render={() => <ParkContainer appState={this.state} showPark={this.state.showPark} handleTagClick={this.handleTagClick} tags={this.state.tags} history={this.props.history}/>}/>
+            <Route path='/profile' render={() => <ProfileContainer appState={this.state} userReviews={this.state.userReviews}/>}/>
+            <Route path='/park/:id' render={() => <ParkContainer appState={this.state} showPark={this.state.showPark} handleTagClick={this.handleTagClick} handleTagAdd={this.handleTagAdd} handleTagDelete={this.handleTagDelete} tags={this.state.tags} parks={this.state.parks} history={this.props.history}/>}/>
             <Route path='/tag/:id' render={() => <TagPageContainer appState={this.state} showTag={this.state.showTag}/>}/>
+            <Route path='/review/park/:id' render={() => <AddReivewForm appState={this.state} showPark={this.state.showPark}/>}/>
             <Route path='/' render={() => <LandingPage appState={this.state} />}/>
           </Switch>
       </div>

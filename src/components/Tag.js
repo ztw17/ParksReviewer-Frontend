@@ -1,36 +1,41 @@
 import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import Chip from '@material-ui/core/Chip';
+import { withStyles, CssBaseline, Chip } from '@material-ui/core';
+
+const styles = theme => ({
+    tag: {
+        margin: 5
+    }
+})
 
 class Tag extends React.Component {
 
     clickedTag = (id) => {
-        console.log(id)
         this.props.history.push(`/tag/${id}`)
         const clickedTagObj = this.props.tags.find(tag => tag.id === id)
         this.props.handleTagClick(clickedTagObj)
-        console.log(clickedTagObj)
+    }
+
+    deleteTag = (id) => {
+        this.props.handleTagDelete(id)
     }
 
     render() {
+        const {classes} = this.props
+
         return (
             <React.Fragment>
-                <CssBaseline />
-                <Container fixed>
-                    <Chip 
-                        label={this.props.tagInfo.name}
-                        onClick={() => this.clickedTag(this.props.tagInfo.id)}
-                        color="primary" 
-                        variant="outlined" 
-                    />
-                </Container>
+            <CssBaseline />
+                <Chip 
+                    label={this.props.tagInfo.name}
+                    onClick={() => this.clickedTag(this.props.tagInfo.id)}
+                    onDelete={() => this.deleteTag(this.props.tagInfo.id)}
+                    color="primary" 
+                    variant="outlined" 
+                    className={classes.tag}
+                />
             </React.Fragment>
         )
     }
 }
 
-export default Tag
-
-{/* <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '15vh' }} /> */}
+export default withStyles(styles)(Tag)
