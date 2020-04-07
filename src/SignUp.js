@@ -9,8 +9,7 @@ import {
   Typography, 
   makeStyles, 
   Paper, 
-  Container,
-  Input } from '@material-ui/core';
+  Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Image from './images/GrandTeton.jpg';
 

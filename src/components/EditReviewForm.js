@@ -56,7 +56,7 @@ class AddReviewForm extends React.Component {
     // console.log(event.target.value)
   }
 
-  createNewReview = (event) => {
+  editReview = (event) => {
     event.preventDefault()
     const newReview = {
       content: this.state.content,

@@ -38,7 +38,7 @@ class NavDropdown extends React.Component {
     })
     this.props.parks.forEach( (park) => {
       uniqStateObjArr.forEach( (uniquePark) => {
-        if (uniquePark.state === park.state){
+        if (uniquePark.state === park.state) {
         uniquePark.parks.push({id: park.id, name: park.name})
         } 
       })

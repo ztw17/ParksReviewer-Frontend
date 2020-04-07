@@ -1,7 +1,7 @@
 import React from 'react';
-import Rating from '../components/Rating'
+import RenderStarRating from '../components/RenderStarRating'
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import { Grid, Button } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -20,17 +20,24 @@ const useStyles = makeStyles((theme) => ({
     width: 128,
     height: 128,
   },
-  img: {
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-  },
+  // img: {
+  //   margin: 'auto',
+  //   display: 'block',
+  //   maxWidth: '100%',
+  //   maxHeight: '100%',
+  //   <img className={classes.img} src="/static/images/grid/complex.jpg" />
+  // },
 }));
 
 export default function ReviewContainer(props) {
   const classes = useStyles();
 //   console.log(reviewInfo)
+
+  const handleEditClick = (id) => {
+    console.log("I've been clicked")
+    console.log(id)
+    props.history.push(`/review/${id}/edit`)
+  }
 
   return (
     <div className={classes.root}>
@@ -53,10 +60,7 @@ export default function ReviewContainer(props) {
                     Rating
                 </Typography>
                 <Divider/>
-                <Typography variant="body2" color="textSecondary">
-                  <Rating />
-                  {props.reviewInfo.rating}
-                </Typography>
+                  <RenderStarRating readOnly={true} reviewInfo={props.reviewInfo} />
               </Grid>
               <Grid item>
                 <Typography variant="body2">
@@ -65,7 +69,7 @@ export default function ReviewContainer(props) {
             </Grid>
           </Grid>
           <Grid item>
-              <img className={classes.img} src="/static/images/grid/complex.jpg" />
+            {props.reviewInfo.user_id === props.appState.userId ? <Button onClick={() => handleEditClick(props.reviewInfo.id)}>Edit Review</Button> : ""}
           </Grid>
         </Grid>
       </Paper>

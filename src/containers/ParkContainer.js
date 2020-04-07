@@ -2,10 +2,9 @@ import React, { Fragment } from 'react'
 import { withStyles, Paper, Typography, Divider, Card, CardContent, Grid, Box, Button } from '@material-ui/core';
 import ParkBanner from '../components/ParkBanner';
 import Tag from '../components/Tag';
-// import Sidebar from '../components/Sidebar';
 import ReviewContainer from './ReviewContainer';
-import AddTag from '../components/AddTag'
-// import AddReviewModal from '../components/AddReviewModal';
+import AddTag from '../components/AddTag';
+import Image from '../images/Map.png';
 
 const styles = theme => ({
     root: {
@@ -39,10 +38,22 @@ const styles = theme => ({
     },
     reviews: {
         alignItems: 'center'
-    }
+    },
+    img: {
+        backgroundImage: `url(${Image})`,
+        margin: 'auto',
+        display: 'block',
+        // width: "100%",
+        // maxHeight: 150,
+        // padding: 500,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        padding: 300,
+  },
 })
 
-class ParkPage extends React.Component {
+class ParkContainer extends React.Component {
     
     renderTags = () => {
         // console.log(this.props.showPark.tags)
@@ -51,11 +62,11 @@ class ParkPage extends React.Component {
 
     renderReviews = () => {
         // console.log(this.props.showPark)
-        return this.props.showPark.reviews.map(review => <ReviewContainer reviewInfo={review} reviews={this.props.reviews}/>)
+        return this.props.showPark.reviews.map(review => <ReviewContainer reviewInfo={review} reviews={this.props.reviews} appState={this.props.appState} history={this.props.history} />)
     }
 
     handleAddReviewClick = (id) => {
-        console.log(id)
+        // console.log(id)
         this.props.history.push(`/review/park/${id}`)
     }
 
@@ -123,11 +134,12 @@ class ParkPage extends React.Component {
                             </Grid>
                         </Grid>
                             <Grid className={classes.mainGrid}>
-                                <Card>
-                                    <Typography variant="h6">
+                                {/* <Card> */}
+                                    {/* <Typography variant="h6">
                                         PLACEHOLDER FOR MAP
-                                    </Typography>
-                                </Card>
+                                    </Typography> */}
+                                    <img className={classes.img} />
+                                {/* </Card> */}
                             </Grid>
                             <Divider/>
                         <Grid className={classes.mainGrid}>
@@ -149,120 +161,4 @@ class ParkPage extends React.Component {
     }
 }
 
-export default withStyles(styles)(ParkPage)
-
-
-            //     <React.Fragment>
-            //         <main className={classes.root}>
-            //             <ParkBanner showPark={this.props.showPark}/>
-            //                     <Card>
-            //                         <CardContent>
-            //                             <Typography>
-            //                                 {this.props.showPark.description}
-            //                             </Typography>
-            //                         </CardContent>
-            //                     </Card>
-            //                 <Grid container spacing={2} className={classes.mainGrid}>
-            //                     <Grid item xs={2}>
-            //                         <Card>
-            //                             <CardContent>
-            //                                 <Typography variant="h6">
-            //                                     Location
-            //                                 </Typography>
-            //                                 <Divider />
-            //                                 <Typography>
-            //                                     {this.props.showPark.state}
-            //                                 </Typography>
-            //                             </CardContent>
-            //                         </Card>
-            //                     </Grid>
-            //                     <Divider/>
-            //                     <Grid item lg={10}>
-            //                         <Card>
-            //                             <CardContent>
-            //                                 <Typography variant="h6">
-            //                                     Weather
-            //                                 </Typography>
-            //                                 <Divider/>
-            //                                 <Typography>
-            //                                     {this.props.showPark.weather}
-            //                                 </Typography>
-            //                             </CardContent>
-            //                         </Card>
-            //                     </Grid>
-            //                 </Grid>
-            //                 <Grid container spacing={2} className={classes.mainGrid}>
-            //                     <Grid item xs={3}>
-            //                         <Card>
-            //                             <Sidebar showPark={this.props.showPark} tags={this.props.tags} parks={this.props.parks} renderTags={this.renderTags}/>
-            //                         </Card>
-            //                     </Grid>
-            //                     <Grid item={9}>
-            //                         <Card>
-            //                             <Typography variant="h6">
-            //                                 PLACEHOLDER FOR MAP
-            //                             </Typography>
-            //                         </Card>
-            //                     </Grid>
-            //                 </Grid>
-            //                 <Divider/>
-            //             {/* <Card> */}
-            //                 <Typography>User Reviews</Typography>
-            //                 {this.renderReviews()}
-            //             {/* </Card> */}
-            //         </main>
-            // </React.Fragment>
-
-
-
-            // <div className={classes.root}>
-            //     <Paper>
-            //     <ParkBanner showPark={this.props.showPark}/>
-            //         <Card>
-            //             <CardContent>
-            //                 <Typography>
-            //                     {this.props.showPark.description}
-            //                 </Typography>
-            //             </CardContent>
-            //         </Card>
-            //         <Divider/>
-                    // <Card>
-                    //     <CardContent>
-                    //         <Typography>
-                    //             Tags for {this.props.showPark.name}:
-                    //         </Typography>
-                    //         <Typography>
-                    //             {this.renderTags()}
-                    //         </Typography>
-                    //     </CardContent>
-                    // </Card>
-            //         <Divider/>
-            //         <Grid container spacing={3}>
-            //             <Grid item xs={4}>
-            //                 <Card>
-            //                     <CardContent>
-            //                         <Typography>
-            //                             Location:
-            //                         </Typography>
-            //                         <Typography>
-            //                             {this.props.showPark.state}
-            //                         </Typography>
-            //                     </CardContent>
-            //                 </Card>
-            //             </Grid>
-            //             <Divider/>
-            //             <Grid item xs={8}>
-            //                 <Card>
-            //                     <CardContent>
-            //                         <Typography>
-            //                             Weather:
-            //                         </Typography>
-            //                         <Typography>
-            //                             {this.props.showPark.weather}
-            //                         </Typography>
-            //                     </CardContent>
-            //                 </Card>
-            //             </Grid>
-            //         </Grid>
-            //     </Paper>
-            // </div>
+export default withStyles(styles)(ParkContainer)

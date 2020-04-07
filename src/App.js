@@ -7,7 +7,8 @@ import NavbarContainer from './containers/NavbarContainer';
 import ParkContainer from './containers/ParkContainer';
 import ProfileContainer from './containers/ProfileContainer';
 import TagPageContainer from './containers/TagPageContainer';
-import AddReivewForm from './components/AddReviewForm';
+import AddReviewForm from './components/AddReviewForm';
+import EditReviewForm from './components/EditReviewForm';
 import './App.css';
 
 class App extends React.Component {
@@ -16,7 +17,6 @@ class App extends React.Component {
     let appState;
     localStorage.appState !== undefined ? appState = JSON.parse(localStorage.getItem('appState')) : appState = localStorage
     this.state = {
-      // user: appState.user || "",
       firstName: appState.firstName || "",
       lastName: appState.lastName || "",
       username: appState.username || "",
@@ -32,17 +32,23 @@ class App extends React.Component {
       signUpEmail: appState.signUpEmail || "",
       signUpPassword: appState.signUpPassword || "",
       // signUpAvatar: appState.signUpAvatar || "",
+      reviewContent: appState.reviewContent || "",
+      reviewRating: appState.reviewRating || "",
+      reviewVisitDate: appState.reviewVisitDate || "",
       parks: [],
       tags: [],
+      reviews: [],
       showPark: {},
       showUser: {},
       showTag: {},
+      selectedFile: null,
     }
   }
 
   componentDidMount() {
     this.getParks()
     this.getTags()
+    this.getReviews()
   }
   
   getParks = () => {
@@ -61,8 +67,56 @@ class App extends React.Component {
     }))
   }
 
+  getReviews = () => {
+    fetch("http://localhost:3000/reviews")
+      .then( resp => resp.json() )
+      .then( reviewsData => this.setState({
+        reviews: reviewsData
+    }))
+  }
+
+  handleAddReview = (newReview) => {
+    fetch("http://localhost:3000/reviews", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accepts": "application/json"
+      },
+      body: JSON.stringify(newReview)
+    })
+    .then( resp => resp.json() )
+    .then( newReview => {
+      const newShowPark = this.state.showPark
+      newShowPark.reviews = [...newShowPark.reviews, newReview]
+      if (newReview.error) {
+        alert(newReview.error)
+    } else {
+      this.setState({
+        reviews: [...this.state.reviews, newReview],
+        showPark: newShowPark
+        })
+      }
+    })
+  }
+
+    // const newShowPark = this.state.showPark
+  //     newShowPark.reviews = [...newShowPark.reviews, newReview]
+      
+  //     // const userReviews = this.state.userReviews
+  //     // const newUserReviews = this.state.userReviews
+  //     // newUserReviews = [...newUserReviews, newReview]
+
+  //     if (newReview.error) {
+  //       alert(newReview.error)
+  //   } else {
+  //     this.setState({
+  //       reviews: [...this.state.reviews, newReview],
+  //       showPark: newShowPark,
+  //       // userReviews: userReviews.push(newReview)
+  //       })
+
   handleInputChange = (input, value) => {
-    // console.log(input, value) 
+    console.log(input, value) 
     this.setState({
       [input]: value
     })
@@ -98,16 +152,13 @@ class App extends React.Component {
     })
     .then( resp => resp.json() )
     .then( newTag => {
-        const newShowPark = this.state.showPark
-        newShowPark.tags = [...newShowPark.tags, newTag]
-        
-        this.setState({
-          tags: [...this.state.tags, newTag], 
-          showPark: newShowPark
-        })
-    // .catch(error => {
-    //     console.log("Error:", error)
-    //   })
+      const newShowPark = this.state.showPark
+      newShowPark.tags = [...newShowPark.tags, newTag]
+      
+      this.setState({
+        tags: [...this.state.tags, newTag], 
+        showPark: newShowPark
+      })
     })
   }
 
@@ -158,6 +209,7 @@ class App extends React.Component {
     })
     .then( resp => resp.json() )
     .then( resp => {
+      console.log(resp)
       if (resp[0] === "Invalid credentials, please try again") {
         alert(resp[0])
       } else {
@@ -198,7 +250,7 @@ class App extends React.Component {
         username: this.state.signUpUsername,
         email: this.state.signUpEmail,
         password: this.state.signUpPassword,
-        image: this.state.signUpAvatar
+        // image: this.state.signUpAvatar
       })
     })
     .then( resp => resp.json() )
@@ -226,10 +278,16 @@ class App extends React.Component {
     })
   }
 
-  // fileSelectedHandler = (event) => {
-  //   console.log(event.target.files[0])
+  fileSelectedHandler = (event) => {
+    // this.setState({
+    //   selectedFile: event.target.files[0]
+    // })
+    console.log(event.target.files[0])
+  }
 
-  // }
+  fileUploadHandler = () => {
+
+  }
 
   handleLogout = () => {
     this.resetUserObj()
@@ -267,7 +325,8 @@ class App extends React.Component {
             <Route path='/profile' render={() => <ProfileContainer appState={this.state} userReviews={this.state.userReviews}/>}/>
             <Route path='/park/:id' render={() => <ParkContainer appState={this.state} showPark={this.state.showPark} handleTagClick={this.handleTagClick} handleTagAdd={this.handleTagAdd} handleTagDelete={this.handleTagDelete} tags={this.state.tags} parks={this.state.parks} history={this.props.history}/>}/>
             <Route path='/tag/:id' render={() => <TagPageContainer appState={this.state} showTag={this.state.showTag}/>}/>
-            <Route path='/review/park/:id' render={() => <AddReivewForm appState={this.state} showPark={this.state.showPark}/>}/>
+            <Route path='/review/park/:id' render={() => <AddReviewForm appState={this.state} showPark={this.state.showPark} history={this.props.history} handleAddReview={this.handleAddReview} fileSelectedHandler={this.fileSelectedHandler}/>}/>
+            <Route path='/review/:id/edit' render={() => <EditReviewForm appState={this.state} showPark={this.state.showPark} history={this.props.history}/>}/>
             <Route path='/' render={() => <LandingPage appState={this.state} />}/>
           </Switch>
       </div>
