@@ -22,7 +22,7 @@ class App extends React.Component {
       username: appState.username || "",
       email: appState.email || "",
       userId: appState.userId || "",
-      userReviews: appState.userReviews || "",
+      userReviews: appState.userReviews || [],
       loggedIn: appState.loggedIn || false,
       loginEmail: appState.loginEmail || "zweb@email.com",
       loginPassword: appState.loginPassword || "password",
@@ -37,10 +37,12 @@ class App extends React.Component {
       reviewVisitDate: appState.reviewVisitDate || "",
       parks: [],
       tags: [],
+      users: [],
       reviews: [],
       showPark: {},
       showUser: {},
       showTag: {},
+      editReview: {},
       selectedFile: null,
     }
   }
@@ -49,6 +51,7 @@ class App extends React.Component {
     this.getParks()
     this.getTags()
     this.getReviews()
+    this.getUsers()
   }
   
   getParks = () => {
@@ -74,6 +77,14 @@ class App extends React.Component {
         reviews: reviewsData
     }))
   }
+  
+  getUsers = () => {
+    fetch("http://localhost:3000/users")
+      .then( resp => resp.json() )
+      .then( usersData => this.setState({
+        users: usersData
+    }))
+  }
 
   handleAddReview = (newReview) => {
     fetch("http://localhost:3000/reviews", {
@@ -93,27 +104,65 @@ class App extends React.Component {
     } else {
       this.setState({
         reviews: [...this.state.reviews, newReview],
-        showPark: newShowPark
+        showPark: newShowPark,
+        userReviews: [...this.state.userReviews, newReview]
         })
       }
     })
   }
 
-    // const newShowPark = this.state.showPark
-  //     newShowPark.reviews = [...newShowPark.reviews, newReview]
-      
-  //     // const userReviews = this.state.userReviews
-  //     // const newUserReviews = this.state.userReviews
-  //     // newUserReviews = [...newUserReviews, newReview]
+  handleEditReviewClick = (review) => {
+    // console.log("handleedit", review)
+    this.setState({
+      editReview: review
+    })
+    // console.log("editReview", this.state.editReview)
+  }
 
-  //     if (newReview.error) {
-  //       alert(newReview.error)
-  //   } else {
-  //     this.setState({
-  //       reviews: [...this.state.reviews, newReview],
-  //       showPark: newShowPark,
-  //       // userReviews: userReviews.push(newReview)
-  //       })
+  handleEditedReview = (editedReview) => {
+    fetch(`http://localhost:3000/reviews/${editedReview.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accepts": "application/json"
+      },
+      body: JSON.stringify(editedReview)
+    })
+    .then( resp => resp.json() )
+    .then( editedReview => {
+      const newShowPark = this.state.showPark
+      newShowPark.reviews = [...newShowPark.reviews, editedReview]
+      if (editedReview.error) {
+        alert(editedReview.error)
+    } else {
+      this.setState({
+        reviews: [...this.state.reviews, editedReview],
+        showPark: newShowPark,
+        userReviews: [...this.state.userReviews, editedReview]
+        })
+      }
+    })
+  }
+
+  handleDeleteReview = (id) => {
+    console.log(id)
+    fetch(`http://localhost:3000/reviews/${id}`, {
+      method: "DELETE"
+    })
+    .then( resp => resp.json() )
+    .then( deletedReview => {
+      const newReviews = this.state.reviews.filter(review => review.id !== deletedReview.id)
+      const newShowPark = this.state.showPark
+      newShowPark.reviews = newShowPark.reviews.filter(review => review.id !== deletedReview.id)
+      const newUserReviews = this.state.userReviews.filter(review => review.id !== deletedReview.id)
+
+      this.setState({
+        reviews: newReviews,
+        showPark: newShowPark,
+        userReviews: newUserReviews
+      })
+    })
+  }
 
   handleInputChange = (input, value) => {
     console.log(input, value) 
@@ -123,19 +172,15 @@ class App extends React.Component {
   }
 
   handleParkClick = (park) => {
-    // console.log(park)
     this.setState({
       showPark: park
     })
   }
 
   handleTagClick = (tag) => {
-    // console.info('You clicked the Chip.');
-    // console.log(tag)
     this.setState({
       showTag: tag
     })
-    // console.log(showTag)
   };
 
   handleTagAdd = (name) => {
@@ -209,7 +254,7 @@ class App extends React.Component {
     })
     .then( resp => resp.json() )
     .then( resp => {
-      console.log(resp)
+      // console.log(resp)
       if (resp[0] === "Invalid credentials, please try again") {
         alert(resp[0])
       } else {
@@ -315,6 +360,7 @@ class App extends React.Component {
   render() {
     // console.log(this.state.userReviews)
     // console.log(this.state.tags)
+    // console.log(this.state.users)
 
     return (
       <div>
@@ -322,11 +368,11 @@ class App extends React.Component {
           <Switch>
             <Route path='/login' render={() => <Login appState={this.state} handleInputChange={this.handleInputChange} validateUserLogin={this.validateUserLogin}/>}/>
             <Route path='/signup' render={() => <SignUp appState={this.state} handleInputChange={this.handleInputChange} validateSignUpUser={this.validateSignUpUser} fileSelectedHandler={this.fileSelectedHandler}/>}/>
-            <Route path='/profile' render={() => <ProfileContainer appState={this.state} userReviews={this.state.userReviews}/>}/>
-            <Route path='/park/:id' render={() => <ParkContainer appState={this.state} showPark={this.state.showPark} handleTagClick={this.handleTagClick} handleTagAdd={this.handleTagAdd} handleTagDelete={this.handleTagDelete} tags={this.state.tags} parks={this.state.parks} history={this.props.history}/>}/>
+            <Route path='/profile' render={() => <ProfileContainer appState={this.state} userReviews={this.state.userReviews} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} history={this.props.history}/>}/>
+            <Route path='/park/:id' render={() => <ParkContainer appState={this.state} showPark={this.state.showPark} handleTagClick={this.handleTagClick} handleTagAdd={this.handleTagAdd} handleTagDelete={this.handleTagDelete} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} tags={this.state.tags} parks={this.state.parks} reviews={this.state.reviews} users={this.state.users} history={this.props.history}/>}/>
             <Route path='/tag/:id' render={() => <TagPageContainer appState={this.state} showTag={this.state.showTag}/>}/>
             <Route path='/review/park/:id' render={() => <AddReviewForm appState={this.state} showPark={this.state.showPark} history={this.props.history} handleAddReview={this.handleAddReview} fileSelectedHandler={this.fileSelectedHandler}/>}/>
-            <Route path='/review/:id/edit' render={() => <EditReviewForm appState={this.state} showPark={this.state.showPark} history={this.props.history}/>}/>
+            <Route path='/review/:id/edit' render={() => <EditReviewForm appState={this.state} editReview={this.state.editReview} handleEditedReview={this.state.handleEditedReview} showPark={this.state.showPark} reviewInfo={this.state.reviewInfo} history={this.props.history}/>}/>
             <Route path='/' render={() => <LandingPage appState={this.state} />}/>
           </Switch>
       </div>

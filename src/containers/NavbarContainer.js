@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom'
+import { Icon } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -8,11 +9,13 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import NavDropdown from '../components/NavDropdown'
 import { withStyles } from '@material-ui/core/styles';
+import logo from '../images/logo.png';
 
 const styles = theme => ({
     root: {
       flexGrow: 1,
       backgroundColor: 'white',
+      maxHeight: 60,
     //   backgroundColor: '#DEE0E3',
     },
     menuButton: {
@@ -21,8 +24,9 @@ const styles = theme => ({
     },
     title: {
       flexGrow: 1,
-      color: '#434C5C',
-      textAlign: 'center',
+      transform: "scale(.2)",
+    //   color: '#434C5C',
+    //   textAlign: 'center',
     },
     navbarStyles: {
         textDecoration: "none", color: '#434C5C'
@@ -51,9 +55,9 @@ class Navbar extends React.Component {
                         <IconButton onClick={this.toggleDrawer} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                             <MenuIcon/>
                         </IconButton>
-                        <Typography onClick={this.props.handleLogoClick} variant="h6" className={classes.title}>
-                            Explore
-                        </Typography>
+                        <Button onClick={this.props.handleLogoClick} variant="h6" className={classes.title}>
+                            <img src={logo} alt="logo"/>
+                        </Button>
                         {
                             this.props.loggedIn ?
                             <Fragment>

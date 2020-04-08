@@ -37,7 +37,9 @@ const styles = theme => ({
         alignItems: 'center'
     },
     reviews: {
-        alignItems: 'center'
+        direction: "column",
+        justify: "center",
+        alignItems: "center",
     },
     img: {
         backgroundImage: `url(${Image})`,
@@ -61,12 +63,10 @@ class ParkContainer extends React.Component {
     }
 
     renderReviews = () => {
-        // console.log(this.props.showPark)
-        return this.props.showPark.reviews.map(review => <ReviewContainer reviewInfo={review} reviews={this.props.reviews} appState={this.props.appState} history={this.props.history} />)
+        return this.props.showPark.reviews.map(review => <ReviewContainer reviewInfo={review} reviews={this.props.reviews} appState={this.props.appState} history={this.props.history} users={this.props.users} handleEditReviewClick={this.props.handleEditReviewClick} handleDeleteReview={this.props.handleDeleteReview} />)
     }
 
     handleAddReviewClick = (id) => {
-        // console.log(id)
         this.props.history.push(`/review/park/${id}`)
     }
 
@@ -141,17 +141,14 @@ class ParkContainer extends React.Component {
                                     <img className={classes.img} />
                                 {/* </Card> */}
                             </Grid>
-                            <Divider/>
                         <Grid className={classes.mainGrid}>
-                            <Card>
+                            <Card >
                                 <Typography component="h3" variant="h4">
                                     User Reviews
                                 </Typography>
-                                <Button onClick={() => this.handleAddReviewClick(this.props.showPark.id)}>
-                                    Add A Review
-                                </Button>
+                                { this.props.appState.loggedIn ? <Button onClick={() => this.handleAddReviewClick(this.props.showPark.id)}>Add A Review</Button> : null }
                             </Card>
-                            <Card className={classes.reviews}>
+                            <Card >
                                 {this.renderReviews()}
                             </Card>
                         </Grid>

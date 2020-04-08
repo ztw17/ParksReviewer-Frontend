@@ -40,7 +40,9 @@ class AddReviewForm extends React.Component {
     this.state = {
         content: "",
         rating: "",
-        visitDate: ""
+        visitDate: "",
+        reviewTags: [], 
+
     }
   }
 
@@ -71,9 +73,14 @@ class AddReviewForm extends React.Component {
       rating: "",
       visit_date: "",
     })
-    console.log(newReview)
+    // console.log(newReview)
     this.props.history.push(`/park/${this.props.appState.showPark.id}`)
   }
+
+  // renderTags = () => {
+  //   // console.log(this.props.showPark.tags)
+  //   return this.props.showPark.tags.map(tag => <Tag tagInfo={tag} tags={this.props.tags} handleTagClick={this.props.handleTagClick} handleTagDelete={this.props.handleTagDelete} history={this.props.history}/>)
+  // }
 
   render() {
     const { classes } = this.props
@@ -112,30 +119,28 @@ class AddReviewForm extends React.Component {
                   <Typography>
                     Add a visit date
                   </Typography>
-                  <form noValidate>
-                    <TextField
-                      onChange={this.handleInputChange}
-                      id="date"
-                      label=""
-                      name="visitDate"
-                      type="date"
-                      defaultValue=""
-                      // onChange={(event) => this.onChange(event)}
-                      className={classes.textField}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                  </form>
+                  <TextField
+                    onChange={this.handleInputChange}
+                    id="date"
+                    label=""
+                    name="visitDate"
+                    type="date"
+                    defaultValue=""
+                    // onChange={(event) => this.onChange(event)}
+                    className={classes.textField}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
                 </Grid>
                 {/* <Grid item xs={12}>
                   <Typography>
                     Add a tag
-                  </Typography> */}
-                  {/* <Box className={classes.tagBox}>
-                      {this.props.renderTags()}
-                  </Box> */}
-                  {/* <AddTag />
+                  </Typography>
+                  <Box className={classes.tagBox}>
+                      {this.renderTags()}
+                  </Box>
+                  <AddTag />
                 </Grid> */}
                 {/* <Grid item xs={12}>
                   <Typography>
@@ -143,11 +148,11 @@ class AddReviewForm extends React.Component {
                   </Typography>
                   <TextField
                     onChange={event => this.props.fileSelectedHandler(event)}
-                    // variant="outlined"
-                    // required
+                    variant="outlined"
+                    required
                     fullWidth
                     name="reviewImage"
-                    // label="Add a photo"
+                    abel="Add a photo"
                     type="file"
                     id="reviewImage"
                   />

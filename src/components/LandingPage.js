@@ -12,9 +12,11 @@ export default function LandingPage() {
 
     return (
       <Paper className={classes.paperContainer}>
-            <Typography color="white" variant="h2">
-              Find your next adventure
-            </Typography >
+        <Grid>
+          <Typography style={{textAlign: "center"}} variant="h2">
+            Find your next adventure
+          </Typography >
+        </Grid>
           <Grid container justify = "center"> 
               <form className={classes.root} noValidate autoComplete="off">
                   <TextField 

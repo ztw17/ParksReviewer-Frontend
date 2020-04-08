@@ -20,29 +20,42 @@ const useStyles = makeStyles((theme) => ({
     width: 128,
     height: 128,
   },
-  // img: {
-  //   margin: 'auto',
-  //   display: 'block',
-  //   maxWidth: '100%',
-  //   maxHeight: '100%',
-  //   <img className={classes.img} src="/static/images/grid/complex.jpg" />
-  // },
+  img: {
+    margin: 'auto',
+    display: 'block',
+    maxWidth: 40,
+    maxHeight: 40,
+    // <img className={classes.img} src="/static/images/grid/complex.jpg" />
+  },
 }));
 
 export default function ReviewContainer(props) {
   const classes = useStyles();
-//   console.log(reviewInfo)
+  // console.log("reviewInfo", props.reviewInfo)
 
   const handleEditClick = (id) => {
-    console.log("I've been clicked")
-    console.log(id)
     props.history.push(`/review/${id}/edit`)
+    const clickedReviewObj = props.reviewInfo
+    props.handleEditReviewClick(clickedReviewObj)
+    // console.log(props.reviewInfo)
+    // console.log(id)
+  }
+
+  const handleDeleteClick = (id) => {
+    props.handleDeleteReview(id)
+    // console.log(id)
   }
 
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <Grid container spacing={1} className={classes.mainGrid}>
+        <Grid container spacing={3}>
+            <Grid item>
+              <img className={classes.img} alt="complex" src="https://image.flaticon.com/icons/svg/1177/1177568.svg" />
+              <Typography variant="h9">
+                {props.reviewInfo.user.username}
+              </Typography>
+          </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
@@ -69,10 +82,11 @@ export default function ReviewContainer(props) {
             </Grid>
           </Grid>
           <Grid item>
-            {props.reviewInfo.user_id === props.appState.userId ? <Button onClick={() => handleEditClick(props.reviewInfo.id)}>Edit Review</Button> : ""}
+            {props.reviewInfo.user.id === props.appState.userId ? <Button onClick={() => handleEditClick(props.reviewInfo.id)}>Edit</Button> : null}
+            {props.reviewInfo.user.id === props.appState.userId ? <Button onClick={() => handleDeleteClick(props.reviewInfo.id)}>Delete</Button> : null}
           </Grid>
         </Grid>
       </Paper>
     </div>
-  );
+  )
 }

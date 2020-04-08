@@ -34,59 +34,54 @@ const styles = theme => ({
   // }
 });
 
-class AddReviewForm extends React.Component {
-  constructor() {
-    super()
+class EditReviewForm extends React.Component {
+  constructor(props) {
+    super(props)
     this.state = {
-        content: "",
-        rating: "",
-        visitDate: ""
+        content: props.editReview.content,
+        rating: props.editReview.rating,
+        visitDate: props.editReview.visit_date,
     }
+    console.log("editreview", props.editReview)
   }
 
   handleInputChange = (event) => {
-    // console.log(event.target.value)
+    console.log(event.target.value)
     this.setState({
-      // content: "",
-      // rating: "",
-      // visit_date: "",
       [event.target.name]: event.target.value
     })
-    // console.log([event.target.name])
-    // console.log(event.target.value)
   }
 
   editReview = (event) => {
     event.preventDefault()
-    const newReview = {
+    const editedReview = {
       content: this.state.content,
       rating: this.state.rating,
       visit_date: this.state.visitDate,
-      user_id: this.props.appState.userId,
-      park_id: this.props.appState.showPark.id,
+      user_id: this.props.editReview.user.id,
+      park_id: this.props.editReview.park.id,
     }
-    this.props.handleAddReview(newReview)
+    this.props.handleEditedReview(editedReview)
     this.setState({
       content: "",
       rating: "",
       visit_date: "",
     })
-    console.log(newReview)
-    this.props.history.push(`/park/${this.props.appState.showPark.id}`)
+    this.props.history.push(`/park/${this.props.editReview.park.id}`)
   }
 
   render() {
     const { classes } = this.props
-
+  
     return (
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <div className={classes.paper}>
             <Typography component="h1" variant="h5">
-              Share your experience at
+              Edit your review of
             </Typography>
             <Typography component="h1" variant="h4">
-              {this.props.showPark.name}
+              {this.props.editReview.park.name}
             </Typography>
             <form className={classes.form} onSubmit={this.createNewReview} noValidate>
               <Grid container spacing={2}>
@@ -95,6 +90,7 @@ class AddReviewForm extends React.Component {
                     onChange={this.handleInputChange}
                     id="outlined-multiline-static"
                     label="Write your review"
+                    value={this.state.content}
                     name="content"
                     multiline
                     fullWidth
@@ -104,29 +100,27 @@ class AddReviewForm extends React.Component {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <Typography>
-                      Add a rating
+                      Edit your rating
                   </Typography>
-                  <StarRating handleInputChange={this.handleInputChange} />
+                  <StarRating rating={this.state.rating} handleInputChange={this.handleInputChange} />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <Typography>
-                    Add a visit date
+                    Edit your visit date
                   </Typography>
-                  <form noValidate>
-                    <TextField
-                      onChange={this.handleInputChange}
-                      id="date"
-                      label=""
-                      name="visitDate"
-                      type="date"
-                      defaultValue=""
-                      // onChange={(event) => this.onChange(event)}
-                      className={classes.textField}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                  </form>
+                  <TextField
+                    onChange={this.handleInputChange}
+                    id="date"
+                    label=""
+                    name="visitDate"
+                    type="date"
+                    defaultValue={this.state.visitDate}
+                    // onChange={(event) => this.onChange(event)}
+                    className={classes.textField}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
                 </Grid>
                 {/* <Grid item xs={12}>
                   <Typography>
@@ -171,4 +165,4 @@ class AddReviewForm extends React.Component {
   }
 }
 
-export default withStyles(styles)(AddReviewForm)
+export default withStyles(styles)(EditReviewForm)
