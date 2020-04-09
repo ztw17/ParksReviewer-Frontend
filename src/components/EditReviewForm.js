@@ -42,11 +42,10 @@ class EditReviewForm extends React.Component {
         rating: props.editReview.rating,
         visitDate: props.editReview.visit_date,
     }
-    console.log("editreview", props.editReview)
   }
 
   handleInputChange = (event) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -60,6 +59,7 @@ class EditReviewForm extends React.Component {
       visit_date: this.state.visitDate,
       user_id: this.props.editReview.user.id,
       park_id: this.props.editReview.park.id,
+      review_id: this.props.editReview.id
     }
     this.props.handleEditedReview(editedReview)
     this.setState({
@@ -67,6 +67,8 @@ class EditReviewForm extends React.Component {
       rating: "",
       visit_date: "",
     })
+    const showPark = this.props.parks.find(park => park.id === editedReview.park_id)
+    this.props.handleParkClick(showPark)
     this.props.history.push(`/park/${this.props.editReview.park.id}`)
   }
 
@@ -83,7 +85,7 @@ class EditReviewForm extends React.Component {
             <Typography component="h1" variant="h4">
               {this.props.editReview.park.name}
             </Typography>
-            <form className={classes.form} onSubmit={this.createNewReview} noValidate>
+            <form className={classes.form} onSubmit={this.editReview} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <TextField

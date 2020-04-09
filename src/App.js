@@ -31,7 +31,6 @@ class App extends React.Component {
       signUpUsername: appState.signUpUsername || "",
       signUpEmail: appState.signUpEmail || "",
       signUpPassword: appState.signUpPassword || "",
-      // signUpAvatar: appState.signUpAvatar || "",
       reviewContent: appState.reviewContent || "",
       reviewRating: appState.reviewRating || "",
       reviewVisitDate: appState.reviewVisitDate || "",
@@ -112,15 +111,13 @@ class App extends React.Component {
   }
 
   handleEditReviewClick = (review) => {
-    // console.log("handleedit", review)
     this.setState({
       editReview: review
     })
-    // console.log("editReview", this.state.editReview)
   }
 
   handleEditedReview = (editedReview) => {
-    fetch(`http://localhost:3000/reviews/${editedReview.id}`, {
+    fetch(`http://localhost:3000/reviews/${editedReview.review_id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -130,22 +127,43 @@ class App extends React.Component {
     })
     .then( resp => resp.json() )
     .then( editedReview => {
+      const newReviews = this.state.reviews.map(review => {
+        if (review.id !== editedReview.id) {
+          return review 
+        } else {
+          return editedReview }
+        }
+      )
       const newShowPark = this.state.showPark
-      newShowPark.reviews = [...newShowPark.reviews, editedReview]
+      if ( this.state.showPark.reviews ) {
+        newShowPark.reviews = newShowPark.reviews.map(review => {
+          if (review.id !== editedReview.id) {
+            return review
+          } else {
+            return editedReview }
+        }
+      )}  
+      const newUserReviews = this.state.userReviews.map(review => {
+        if (review.id !== editedReview.id) {
+          return review
+        } else {
+          return editedReview }
+        }
+      )
       if (editedReview.error) {
         alert(editedReview.error)
-    } else {
+      } else {
       this.setState({
-        reviews: [...this.state.reviews, editedReview],
+        reviews: newReviews,
         showPark: newShowPark,
-        userReviews: [...this.state.userReviews, editedReview]
+        userReviews: newUserReviews
         })
       }
     })
   }
 
   handleDeleteReview = (id) => {
-    console.log(id)
+    // console.log(id)
     fetch(`http://localhost:3000/reviews/${id}`, {
       method: "DELETE"
     })
@@ -153,9 +171,10 @@ class App extends React.Component {
     .then( deletedReview => {
       const newReviews = this.state.reviews.filter(review => review.id !== deletedReview.id)
       const newShowPark = this.state.showPark
-      newShowPark.reviews = newShowPark.reviews.filter(review => review.id !== deletedReview.id)
+      if ( this.state.showPark.reviews ) {
+        newShowPark.reviews = newShowPark.reviews.filter(review => review.id !== deletedReview.id) 
+      } 
       const newUserReviews = this.state.userReviews.filter(review => review.id !== deletedReview.id)
-
       this.setState({
         reviews: newReviews,
         showPark: newShowPark,
@@ -337,19 +356,38 @@ class App extends React.Component {
   handleLogout = () => {
     this.resetUserObj()
     this.props.history.push('/')
+    window.location.reload()
   }
 
   resetUserObj = () => {
     localStorage.clear()
     this.setState({
-      user: "",
       firstName: "",
       lastName: "",
       username: "",
       email: "",
       userId: "",
+      userReviews: [],
       loggedIn: false,
-      userReviews: ""
+      loginEmail: "zweb@email.com",
+      loginPassword: "password",
+      signUpFirstName: "",
+      signUpLastName: "",
+      signUpUsername: "",
+      signUpEmail: "",
+      signUpPassword: "",
+      reviewContent: "",
+      reviewRating: "",
+      reviewVisitDate: "",
+      parks: [],
+      tags: [],
+      users: [],
+      reviews: [],
+      showPark: {},
+      showUser: {},
+      showTag: {},
+      editReview: {},
+      selectedFile: null,
     })
   }
 
@@ -370,9 +408,9 @@ class App extends React.Component {
             <Route path='/signup' render={() => <SignUp appState={this.state} handleInputChange={this.handleInputChange} validateSignUpUser={this.validateSignUpUser} fileSelectedHandler={this.fileSelectedHandler}/>}/>
             <Route path='/profile' render={() => <ProfileContainer appState={this.state} userReviews={this.state.userReviews} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} history={this.props.history}/>}/>
             <Route path='/park/:id' render={() => <ParkContainer appState={this.state} showPark={this.state.showPark} handleTagClick={this.handleTagClick} handleTagAdd={this.handleTagAdd} handleTagDelete={this.handleTagDelete} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} tags={this.state.tags} parks={this.state.parks} reviews={this.state.reviews} users={this.state.users} history={this.props.history}/>}/>
-            <Route path='/tag/:id' render={() => <TagPageContainer appState={this.state} showTag={this.state.showTag}/>}/>
+            <Route path='/tag/:id' render={() => <TagPageContainer appState={this.state} showTag={this.state.showTag} history={this.props.history}/>}/>
             <Route path='/review/park/:id' render={() => <AddReviewForm appState={this.state} showPark={this.state.showPark} history={this.props.history} handleAddReview={this.handleAddReview} fileSelectedHandler={this.fileSelectedHandler}/>}/>
-            <Route path='/review/:id/edit' render={() => <EditReviewForm appState={this.state} editReview={this.state.editReview} handleEditedReview={this.state.handleEditedReview} showPark={this.state.showPark} reviewInfo={this.state.reviewInfo} history={this.props.history}/>}/>
+            <Route path='/review/:id/edit' render={() => <EditReviewForm appState={this.state} editReview={this.state.editReview} handleEditedReview={this.handleEditedReview} showPark={this.state.showPark} handleParkClick={this.handleParkClick} reviewInfo={this.state.reviewInfo} parks={this.state.parks} history={this.props.history}/>}/>
             <Route path='/' render={() => <LandingPage appState={this.state} />}/>
           </Switch>
       </div>
