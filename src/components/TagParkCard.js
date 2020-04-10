@@ -19,13 +19,14 @@ const useStyles = makeStyles({
 export default function TagParkCard(props) {
     const classes = useStyles();
 
-    const handleParkClick = (id) => {
-        // console.log("park ID", id)
+    const handleParkTagClick = (id) => {
+        const showPark = props.parks.find(park => park.id === id)
+        props.handleParkClick(showPark)
         props.history.push(`/park/${id}`)
     }
 
     return (
-        <Card className={classes.root} onClick={() => handleParkClick(props.parkInfo.id)}>
+        <Card className={classes.root} onClick={() => handleParkTagClick(props.parkInfo.id)}>
             <CardActionArea>
                 <CardMedia
                     className={classes.media}

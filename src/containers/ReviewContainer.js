@@ -46,6 +46,9 @@ export default function ReviewContainer(props) {
     // console.log(id)
   }
 
+  const DATE_OPTIONS = { year: 'numeric', month: 'long', day: 'numeric' }
+  const visitDate = new Date(props.reviewInfo.visit_date).toLocaleDateString('en-US', DATE_OPTIONS)
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
@@ -67,7 +70,7 @@ export default function ReviewContainer(props) {
                 </Typography>
                 <Divider/>
                 <Typography variant="body2" gutterBottom>
-                  {props.reviewInfo.visit_date}
+                  {visitDate}
                 </Typography>
                 <Typography>
                     Rating

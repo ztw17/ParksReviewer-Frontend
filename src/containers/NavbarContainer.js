@@ -1,9 +1,13 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom'
 import { AppBar, Toolbar, IconButton, Button, withStyles } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
 import NavDropdown from '../components/NavDropdown'
 import logo from '../images/logo.png';
+import america from '../images/america.png';
+import pin from '../images/pin.png';
+import tag from '../images/tag.png';
+import account from '../images/account.png';
+import us_map from '../images/us_map.png';
 
 const styles = theme => ({
     root: {
@@ -19,11 +23,21 @@ const styles = theme => ({
     title: {
       flexGrow: 1,
       transform: "scale(.2)",
-    //   color: '#434C5C',
+      position: 'relative',
+      top: 0,
+      bottom: 0,
+      right: 50,
+      left: -40,
     //   textAlign: 'center',
+    //   color: '#434C5C',
     },
     navbarStyles: {
         textDecoration: "none", color: '#434C5C'
+    },
+    imageIcon: {
+        // transform: "scale(.09)",
+        height: "30px",
+        width: "30px",
     },
 });
   
@@ -36,7 +50,11 @@ class Navbar extends React.Component {
         this.setState((prevState) => {
             return {drawerOpen: !prevState.drawerOpen}
         }) 
-    };    
+    }
+
+    routeToMap = () => {
+        this.props.history.push('/map')
+    }
 
     render() {
         const {classes} = this.props
@@ -46,17 +64,24 @@ class Navbar extends React.Component {
             <Fragment>
                 <AppBar className={classes.root} position="static">
                     <Toolbar>
-                        <IconButton onClick={this.toggleDrawer} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                            <MenuIcon/>
+                        <IconButton onClick={this.toggleDrawer} className={classes.menuButton}>
+                            <img className={classes.imageIcon} alt="america" src={us_map}/>
                         </IconButton>
-                        <Button onClick={this.props.handleLogoClick} className={classes.title}>
+                        <IconButton onClick={this.routeToMap} className={classes.menuButton}>
+                            <img className={classes.imageIcon} alt="pin" src={pin}/>
+                        </IconButton>
+                        <IconButton className={classes.menuButton}>
+                            <img className={classes.imageIcon} alt="tag" src={tag}/>
+                        </IconButton>
+                        <IconButton onClick={this.props.handleLogoClick} className={classes.title}>
                             <img src={logo} alt="logo"/>
-                        </Button>
+                        </IconButton>
                         {
                             this.props.loggedIn ?
                             <Fragment>
                                 <Link to="/profile" className={classes.navbarStyles}>
-                                    <Button color="inherit">Profile</Button>
+                                    <img className={classes.imageIcon} alt="tag" src={account}/>
+                                    {/* <Button color="inherit">Profile</Button> */}
                                 </Link>
                                 <Link to="/" className={classes.navbarStyles}>
                                     <Button onClick={this.props.handleLogout} color="inherit">Logout</Button>

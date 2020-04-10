@@ -81,6 +81,10 @@ class ParkContainer extends React.Component {
                             <Grid>
                                 <Card>
                                     <CardContent>
+                                        <Typography variant="h6">
+                                                Overview
+                                            </Typography>
+                                        <Divider/>
                                         <Typography varient="h6">
                                             {this.props.showPark.description}
                                         </Typography>
@@ -135,7 +139,7 @@ class ParkContainer extends React.Component {
                         </Grid>
                             <Grid className={classes.mainGrid}>
                                 <Card>
-                                    <Map showPark={this.props.showPark}/>
+                                    <Map showPark={this.props.showPark} viewport={this.props.viewport} updateViewport={this.props.updateViewport} />
                                 </Card>
                             </Grid>
                         <Grid className={classes.mainGrid}>

@@ -1,39 +1,15 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { Paper, Grid } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Image from '../images/Olympic.jpg';
+import america from '../images/america.png';
+import pin from '../images/pin.png';
+import tag from '../images/tag.png';
 
-// variant="h6" className={classes.title}
-export default function LandingPage() {
-    const classes = useStyles();
-
-    return (
-      <Paper className={classes.paperContainer}>
-        <Grid>
-          <Typography style={{textAlign: "center"}} variant="h2">
-            Find your next adventure
-          </Typography >
-        </Grid>
-          <Grid container justify = "center"> 
-              <form className={classes.root} noValidate autoComplete="off">
-                  <TextField 
-                    InputProps={{className: classes.input}} 
-                    InputLabelProps={{className: classes.floatingLabelFocusStyle}}
-                    id="filled-basic" 
-                    label="Enter a park, location, or tag name" 
-                    variant="filled" 
-                  />
-              </form>
-              <Button variant="contained">Search</Button>
-          </Grid>
-      </Paper>
-    )
-}
-
-const useStyles = makeStyles((theme) => ({
+const styles = theme => ({
   root: {
     '& > *': {
       margin: theme.spacing(0),
@@ -60,14 +36,59 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
-    padding: 285,
+    padding: 275,
     color: "white"
     },
-  input: {
-    color: "white",
+  // input: {
+  //   color: "white",
+  // },
+  // floatingLabelFocusStyle: {
+  //   color: "white",
+  //   borderColor: 'green !important',
+  // },
+  imageIcon: {
+    // transform: "scale(.09)",
+    height: "30px",
+    width: "30px",
   },
-  floatingLabelFocusStyle: {
-    color: "white",
-    borderColor: 'green !important',
-  },
-}));
+  directions: {
+    margin: 20,
+  }
+});
+
+// variant="h6" className={classes.title}
+class LandingPage extends React.Component {
+
+  render() {
+    const {classes} = this.props
+
+    return (
+      <Paper className={classes.paperContainer}>
+        <Grid>
+          <Typography style={{textAlign: "center"}} variant="h2">
+            Find your next adventure
+          </Typography >
+        </Grid>
+          <Grid container justify = "center" className={classes.directions}> 
+            <Typography>
+              Select <img className={classes.imageIcon} alt="america" src={america}/> to explore by U.S. state,
+              <img className={classes.imageIcon} alt="america" src={pin}/> to explore by map, or 
+              <img className={classes.imageIcon} alt="america" src={tag}/> to explore by tag
+            </Typography>
+              {/* <form className={classes.root} noValidate autoComplete="off">
+                  <TextField 
+                    InputProps={{className: classes.input}} 
+                    InputLabelProps={{className: classes.floatingLabelFocusStyle}}
+                    id="filled-basic" 
+                    label="Enter a park, location, or tag name" 
+                    variant="filled" 
+                  />
+              </form>
+              <Button variant="contained">Search</Button> */}
+          </Grid>
+      </Paper>
+    )
+  }
+}
+
+export default withStyles(styles)(LandingPage)

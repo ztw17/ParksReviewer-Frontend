@@ -1,3 +1,19 @@
+.marker-btn {
+  background: none; 
+  border: none;
+  cursor: pointer; 
+}
+
+.mapboxgl-popup {
+  max-width: 400px;
+  max-height: 300px;
+  font: 12px/20px 'Open Sans', sans-serif;
+  border-radius: 5px;
+}
+
+
+
+
 .App {
   text-align: center;
 }

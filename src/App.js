@@ -9,6 +9,7 @@ import ProfileContainer from './containers/ProfileContainer';
 import TagPageContainer from './containers/TagPageContainer';
 import AddReviewForm from './components/AddReviewForm';
 import EditReviewForm from './components/EditReviewForm';
+import AllParksMap from './components/AllParksMap';
 import './App.css';
 
 class App extends React.Component {
@@ -34,6 +35,7 @@ class App extends React.Component {
       reviewContent: appState.reviewContent || "",
       reviewRating: appState.reviewRating || "",
       reviewVisitDate: appState.reviewVisitDate || "",
+      viewport: appState.viewport || {},
       parks: [],
       tags: [],
       users: [],
@@ -192,7 +194,14 @@ class App extends React.Component {
 
   handleParkClick = (park) => {
     this.setState({
-      showPark: park
+      showPark: park,
+      viewport: {
+        latitude: parseFloat(park.latitude),
+        longitude: parseFloat(park.longitude),
+        zoom: 10,
+        bearing: 0,
+        pitch: 0,
+      }
     })
   }
 
@@ -379,6 +388,7 @@ class App extends React.Component {
       reviewContent: "",
       reviewRating: "",
       reviewVisitDate: "",
+      viewport: {},
       parks: [],
       tags: [],
       users: [],
@@ -395,6 +405,12 @@ class App extends React.Component {
     this.props.history.push('/')
   }
 
+  updateViewport = (viewport) => {
+    this.setState({
+      viewport: viewport
+    })
+  }
+
   render() {
     // console.log(this.state.userReviews)
     // console.log(this.state.tags)
@@ -407,11 +423,12 @@ class App extends React.Component {
             <Route path='/login' render={() => <Login appState={this.state} handleInputChange={this.handleInputChange} validateUserLogin={this.validateUserLogin}/>}/>
             <Route path='/signup' render={() => <SignUp appState={this.state} handleInputChange={this.handleInputChange} validateSignUpUser={this.validateSignUpUser} fileSelectedHandler={this.fileSelectedHandler}/>}/>
             <Route path='/profile' render={() => <ProfileContainer appState={this.state} userReviews={this.state.userReviews} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} history={this.props.history}/>}/>
-            <Route path='/park/:id' render={() => <ParkContainer appState={this.state} showPark={this.state.showPark} handleTagClick={this.handleTagClick} handleTagAdd={this.handleTagAdd} handleTagDelete={this.handleTagDelete} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} tags={this.state.tags} parks={this.state.parks} reviews={this.state.reviews} users={this.state.users} history={this.props.history}/>}/>
-            <Route path='/tag/:id' render={() => <TagPageContainer appState={this.state} showTag={this.state.showTag} history={this.props.history}/>}/>
+            <Route path='/park/:id' render={() => <ParkContainer appState={this.state} showPark={this.state.showPark} updateViewport={this.updateViewport} handleTagClick={this.handleTagClick} handleTagAdd={this.handleTagAdd} handleTagDelete={this.handleTagDelete} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} viewport={this.state.viewport} tags={this.state.tags} parks={this.state.parks} reviews={this.state.reviews} users={this.state.users} history={this.props.history}/>}/>
+            <Route path='/tag/:id' render={() => <TagPageContainer appState={this.state} showTag={this.state.showTag} handleParkClick={this.handleParkClick} parks={this.state.parks} history={this.props.history}/>}/>
             <Route path='/review/park/:id' render={() => <AddReviewForm appState={this.state} showPark={this.state.showPark} history={this.props.history} handleAddReview={this.handleAddReview} fileSelectedHandler={this.fileSelectedHandler}/>}/>
             <Route path='/review/:id/edit' render={() => <EditReviewForm appState={this.state} editReview={this.state.editReview} handleEditedReview={this.handleEditedReview} showPark={this.state.showPark} handleParkClick={this.handleParkClick} reviewInfo={this.state.reviewInfo} parks={this.state.parks} history={this.props.history}/>}/>
-            <Route path='/' render={() => <LandingPage appState={this.state} />}/>
+            <Route path='/map' render={() => <AllParksMap parks={this.state.parks}/>}/>
+            <Route path='/' render={() => <LandingPage appState={this.state}/>}/>
           </Switch>
       </div>
     )
