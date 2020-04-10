@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
-    padding: 270,
+    padding: 285,
     color: "white"
     },
   input: {

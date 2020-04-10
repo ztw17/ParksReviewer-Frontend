@@ -151,6 +151,6 @@ const useStyles = makeStyles((theme) => ({
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
-      padding: 70,
+      padding: 80,
     }
   }));

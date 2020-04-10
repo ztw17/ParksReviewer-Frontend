@@ -4,6 +4,7 @@ import ParkBanner from '../components/ParkBanner';
 import Tag from '../components/Tag';
 import ReviewContainer from './ReviewContainer';
 import AddTag from '../components/AddTag';
+import Map from '../components/Map';
 import Image from '../images/Map.png';
 
 const styles = theme => ({
@@ -58,7 +59,6 @@ const styles = theme => ({
 class ParkContainer extends React.Component {
     
     renderTags = () => {
-        // console.log(this.props.showPark.tags)
         return this.props.showPark.tags.map(tag => <Tag tagInfo={tag} tags={this.props.tags} handleTagClick={this.props.handleTagClick} handleTagDelete={this.props.handleTagDelete} history={this.props.history}/>)
     }
 
@@ -134,12 +134,9 @@ class ParkContainer extends React.Component {
                             </Grid>
                         </Grid>
                             <Grid className={classes.mainGrid}>
-                                {/* <Card> */}
-                                    {/* <Typography variant="h6">
-                                        PLACEHOLDER FOR MAP
-                                    </Typography> */}
-                                    <img className={classes.img} />
-                                {/* </Card> */}
+                                <Card>
+                                    <Map showPark={this.props.showPark}/>
+                                </Card>
                             </Grid>
                         <Grid className={classes.mainGrid}>
                             <Card >

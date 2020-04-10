@@ -49,7 +49,7 @@ class Navbar extends React.Component {
                         <IconButton onClick={this.toggleDrawer} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                             <MenuIcon/>
                         </IconButton>
-                        <Button onClick={this.props.handleLogoClick} variant="h6" className={classes.title}>
+                        <Button onClick={this.props.handleLogoClick} className={classes.title}>
                             <img src={logo} alt="logo"/>
                         </Button>
                         {
