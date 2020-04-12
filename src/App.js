@@ -11,6 +11,15 @@ import AddReviewForm from './components/AddReviewForm';
 import EditReviewForm from './components/EditReviewForm';
 import AllParksMap from './components/AllParksMap';
 import './App.css';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import createPalette from '@material-ui/core/styles/createPalette';
+import createTypography from '@material-ui/core/styles/createTypography';
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: '"Tahoma", sans-serif'
+  },
+});
 
 class App extends React.Component {
   constructor() {
@@ -417,6 +426,7 @@ class App extends React.Component {
     // console.log(this.state.users)
 
     return (
+      <MuiThemeProvider theme={theme}>
       <div>
         <NavbarContainer loggedIn={this.state.loggedIn} history={this.props.history} parks={this.state.parks} handleLogout={this.handleLogout} handleParkClick={this.handleParkClick} handleLogoClick={this.handleLogoClick}/>
           <Switch>
@@ -431,6 +441,7 @@ class App extends React.Component {
             <Route path='/' render={() => <LandingPage appState={this.state}/>}/>
           </Switch>
       </div>
+      </MuiThemeProvider>
     )
   }
 }

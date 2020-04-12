@@ -1,5 +1,19 @@
 import React from 'react';
 import ReviewContainer from './ReviewContainer';
+import { Typography, withStyles, Paper, Card, Grid } from '@material-ui/core';
+
+const styles = theme => ({
+    root: {
+        height: "100%",
+        padding: "50px",
+        backgroundColor: "#F2F2F2",
+    },
+    reviews: {
+        direction: "column",
+        justify: "center",
+        alignItems: "center",
+    },
+})
 
 class UserProfile extends React.Component {
 
@@ -9,13 +23,23 @@ class UserProfile extends React.Component {
     }
 
     render() {
+        const {classes} = this.props
+
         return (
-            <div>
-                <h1>Hi, {this.props.appState.firstName}!</h1>
-                <h3>{this.renderUserReviews()}</h3>
-            </div>
+            // <Paper className={classes.root}>
+                <Grid className={classes.root}>
+                    <Grid item>
+                        <Typography variant="h4" className={classes.header}>
+                            Hi there, {this.props.appState.firstName}!
+                        </Typography>
+                    </Grid>
+                    <Grid item align="center" className={classes.reviews}>
+                            {this.renderUserReviews()}
+                    </Grid>
+                </Grid>
+            // </Paper>
         )
     }
 }
 
-export default UserProfile
+export default  withStyles(styles)(UserProfile)

@@ -4,8 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Button } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import ButtonBase from '@material-ui/core/ButtonBase';
 import { Divider } from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+import { teal } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     margin: 15,
-    maxWidth: 500,
+    maxWidth: 600,
   },
   image: {
     width: 128,
@@ -26,6 +27,13 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 40,
     maxHeight: 40,
     // <img className={classes.img} src="/static/images/grid/complex.jpg" />
+  },
+  reviewUsername: {
+    textAlign: 'center'
+  },
+  teal: {
+    color: theme.palette.getContrastText(teal[300]),
+    backgroundColor: teal[300],
   },
 }));
 
@@ -53,38 +61,43 @@ export default function ReviewContainer(props) {
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <Grid container spacing={3}>
-            <Grid item>
-              <img className={classes.img} alt="complex" src="https://image.flaticon.com/icons/svg/1177/1177568.svg" />
-              <Typography variant="h9">
-                {props.reviewInfo.user.username}
-              </Typography>
+          <Grid item>
+            {/* <img className={classes.img} alt="complex" src="https://image.flaticon.com/icons/svg/1177/1177568.svg" /> */}
+            <Avatar className={classes.teal}>{props.reviewInfo.user.first_name[0]}</Avatar>
+            <Typography className={classes.reviewUsername}variant="h9">
+              {props.reviewInfo.user.username}
+            </Typography>
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography gutterBottom variant="subtitle1">
+                <Typography variant="h6">
+                  {props.reviewInfo.park.name}
+                </Typography>
+                <Divider/>
+                <Typography align="left" gutterBottom variant="subtitle1">
                   {props.reviewInfo.content}
                 </Typography>
                 <Typography>
-                    Visit Date
+                  Visit Date
                 </Typography>
                 <Divider/>
-                <Typography variant="body2" gutterBottom>
+                <Typography align="left" variant="body2" gutterBottom>
                   {visitDate}
                 </Typography>
                 <Typography>
-                    Rating
+                  Rating
                 </Typography>
                 <Divider/>
-                  <RenderStarRating readOnly={true} reviewInfo={props.reviewInfo} />
+                  <RenderStarRating align="left" readOnly={true} reviewInfo={props.reviewInfo} />
               </Grid>
-              <Grid item>
+              {/* <Grid item>
                 <Typography variant="body2">
                 </Typography>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Grid>
-          <Grid item>
+          <Grid item xs={2} container direction="column" spacing={12}>
             {props.reviewInfo.user.id === props.appState.userId ? <Button onClick={() => handleEditClick(props.reviewInfo.id)}>Edit</Button> : null}
             {props.reviewInfo.user.id === props.appState.userId ? <Button onClick={() => handleDeleteClick(props.reviewInfo.id)}>Delete</Button> : null}
           </Grid>

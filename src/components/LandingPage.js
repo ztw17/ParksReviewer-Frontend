@@ -36,8 +36,12 @@ const styles = theme => ({
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
-    padding: 275,
-    color: "white"
+    top: 500,
+    bottom: -50,
+    right: 0,
+    left: 0,
+    padding: 300,
+    color: "white",
     },
   // input: {
   //   color: "white",
@@ -59,22 +63,26 @@ const styles = theme => ({
 // variant="h6" className={classes.title}
 class LandingPage extends React.Component {
 
+  handleIntroClick = () => {
+    console.log("hello")
+  }
+
   render() {
     const {classes} = this.props
 
     return (
       <Paper className={classes.paperContainer}>
         <Grid>
-          <Typography style={{textAlign: "center"}} variant="h2">
+          <Typography style={{textAlign: "center"}} variant="h2" cursor="pointer" onClick={this.handleIntroClick}>
             Find your next adventure
           </Typography >
         </Grid>
           <Grid container justify = "center" className={classes.directions}> 
-            <Typography>
+            {/* <Typography>
               Select <img className={classes.imageIcon} alt="america" src={america}/> to explore by U.S. state,
               <img className={classes.imageIcon} alt="america" src={pin}/> to explore by map, or 
               <img className={classes.imageIcon} alt="america" src={tag}/> to explore by tag
-            </Typography>
+            </Typography> */}
               {/* <form className={classes.root} noValidate autoComplete="off">
                   <TextField 
                     InputProps={{className: classes.input}} 

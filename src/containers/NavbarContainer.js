@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { AppBar, Toolbar, IconButton, Button, withStyles } from '@material-ui/core';
 import NavDropdown from '../components/NavDropdown'
 import logo from '../images/logo.png';
-import america from '../images/america.png';
 import pin from '../images/pin.png';
 import tag from '../images/tag.png';
 import account from '../images/account.png';
@@ -17,8 +16,9 @@ const styles = theme => ({
     //   backgroundColor: '#DEE0E3',
     },
     menuButton: {
-      marginRight: theme.spacing(2),
+    //   marginRight: theme.spacing(2),
       color: '#434C5C',
+      upperCase: false,
     },
     title: {
       flexGrow: 1,
@@ -32,7 +32,8 @@ const styles = theme => ({
     //   color: '#434C5C',
     },
     navbarStyles: {
-        textDecoration: "none", color: '#434C5C'
+        textDecoration: "none", 
+        color: '#434C5C',
     },
     imageIcon: {
         // transform: "scale(.09)",
@@ -62,7 +63,7 @@ class Navbar extends React.Component {
         return (
         <div className={classes.root}>
             <Fragment>
-                <AppBar className={classes.root} position="static">
+                <AppBar className={classes.root} position="sticky">
                     <Toolbar>
                         <IconButton onClick={this.toggleDrawer} className={classes.menuButton}>
                             <img className={classes.imageIcon} alt="america" src={us_map}/>
@@ -108,7 +109,7 @@ class Navbar extends React.Component {
                 />
             </Fragment>
         </div>
-    ); 
+        ); 
     }
 }
 

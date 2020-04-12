@@ -33,11 +33,11 @@ export default function TagParkCard(props) {
                     image={props.parkInfo.image}
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                    {props.parkInfo.name}
+                    <Typography align="left" gutterBottom variant="h5" component="h2">
+                        {props.parkInfo.name}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                    {props.parkInfo.state}
+                    <Typography align="left" variant="body2" color="textSecondary" component="p">
+                        {props.parkInfo.state}
                     </Typography>
                 </CardContent>
             </CardActionArea>

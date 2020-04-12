@@ -11,11 +11,14 @@ const styles = theme => ({
     },
     mainGrid: {
         marginTop: theme.spacing(2),
+        direction: "column",
+        justify: "center",
+        alignItems: "center",
     },
-    card: {
-        // position: 'absolute', 
-        // left: '50%',
-        // transform: 'translate(-50%)',
+    cards: {
+        direction: "column",
+        justify: "center",
+        alignItems: "center",
     },
 })
 
@@ -42,11 +45,14 @@ class TagPage extends React.Component {
                 <main className={classes.root}>
                     <Grid className={classes.mainGrid}>
                         <Grid>
-                            <Typography variant="h2">
+                            <Typography align="center" variant="h5">
+                                Parks with the Tag of
+                            </Typography>
+                            <Typography align="center" variant="h2">
                                 {this.titleCase(this.props.appState.showTag.name)}
                             </Typography>
                             <Divider/>
-                            <Grid className={classes.card}>
+                            <Grid item className={classes.cards} align="center">
                                 {this.renderTagParks()}
                             </Grid>
                         </Grid>

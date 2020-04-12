@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Box, Paper } from '@material-ui/core';
+import { Button, Card } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
@@ -13,6 +13,7 @@ import Tag from './Tag';
 const styles = theme => ({
   paper: {
     marginTop: theme.spacing(8),
+    padding: 50,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -87,90 +88,94 @@ class AddReviewForm extends React.Component {
 
     return (
         <Container component="main" maxWidth="xs">
+          <Card className={classes.paper}>
           <CssBaseline />
-          <div className={classes.paper}>
-            <Typography component="h1" variant="h5">
-              Share your experience at
-            </Typography>
-            <Typography component="h1" variant="h4">
-              {this.props.showPark.name}
-            </Typography>
-            <form className={classes.form} onSubmit={this.createNewReview} noValidate>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <TextField
-                    onChange={this.handleInputChange}
-                    id="outlined-multiline-static"
-                    label="Write your review"
-                    name="content"
-                    multiline
-                    fullWidth
-                    rows="4"
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <Typography>
-                      Add a rating
-                  </Typography>
-                  <StarRating handleInputChange={this.handleInputChange} />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <Typography>
-                    Add a visit date
-                  </Typography>
-                  <TextField
-                    onChange={this.handleInputChange}
-                    id="date"
-                    label=""
-                    name="visitDate"
-                    type="date"
-                    defaultValue=""
-                    // onChange={(event) => this.onChange(event)}
-                    className={classes.textField}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                  />
-                </Grid>
-                {/* <Grid item xs={12}>
-                  <Typography>
-                    Add a tag
-                  </Typography>
-                  <Box className={classes.tagBox}>
-                      {this.renderTags()}
-                  </Box>
-                  <AddTag />
-                </Grid> */}
-                {/* <Grid item xs={12}>
-                  <Typography>
-                    Add a photo
-                  </Typography>
-                  <TextField
-                    onChange={event => this.props.fileSelectedHandler(event)}
-                    variant="outlined"
-                    required
-                    fullWidth
-                    name="reviewImage"
-                    abel="Add a photo"
-                    type="file"
-                    id="reviewImage"
-                  />
-                </Grid> */}
+            <div>
+              <Grid align="center">
+                <Typography component="h1" variant="h5">
+                  Share your experience at
+                </Typography>
+                <Typography component="h1" variant="h4">
+                  {this.props.showPark.name}
+                </Typography>
               </Grid>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Submit Review
-              </Button>
-              <Grid container justify="flex-end">
-              </Grid>
-            </form>
-          </div>
+              <form className={classes.form} onSubmit={this.createNewReview} noValidate>
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <TextField
+                      onChange={this.handleInputChange}
+                      id="outlined-multiline-static"
+                      label="Write your review"
+                      name="content"
+                      multiline
+                      fullWidth
+                      rows="4"
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <Typography>
+                        Add a rating
+                    </Typography>
+                    <StarRating handleInputChange={this.handleInputChange} />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <Typography>
+                      Add a visit date
+                    </Typography>
+                    <TextField
+                      onChange={this.handleInputChange}
+                      id="date"
+                      label=""
+                      name="visitDate"
+                      type="date"
+                      defaultValue=""
+                      // onChange={(event) => this.onChange(event)}
+                      className={classes.textField}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                  </Grid>
+                  {/* <Grid item xs={12}>
+                    <Typography>
+                      Add a tag
+                    </Typography>
+                    <Box className={classes.tagBox}>
+                        {this.renderTags()}
+                    </Box>
+                    <AddTag />
+                  </Grid> */}
+                  {/* <Grid item xs={12}>
+                    <Typography>
+                      Add a photo
+                    </Typography>
+                    <TextField
+                      onChange={event => this.props.fileSelectedHandler(event)}
+                      variant="outlined"
+                      required
+                      fullWidth
+                      name="reviewImage"
+                      abel="Add a photo"
+                      type="file"
+                      id="reviewImage"
+                    />
+                  </Grid> */}
+                </Grid>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                >
+                  Submit Review
+                </Button>
+                <Grid container justify="flex-end">
+                </Grid>
+              </form>
+            </div>
+          </Card>
         </Container>
     );
   }

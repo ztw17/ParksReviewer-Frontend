@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
-import { withStyles, Paper, Typography, Divider, Card, CardContent, Grid, Box, Button } from '@material-ui/core';
+import { withStyles, Paper, Typography, Divider, Card, CardContent, Grid, Box, Fab, Tooltip } from '@material-ui/core';
+import EditIcon from '@material-ui/icons/Edit';
 import ParkBanner from '../components/ParkBanner';
 import Tag from '../components/Tag';
 import ReviewContainer from './ReviewContainer';
@@ -38,9 +39,9 @@ const styles = theme => ({
         alignItems: 'center'
     },
     reviews: {
-        direction: "column",
-        justify: "center",
-        alignItems: "center",
+        // direction: "column",
+        // justify: "center",
+        // alignItems: "center",
     },
     img: {
         backgroundImage: `url(${Image})`,
@@ -53,7 +54,10 @@ const styles = theme => ({
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         padding: 300,
-  },
+    },
+    reviewTitle: {
+        textAlign: 'center'
+    },
 })
 
 class ParkContainer extends React.Component {
@@ -143,15 +147,21 @@ class ParkContainer extends React.Component {
                                 </Card>
                             </Grid>
                         <Grid className={classes.mainGrid}>
-                            <Card >
-                                <Typography component="h3" variant="h4">
-                                    User Reviews
-                                </Typography>
-                                { this.props.appState.loggedIn ? <Button onClick={() => this.handleAddReviewClick(this.props.showPark.id)}>Add A Review</Button> : null }
-                            </Card>
-                            <Card >
-                                {this.renderReviews()}
-                            </Card>
+                            <Typography component="h3" variant="h4" className={classes.reviewTitle}>
+                                User Reviews
+                            </Typography>
+                            <Divider/>
+                            <Grid item align="right">
+                                { this.props.appState.loggedIn ? 
+                                <Tooltip title="Write a review">
+                                    <Fab color="secondary" align="right" className={classes.addReviewBtn}>
+                                        <EditIcon onClick={() => this.handleAddReviewClick(this.props.showPark.id)}/>
+                                    </Fab> 
+                                </Tooltip> : null }
+                            </Grid>
+                            <Grid item align="center" className={classes.reviews}>
+                                {this.props.showPark.reviews ? this.renderReviews() : `No reviews for ${this.props.showPark.name} yet. Write one today!`}
+                            </Grid>
                         </Grid>
                     </main>
             </React.Fragment>
