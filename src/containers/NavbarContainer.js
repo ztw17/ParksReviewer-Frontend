@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom'
-import { AppBar, Toolbar, IconButton, Button, withStyles } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Button, withStyles, Tooltip } from '@material-ui/core';
 import NavDropdown from '../components/NavDropdown'
 import logo from '../images/logo.png';
 import pin from '../images/pin.png';
@@ -63,27 +63,33 @@ class Navbar extends React.Component {
         return (
         <div className={classes.root}>
             <Fragment>
-                <AppBar className={classes.root} position="sticky">
+                <AppBar className={classes.root} position="fixed">
                     <Toolbar>
-                        <IconButton onClick={this.toggleDrawer} className={classes.menuButton}>
-                            <img className={classes.imageIcon} alt="america" src={us_map}/>
-                        </IconButton>
-                        <IconButton onClick={this.routeToMap} className={classes.menuButton}>
-                            <img className={classes.imageIcon} alt="pin" src={pin}/>
-                        </IconButton>
-                        <IconButton className={classes.menuButton}>
+                        <Tooltip title="Find a park by state name">
+                            <IconButton onClick={this.toggleDrawer} className={classes.menuButton}>
+                                <img className={classes.imageIcon} alt="america" src={us_map}/>
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Find a park by map">
+                            <IconButton onClick={this.routeToMap} className={classes.menuButton}>
+                                <img className={classes.imageIcon} alt="pin" src={pin}/>
+                            </IconButton>
+                        </Tooltip>
+                        {/* <IconButton className={classes.menuButton}>
                             <img className={classes.imageIcon} alt="tag" src={tag}/>
-                        </IconButton>
+                        </IconButton> */}
                         <IconButton onClick={this.props.handleLogoClick} className={classes.title}>
                             <img src={logo} alt="logo"/>
                         </IconButton>
                         {
                             this.props.loggedIn ?
                             <Fragment>
-                                <Link to="/profile" className={classes.navbarStyles}>
-                                    <img className={classes.imageIcon} alt="tag" src={account}/>
-                                    {/* <Button color="inherit">Profile</Button> */}
-                                </Link>
+                                <Tooltip title="Profile">
+                                    <Link to="/profile" className={classes.navbarStyles}>
+                                        <img className={classes.imageIcon} alt="tag" src={account}/>
+                                        {/* <Button color="inherit">Profile</Button> */}
+                                    </Link>
+                                </Tooltip>
                                 <Link to="/" className={classes.navbarStyles}>
                                     <Button onClick={this.props.handleLogout} color="inherit">Logout</Button>
                                 </Link>

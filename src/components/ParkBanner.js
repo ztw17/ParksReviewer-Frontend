@@ -1,19 +1,25 @@
 import React from 'react';
-import { makeStyles, Paper, Typography } from '@material-ui/core';
+import { makeStyles, Paper, Typography, Fab, Tooltip } from '@material-ui/core';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 export default function ParkBanner(props) {
   const classes = useStyles();
-  const { showPark } = props;
 
   return (
-    <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${showPark.image})` }}>
-      {<img style={{ display: 'none' }} src={showPark.image} alt={showPark.imageText} />}
-      {/* <div className={classes.overlay} /> */}
-          <div className={classes.overlay}>
-            <Typography component="h3" variant="h2" color="inherit" gutterBottom>
-              {showPark.name}
-            </Typography>
-          </div>
+    <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${props.showPark.image})` }}>
+      { props.appState.loggedIn ? 
+        <Tooltip title="Add park to favorites">
+            <Fab color="secondary" aria-label="favorite" className={classes.buttonOverlay} onClick={() => props.handleFavoritesClick(props.showPark.id)}>
+              <FavoriteIcon />
+            </Fab>
+          </Tooltip>
+      : null }
+      {<img style={{ display: 'none' }} src={props.showPark.image} alt={props.showPark.name} />}
+      <div className={classes.overlay}>
+        <Typography component="h3" variant="h2" color="inherit" gutterBottom>
+          {props.showPark.name}
+        </Typography>
+      </div>
     </Paper>
   );
 }
@@ -36,6 +42,13 @@ const useStyles = makeStyles((theme) => ({
       bottom: 0,
       right: 0,
       left: -100,
+    },
+    buttonOverlay: {
+      position: 'relative',
+      top: -130,
+      bottom: 800,
+      right: 0,
+      left: 950,
     },
     mainFeaturedPostContent: {
       position: 'left',

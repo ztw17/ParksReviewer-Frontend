@@ -57,6 +57,10 @@ const styles = theme => ({
   },
   directions: {
     margin: 20,
+  },
+  intro: {
+    width: 1000,
+    alignText: "center"
   }
 });
 
@@ -73,7 +77,7 @@ class LandingPage extends React.Component {
     return (
       <Paper className={classes.paperContainer}>
         <Grid>
-          <Typography style={{textAlign: "center"}} variant="h2" cursor="pointer" onClick={this.handleIntroClick}>
+          <Typography className={classes.intro} variant="h2" cursor="pointer" onClick={this.handleIntroClick}>
             Find your next adventure
           </Typography >
         </Grid>

@@ -25,7 +25,7 @@ const styles = theme => ({
 class TagPage extends React.Component {
 
     renderTagParks = () => {
-        console.log(this.props.appState.showTag.parks)
+        // console.log(this.props.appState.showTag.parks)
         return this.props.appState.showTag.parks.map(park => <TagParkCard parkInfo={park} handleParkClick={this.props.handleParkClick} parks={this.props.parks} history={this.props.history}/>)
     }
 

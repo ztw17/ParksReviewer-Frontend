@@ -160,8 +160,8 @@ export default function AllParksMap(props) {
         {props.parks.map(park => (
           <Marker
             key={park.id}
-            latitude={parseFloat(park.latitude)}
-            longitude={parseFloat(park.longitude)}
+            latitude={park.latitude}
+            longitude={park.longitude}
           >
             <button
               class="marker-btn"

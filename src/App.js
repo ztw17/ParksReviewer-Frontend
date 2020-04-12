@@ -15,9 +15,14 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import createPalette from '@material-ui/core/styles/createPalette';
 import createTypography from '@material-ui/core/styles/createTypography';
 
+const font =  "'Raleway', sans-serif";
+
 const theme = createMuiTheme({
   typography: {
-    fontFamily: '"Tahoma", sans-serif'
+    fontFamily: font,
+    button: {
+      textTransform: 'none'
+    }
   },
 });
 
@@ -32,7 +37,9 @@ class App extends React.Component {
       username: appState.username || "",
       email: appState.email || "",
       userId: appState.userId || "",
+      createdAtDate: appState.createdAtDate || "",
       userReviews: appState.userReviews || [],
+      userFavorites: appState.userFavorites || [],
       loggedIn: appState.loggedIn || false,
       loginEmail: appState.loginEmail || "zweb@email.com",
       loginPassword: appState.loginPassword || "password",
@@ -41,6 +48,7 @@ class App extends React.Component {
       signUpUsername: appState.signUpUsername || "",
       signUpEmail: appState.signUpEmail || "",
       signUpPassword: appState.signUpPassword || "",
+      signUpDate: appState.signUpDate || "",
       reviewContent: appState.reviewContent || "",
       reviewRating: appState.reviewRating || "",
       reviewVisitDate: appState.reviewVisitDate || "",
@@ -49,6 +57,7 @@ class App extends React.Component {
       tags: [],
       users: [],
       reviews: [],
+      favorites: [],
       showPark: {},
       showUser: {},
       showTag: {},
@@ -62,6 +71,7 @@ class App extends React.Component {
     this.getTags()
     this.getReviews()
     this.getUsers()
+    this.getFavorites()
   }
   
   getParks = () => {
@@ -93,6 +103,14 @@ class App extends React.Component {
       .then( resp => resp.json() )
       .then( usersData => this.setState({
         users: usersData
+    }))
+  }
+
+  getFavorites = () => {
+    fetch("http://localhost:3000/favorites")
+      .then( resp => resp.json() )
+      .then( favoritesData => this.setState({
+        favorites: favoritesData
     }))
   }
 
@@ -205,8 +223,8 @@ class App extends React.Component {
     this.setState({
       showPark: park,
       viewport: {
-        latitude: parseFloat(park.latitude),
-        longitude: parseFloat(park.longitude),
+        latitude: park.latitude,
+        longitude: park.longitude,
         zoom: 10,
         bearing: 0,
         pitch: 0,
@@ -261,6 +279,43 @@ class App extends React.Component {
     })
   }
 
+  handleFavoritesClick = (id) => {
+    fetch("http://localhost:3000/favorites", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accepts": "application/json"
+      },
+      body: JSON.stringify({
+        user_id: this.state.userId,
+        park_id: this.state.showPark.id
+      })
+    })
+    .then( resp => resp.json() )
+    .then( newFavorite => {
+      this.setState({
+        favorites: [...this.state.favorites, newFavorite],
+        userFavorites: [...this.state.userFavorites, newFavorite]
+      })
+    })
+  }
+
+  handleFavoriteDelete = (id) => {
+    fetch(`http://localhost:3000/favorites/${id}`, {
+      method: "DELETE"
+    })
+    .then( resp => resp.json() )
+    .then( deletedFavorite => {
+      const newFavorites = this.state.favorites.filter(favorite => favorite.id !== deletedFavorite.id)
+      const newUserFavorites = this.state.userFavorites.filter(favorite => favorite.id !== deletedFavorite.id)
+
+      this.setState({
+        favorites: newFavorites,
+        userFavorites: newUserFavorites
+      })
+    })
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
       const json = JSON.stringify(this.state);
@@ -302,7 +357,9 @@ class App extends React.Component {
           username: resp.username,
           userId: resp.id,
           email: resp.email,
-          userReviews: resp.reviews
+          userReviews: resp.reviews,
+          userFavorites: resp.favorites,
+          createdAtDate: resp.created_at
         })
         this.props.history.push('/')
       }
@@ -352,6 +409,7 @@ class App extends React.Component {
         signUpUsername: "",
         signUpEmail: "",
         signUpPassword: "",
+        signUpDate: "",
         // signUpAvatar: "",
         loginEmail: "",
         loginPassword: "",
@@ -364,7 +422,7 @@ class App extends React.Component {
     // this.setState({
     //   selectedFile: event.target.files[0]
     // })
-    console.log(event.target.files[0])
+    // console.log(event.target.files[0])
   }
 
   fileUploadHandler = () => {
@@ -385,7 +443,9 @@ class App extends React.Component {
       username: "",
       email: "",
       userId: "",
+      createdAtDate: "",
       userReviews: [],
+      userFavorites: [],
       loggedIn: false,
       loginEmail: "zweb@email.com",
       loginPassword: "password",
@@ -393,6 +453,7 @@ class App extends React.Component {
       signUpLastName: "",
       signUpUsername: "",
       signUpEmail: "",
+      signUpDate: "",
       signUpPassword: "",
       reviewContent: "",
       reviewRating: "",
@@ -402,6 +463,7 @@ class App extends React.Component {
       tags: [],
       users: [],
       reviews: [],
+      favorites: [],
       showPark: {},
       showUser: {},
       showTag: {},
@@ -432,8 +494,8 @@ class App extends React.Component {
           <Switch>
             <Route path='/login' render={() => <Login appState={this.state} handleInputChange={this.handleInputChange} validateUserLogin={this.validateUserLogin}/>}/>
             <Route path='/signup' render={() => <SignUp appState={this.state} handleInputChange={this.handleInputChange} validateSignUpUser={this.validateSignUpUser} fileSelectedHandler={this.fileSelectedHandler}/>}/>
-            <Route path='/profile' render={() => <ProfileContainer appState={this.state} userReviews={this.state.userReviews} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} history={this.props.history}/>}/>
-            <Route path='/park/:id' render={() => <ParkContainer appState={this.state} showPark={this.state.showPark} updateViewport={this.updateViewport} handleTagClick={this.handleTagClick} handleTagAdd={this.handleTagAdd} handleTagDelete={this.handleTagDelete} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} viewport={this.state.viewport} tags={this.state.tags} parks={this.state.parks} reviews={this.state.reviews} users={this.state.users} history={this.props.history}/>}/>
+            <Route path='/profile' render={() => <ProfileContainer appState={this.state} userReviews={this.state.userReviews} parks={this.state.parks} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} handleParkClick={this.handleParkClick} handleFavoriteDelete={this.handleFavoriteDelete} history={this.props.history}/>}/>
+            <Route path='/park/:id' render={() => <ParkContainer appState={this.state} showPark={this.state.showPark} updateViewport={this.updateViewport} handleFavoritesClick={this.handleFavoritesClick} handleTagClick={this.handleTagClick} handleTagAdd={this.handleTagAdd} handleTagDelete={this.handleTagDelete} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} viewport={this.state.viewport} tags={this.state.tags} parks={this.state.parks} reviews={this.state.reviews} users={this.state.users} history={this.props.history}/>}/>
             <Route path='/tag/:id' render={() => <TagPageContainer appState={this.state} showTag={this.state.showTag} handleParkClick={this.handleParkClick} parks={this.state.parks} history={this.props.history}/>}/>
             <Route path='/review/park/:id' render={() => <AddReviewForm appState={this.state} showPark={this.state.showPark} history={this.props.history} handleAddReview={this.handleAddReview} fileSelectedHandler={this.fileSelectedHandler}/>}/>
             <Route path='/review/:id/edit' render={() => <EditReviewForm appState={this.state} editReview={this.state.editReview} handleEditedReview={this.handleEditedReview} showPark={this.state.showPark} handleParkClick={this.handleParkClick} reviewInfo={this.state.reviewInfo} parks={this.state.parks} history={this.props.history}/>}/>

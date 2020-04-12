@@ -56,7 +56,16 @@ const styles = theme => ({
         padding: 300,
     },
     reviewTitle: {
-        textAlign: 'center'
+        textAlign: 'center',
+        backgroundColor: '#434C5C',
+        color: "white",
+    },
+    addReviewBtn: {
+        position: 'relative',
+        top: 0,
+        bottom: -200,
+        right: 0,
+        left: 1100,
     },
 })
 
@@ -80,7 +89,7 @@ class ParkContainer extends React.Component {
         return (
             <React.Fragment>
                 <main className={classes.root}>
-                    <ParkBanner showPark={this.props.showPark}/>
+                    <ParkBanner showPark={this.props.showPark} appState={this.props.appState} handleFavoritesClick={this.props.handleFavoritesClick}/>
                         <Grid className={classes.mainGrid}>
                             <Grid>
                                 <Card>
@@ -147,18 +156,19 @@ class ParkContainer extends React.Component {
                                 </Card>
                             </Grid>
                         <Grid className={classes.mainGrid}>
-                            <Typography component="h3" variant="h4" className={classes.reviewTitle}>
-                                User Reviews
-                            </Typography>
-                            <Divider/>
-                            <Grid item align="right">
+                            <Card>
+                                <Typography component="h3" variant="h4" className={classes.reviewTitle}>
+                                    User Reviews
+                                </Typography>
+                            {/* <Grid item align="right"> */}
                                 { this.props.appState.loggedIn ? 
                                 <Tooltip title="Write a review">
-                                    <Fab color="secondary" align="right" className={classes.addReviewBtn}>
+                                    <Fab color="secondary" className={classes.addReviewBtn}>
                                         <EditIcon onClick={() => this.handleAddReviewClick(this.props.showPark.id)}/>
                                     </Fab> 
                                 </Tooltip> : null }
-                            </Grid>
+                            {/* </Grid> */}
+                            </Card>
                             <Grid item align="center" className={classes.reviews}>
                                 {this.props.showPark.reviews ? this.renderReviews() : `No reviews for ${this.props.showPark.name} yet. Write one today!`}
                             </Grid>
