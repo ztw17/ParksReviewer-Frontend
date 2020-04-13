@@ -1,9 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Paper, Grid } from '@material-ui/core';
+import { Paper, Grid, Typography } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import Image from '../images/Olympic.jpg';
 import america from '../images/america.png';
 import pin from '../images/pin.png';

@@ -1,21 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea } from '@material-ui/core';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles({
-    root: {
-        maxWidth: 600,
-      margin: 20,
-    },
-    media: {
-      height: 160,
-    },
-});
+import { makeStyles, Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
   
-
 export default function TagParkCard(props) {
     const classes = useStyles();
 
@@ -44,3 +29,14 @@ export default function TagParkCard(props) {
         </Card>
     )
 }
+
+const useStyles = makeStyles({
+    root: {
+        maxWidth: 600,
+        margin: 20,
+        color: "#434C5C",
+    },
+    media: {
+      height: 160,
+    },
+});

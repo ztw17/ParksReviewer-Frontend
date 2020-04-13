@@ -1,8 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import { ListSubheader } from '@material-ui/core/';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import List from '@material-ui/core/List';
+import { ListSubheader, withStyles, SwipeableDrawer, List } from '@material-ui/core/';
 import NavDropdownCard from './NavDropdownCard';
 
 const styles = theme => ({
@@ -10,6 +7,7 @@ const styles = theme => ({
     width: '100%',
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
+    color: "#434C5C",
   },
   nested: {
     paddingLeft: theme.spacing(4),

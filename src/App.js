@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import './App.css';
 import LandingPage from './components/LandingPage';
 import Login from './Login';
 import SignUp from './SignUp';
@@ -10,10 +12,7 @@ import TagPageContainer from './containers/TagPageContainer';
 import AddReviewForm from './components/AddReviewForm';
 import EditReviewForm from './components/EditReviewForm';
 import AllParksMap from './components/AllParksMap';
-import './App.css';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import createPalette from '@material-ui/core/styles/createPalette';
-import createTypography from '@material-ui/core/styles/createTypography';
+import AllTagsPage from './components/AllTagsPage';
 
 const font =  "'Raleway', sans-serif";
 
@@ -21,8 +20,8 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: font,
     button: {
-      textTransform: 'none'
-    }
+      textTransform: "none"
+    },
   },
 });
 
@@ -192,7 +191,6 @@ class App extends React.Component {
   }
 
   handleDeleteReview = (id) => {
-    // console.log(id)
     fetch(`http://localhost:3000/reviews/${id}`, {
       method: "DELETE"
     })
@@ -254,7 +252,7 @@ class App extends React.Component {
     .then( newTag => {
       const newShowPark = this.state.showPark
       newShowPark.tags = [...newShowPark.tags, newTag]
-      
+
       this.setState({
         tags: [...this.state.tags, newTag], 
         showPark: newShowPark
@@ -346,10 +344,10 @@ class App extends React.Component {
     })
     .then( resp => resp.json() )
     .then( resp => {
-      // console.log(resp)
       if (resp[0] === "Invalid credentials, please try again") {
         alert(resp[0])
       } else {
+        debugger
         this.setState({
           loggedIn: true,
           firstName: resp.first_name,
@@ -389,7 +387,6 @@ class App extends React.Component {
         username: this.state.signUpUsername,
         email: this.state.signUpEmail,
         password: this.state.signUpPassword,
-        // image: this.state.signUpAvatar
       })
     })
     .then( resp => resp.json() )
@@ -410,7 +407,6 @@ class App extends React.Component {
         signUpEmail: "",
         signUpPassword: "",
         signUpDate: "",
-        // signUpAvatar: "",
         loginEmail: "",
         loginPassword: "",
       })
@@ -418,16 +414,16 @@ class App extends React.Component {
     })
   }
 
-  fileSelectedHandler = (event) => {
+  // fileSelectedHandler = (event) => {
     // this.setState({
     //   selectedFile: event.target.files[0]
     // })
     // console.log(event.target.files[0])
-  }
+  // }
 
-  fileUploadHandler = () => {
+  // fileUploadHandler = () => {
 
-  }
+  // }
 
   handleLogout = () => {
     this.resetUserObj()
@@ -483,26 +479,24 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log(this.state.userReviews)
-    // console.log(this.state.tags)
-    // console.log(this.state.users)
 
     return (
       <MuiThemeProvider theme={theme}>
-      <div>
-        <NavbarContainer loggedIn={this.state.loggedIn} history={this.props.history} parks={this.state.parks} handleLogout={this.handleLogout} handleParkClick={this.handleParkClick} handleLogoClick={this.handleLogoClick}/>
-          <Switch>
-            <Route path='/login' render={() => <Login appState={this.state} handleInputChange={this.handleInputChange} validateUserLogin={this.validateUserLogin}/>}/>
-            <Route path='/signup' render={() => <SignUp appState={this.state} handleInputChange={this.handleInputChange} validateSignUpUser={this.validateSignUpUser} fileSelectedHandler={this.fileSelectedHandler}/>}/>
-            <Route path='/profile' render={() => <ProfileContainer appState={this.state} userReviews={this.state.userReviews} parks={this.state.parks} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} handleParkClick={this.handleParkClick} handleFavoriteDelete={this.handleFavoriteDelete} history={this.props.history}/>}/>
-            <Route path='/park/:id' render={() => <ParkContainer appState={this.state} showPark={this.state.showPark} updateViewport={this.updateViewport} handleFavoritesClick={this.handleFavoritesClick} handleTagClick={this.handleTagClick} handleTagAdd={this.handleTagAdd} handleTagDelete={this.handleTagDelete} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} viewport={this.state.viewport} tags={this.state.tags} parks={this.state.parks} reviews={this.state.reviews} users={this.state.users} history={this.props.history}/>}/>
-            <Route path='/tag/:id' render={() => <TagPageContainer appState={this.state} showTag={this.state.showTag} handleParkClick={this.handleParkClick} parks={this.state.parks} history={this.props.history}/>}/>
-            <Route path='/review/park/:id' render={() => <AddReviewForm appState={this.state} showPark={this.state.showPark} history={this.props.history} handleAddReview={this.handleAddReview} fileSelectedHandler={this.fileSelectedHandler}/>}/>
-            <Route path='/review/:id/edit' render={() => <EditReviewForm appState={this.state} editReview={this.state.editReview} handleEditedReview={this.handleEditedReview} showPark={this.state.showPark} handleParkClick={this.handleParkClick} reviewInfo={this.state.reviewInfo} parks={this.state.parks} history={this.props.history}/>}/>
-            <Route path='/map' render={() => <AllParksMap parks={this.state.parks}/>}/>
-            <Route path='/' render={() => <LandingPage appState={this.state}/>}/>
-          </Switch>
-      </div>
+        <div>
+          <NavbarContainer loggedIn={this.state.loggedIn} history={this.props.history} parks={this.state.parks} handleLogout={this.handleLogout} handleParkClick={this.handleParkClick} handleLogoClick={this.handleLogoClick}/>
+            <Switch>
+              <Route path='/login' render={() => <Login appState={this.state} handleInputChange={this.handleInputChange} validateUserLogin={this.validateUserLogin}/>}/>
+              <Route path='/signup' render={() => <SignUp appState={this.state} handleInputChange={this.handleInputChange} validateSignUpUser={this.validateSignUpUser} fileSelectedHandler={this.fileSelectedHandler}/>}/>
+              <Route path='/profile' render={() => <ProfileContainer appState={this.state} userReviews={this.state.userReviews} parks={this.state.parks} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} handleParkClick={this.handleParkClick} handleFavoriteDelete={this.handleFavoriteDelete} history={this.props.history}/>}/>
+              <Route path='/park/:id' render={() => <ParkContainer appState={this.state} showPark={this.state.showPark} updateViewport={this.updateViewport} handleFavoritesClick={this.handleFavoritesClick} handleTagClick={this.handleTagClick} handleTagAdd={this.handleTagAdd} handleTagDelete={this.handleTagDelete} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} viewport={this.state.viewport} tags={this.state.tags} parks={this.state.parks} reviews={this.state.reviews} users={this.state.users} history={this.props.history}/>}/>
+              <Route path='/tag/:id' render={() => <TagPageContainer appState={this.state} showTag={this.state.showTag} handleParkClick={this.handleParkClick} parks={this.state.parks} history={this.props.history}/>}/>
+              <Route path='/review/park/:id' render={() => <AddReviewForm appState={this.state} showPark={this.state.showPark} history={this.props.history} handleAddReview={this.handleAddReview} fileSelectedHandler={this.fileSelectedHandler}/>}/>
+              <Route path='/review/:id/edit' render={() => <EditReviewForm appState={this.state} editReview={this.state.editReview} handleEditedReview={this.handleEditedReview} showPark={this.state.showPark} handleParkClick={this.handleParkClick} reviewInfo={this.state.reviewInfo} parks={this.state.parks} history={this.props.history}/>}/>
+              <Route path='/map' render={() => <AllParksMap parks={this.state.parks} history={this.props.history} handleParkClick={this.handleParkClick}/>}/>
+              <Route path='/tags' render={() => <AllTagsPage tags={this.state.tags} history={this.props.history} handleTagClick={this.handleTagClick}/>}/>
+              <Route path='/' render={() => <LandingPage appState={this.state}/>}/>
+            </Switch>
+        </div>
       </MuiThemeProvider>
     )
   }

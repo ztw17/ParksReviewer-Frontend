@@ -11,7 +11,7 @@
   border-radius: 5px;
 }
 
-body {
+/* body {
   background: linear-gradient(200deg, rgb(90,107,133), rgb(118,92,117), rgb(189,138,124), rgb(193,198,202));
   background-size: 600% 600%;
   background-attachment: fixed;
@@ -29,6 +29,6 @@ body {
   100% {
     background-position: 0% 50%;
   }
-}
+} */
 
 @import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");

@@ -3,20 +3,17 @@ import { withStyles, CssBaseline, Chip } from '@material-ui/core';
 
 const styles = theme => ({
     tag: {
-        margin: 5
+        margin: 5,
+        background: 'linear-gradient(to right bottom, #3399ff, #ff9966)'
     }
 })
 
-function Tag(props) {
+function AllTag(props) {
 
     const clickedTag = (id) => {
         props.history.push(`/tag/${id}`)
         const clickedTagObj = props.tags.find(tag => tag.id === id)
         props.handleTagClick(clickedTagObj)
-    }
-
-    const deleteTag = (id) => {
-        props.handleTagDelete(id)
     }
 
     const {classes} = props
@@ -27,13 +24,12 @@ function Tag(props) {
             <Chip 
                 label={props.tagInfo.name}
                 onClick={() => clickedTag(props.tagInfo.id)}
-                onDelete={() => deleteTag(props.tagInfo.id)}
-                color="primary" 
-                variant="outlined" 
+                clickable
+                color="primary"
                 className={classes.tag}
             />
         </React.Fragment>
     )
 }
 
-export default withStyles(styles)(Tag)
+export default withStyles(styles)(AllTag)

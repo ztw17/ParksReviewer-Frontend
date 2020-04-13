@@ -152,5 +152,5 @@ const useStyles = makeStyles((theme) => ({
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
       padding: 80,
-    }
+    },
   }));

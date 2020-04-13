@@ -1,14 +1,9 @@
 import React from 'react';
-import { Button, Card } from '@material-ui/core';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import { Button, Card, Paper, CssBaseline, TextField, Grid, Typography, withStyles, Container } from '@material-ui/core';
 import StarRating from './StarRating';
 import AddTag from './AddTag';
 import Tag from './Tag';
+import Image from '../images/HalfDome.jpg';
 
 const styles = theme => ({
   paper: {
@@ -17,6 +12,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    color: "#434C5C",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -28,11 +24,15 @@ const styles = theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    background: "#E56B78"
   },
-  // root: {
-  //   backgroundColor: "black",
-  //   backgroundSize: 'cover',
-  // }
+  backGroundImg: {
+    backgroundImage: `url(${Image})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    padding: 80,
+  },
 });
 
 class AddReviewForm extends React.Component {
@@ -48,15 +48,9 @@ class AddReviewForm extends React.Component {
   }
 
   handleInputChange = (event) => {
-    // console.log(event.target.value)
     this.setState({
-      // content: "",
-      // rating: "",
-      // visit_date: "",
       [event.target.name]: event.target.value
     })
-    // console.log([event.target.name])
-    // console.log(event.target.value)
   }
 
   createNewReview = (event) => {
@@ -74,7 +68,6 @@ class AddReviewForm extends React.Component {
       rating: "",
       visit_date: "",
     })
-    // console.log(newReview)
     this.props.history.push(`/park/${this.props.appState.showPark.id}`)
   }
 
@@ -87,6 +80,7 @@ class AddReviewForm extends React.Component {
     const { classes } = this.props
 
     return (
+      <Paper className={classes.backGroundImg}>
         <Container component="main" maxWidth="xs">
           <Card className={classes.paper}>
           <CssBaseline />
@@ -177,6 +171,7 @@ class AddReviewForm extends React.Component {
             </div>
           </Card>
         </Container>
+      </Paper>
     );
   }
 }

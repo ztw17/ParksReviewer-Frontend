@@ -11,6 +11,7 @@ import { teal } from '@material-ui/core/colors';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    color: "#434C5C",
   },
   paper: {
     padding: theme.spacing(2),
@@ -39,19 +40,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ReviewContainer(props) {
   const classes = useStyles();
-  // console.log("reviewInfo", props.reviewInfo)
 
   const handleEditClick = (id) => {
     props.history.push(`/review/${id}/edit`)
     const clickedReviewObj = props.reviewInfo
     props.handleEditReviewClick(clickedReviewObj)
-    // console.log(props.reviewInfo)
-    // console.log(id)
   }
 
   const handleDeleteClick = (id) => {
     props.handleDeleteReview(id)
-    // console.log(id)
   }
 
   const DATE_OPTIONS = { year: 'numeric', month: 'long', day: 'numeric' }
@@ -62,7 +59,6 @@ export default function ReviewContainer(props) {
       <Paper className={classes.paper}>
         <Grid container spacing={3}>
           <Grid item>
-            {/* <img className={classes.img} alt="complex" src="https://image.flaticon.com/icons/svg/1177/1177568.svg" /> */}
             <Avatar className={classes.teal}>{props.reviewInfo.user.first_name[0]}</Avatar>
             <Typography className={classes.reviewUsername}variant="h9">
               {props.reviewInfo.user.username}

@@ -57,6 +57,10 @@ class Navbar extends React.Component {
         this.props.history.push('/map')
     }
 
+    routeToTags = () => {
+        this.props.history.push('/tags')
+    }
+
     render() {
         const {classes} = this.props
 
@@ -75,9 +79,11 @@ class Navbar extends React.Component {
                                 <img className={classes.imageIcon} alt="pin" src={pin}/>
                             </IconButton>
                         </Tooltip>
-                        {/* <IconButton className={classes.menuButton}>
-                            <img className={classes.imageIcon} alt="tag" src={tag}/>
-                        </IconButton> */}
+                        <Tooltip title="Find a park by tag name">
+                            <IconButton onClick={this.routeToTags} className={classes.menuButton}>
+                                <img className={classes.imageIcon} alt="tag" src={tag}/>
+                            </IconButton>
+                        </Tooltip>
                         <IconButton onClick={this.props.handleLogoClick} className={classes.title}>
                             <img src={logo} alt="logo"/>
                         </IconButton>
@@ -87,7 +93,6 @@ class Navbar extends React.Component {
                                 <Tooltip title="Profile">
                                     <Link to="/profile" className={classes.navbarStyles}>
                                         <img className={classes.imageIcon} alt="tag" src={account}/>
-                                        {/* <Button color="inherit">Profile</Button> */}
                                     </Link>
                                 </Tooltip>
                                 <Link to="/" className={classes.navbarStyles}>

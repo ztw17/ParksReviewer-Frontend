@@ -1,14 +1,9 @@
 import React from 'react';
-import { Button, Card, Paper } from '@material-ui/core';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import { Button, Card, Paper, CssBaseline, TextField, Grid, Typography, withStyles, Container } from '@material-ui/core';
 import StarRating from './StarRating';
 import AddTag from './AddTag';
 import Tag from './Tag';
+import Image from '../images/Saguaro.jpg';
 
 const styles = theme => ({
   paper: {
@@ -20,6 +15,7 @@ const styles = theme => ({
     position: "relative",
     top: "50%",
     bottom: "50%",
+    color: "#434C5C",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -31,11 +27,16 @@ const styles = theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    background: "#33415F",
+    color: "white"
   },
-  // root: {
-  //   backgroundColor: "black",
-  //   backgroundSize: 'cover',
-  // }
+  backGroundImg: {
+    backgroundImage: `url(${Image})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    padding: 120,
+  },
 });
 
 class EditReviewForm extends React.Component {
@@ -80,6 +81,7 @@ class EditReviewForm extends React.Component {
     const { classes } = this.props
   
     return (
+      <Paper className={classes.backGroundImg}>
         <Container component="main" maxWidth="xs">
           <Card className={classes.paper}>
             <CssBaseline />
@@ -160,7 +162,7 @@ class EditReviewForm extends React.Component {
                   type="submit"
                   fullWidth
                   variant="contained"
-                  color="primary"
+                  // color="secondary"
                   className={classes.submit}
                 >
                   Submit Review
@@ -171,6 +173,7 @@ class EditReviewForm extends React.Component {
             </div>
           </Card>
         </Container>
+      </Paper>
     );
   }
 }

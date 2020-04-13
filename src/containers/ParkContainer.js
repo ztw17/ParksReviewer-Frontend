@@ -13,6 +13,7 @@ const styles = theme => ({
         // margin: "20px",
         padding: "50px",
         backgroundColor: "#F2F2F2",
+        color: "#434C5C",
     },
     card: {
         display: 'flex',
@@ -59,13 +60,15 @@ const styles = theme => ({
         textAlign: 'center',
         backgroundColor: '#434C5C',
         color: "white",
+        spacing: "10px",
     },
     addReviewBtn: {
+        margin: 0,
+        top: 'auto',
+        right: 'auto',
+        bottom: '28px',
+        left: '60px',
         position: 'relative',
-        top: 0,
-        bottom: -200,
-        right: 0,
-        left: 1100,
     },
 })
 
@@ -83,13 +86,35 @@ class ParkContainer extends React.Component {
         this.props.history.push(`/review/park/${id}`)
     }
 
+    // parkComparison = () => {
+    //     return (props.appState.userFavorites.some(favorite => {
+    //       return (favorite.park.name === props.showPark.name)
+    //     }))
+    //   }
+    
+    // writeReviewButton = () => {
+    //     if (!props.appState.loggedIn) {
+    //       return null
+    //     } else if (parkComparison()) {
+    //       return <Tooltip title="Add park to favorites">
+    //       <Fab disabled color="secondary" aria-label="favorite" className={classes.buttonOverlay}>
+    //         <FavoriteIcon />
+    //       </Fab>
+    //   </Tooltip>
+    //     } else return <Tooltip title="Add park to favorites">
+    //     <Fab color="secondary" aria-label="favorite" className={classes.buttonOverlay} onClick={() => props.handleFavoritesClick(props.showPark.id)}>
+    //       <FavoriteIcon />
+    //     </Fab>
+    //   </Tooltip>
+    // }
+
     render() {
         const {classes} = this.props
 
         return (
             <React.Fragment>
                 <main className={classes.root}>
-                    <ParkBanner showPark={this.props.showPark} appState={this.props.appState} handleFavoritesClick={this.props.handleFavoritesClick}/>
+                    <ParkBanner showPark={this.props.showPark} appState={this.props.appState} handleFavoritesClick={this.props.handleFavoritesClick} parks={this.props.parks} />
                         <Grid className={classes.mainGrid}>
                             <Grid>
                                 <Card>
@@ -145,7 +170,6 @@ class ParkContainer extends React.Component {
                                             {this.renderTags()}
                                         </Box>
                                         <AddTag handleTagAdd={this.props.handleTagAdd} tags={this.props.tags} parks={this.props.parks}/>
-                                    {/* <Sidebar showPark={this.props.showPark} tags={this.props.tags} parks={this.props.parks} renderTags={this.renderTags}/> */}
                                     </CardContent>
                                 </Card>
                             </Grid>
@@ -160,18 +184,16 @@ class ParkContainer extends React.Component {
                                 <Typography component="h3" variant="h4" className={classes.reviewTitle}>
                                     User Reviews
                                 </Typography>
-                            {/* <Grid item align="right"> */}
                                 { this.props.appState.loggedIn ? 
                                 <Tooltip title="Write a review">
                                     <Fab color="secondary" className={classes.addReviewBtn}>
                                         <EditIcon onClick={() => this.handleAddReviewClick(this.props.showPark.id)}/>
                                     </Fab> 
                                 </Tooltip> : null }
-                            {/* </Grid> */}
+                                <Grid item align="center" className={classes.reviews}>
+                                    {this.props.showPark.reviews.length ? this.renderReviews() : <Typography>No reviews for {this.props.showPark.name} yet. Write one today!</Typography>}
+                                </Grid>
                             </Card>
-                            <Grid item align="center" className={classes.reviews}>
-                                {this.props.showPark.reviews ? this.renderReviews() : `No reviews for ${this.props.showPark.name} yet. Write one today!`}
-                            </Grid>
                         </Grid>
                     </main>
             </React.Fragment>

@@ -1,39 +1,23 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea, Button } from '@material-ui/core';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles({
-    root: {
-        maxWidth: 630,
-        margin: 20,
-    },
-    media: {
-        height: 160,
-    },
-});
-  
+import { Card, CardActionArea, Button, makeStyles, CardContent, CardMedia, Typography } from '@material-ui/core';
 
 export default function FavoritesParkCard(props) {
     const classes = useStyles();
 
     const handleFavoritedParkClick = (id) => {
-        console.log("favorited park", id)
         const showPark = props.parks.find(park => park.id === id)
         props.handleParkClick(showPark)
         props.history.push(`/park/${id}`)
     }
 
     const removeFavorite = (id) => {
-        // props.handleFavoriteDelete(id)
+        props.handleFavoriteDelete(id)
         console.log("hit delete", id)
     }
 
     return (
-        <Card className={classes.root} onClick={() => handleFavoritedParkClick(props.favoriteInfo.park)}>
-            <CardActionArea>
+        <Card className={classes.root}>
+            <CardActionArea onClick={() => handleFavoritedParkClick(props.favoriteInfo.park.id)}>
                 <CardMedia
                     className={classes.media}
                     image={props.favoriteInfo.park.image}
@@ -51,3 +35,15 @@ export default function FavoritesParkCard(props) {
         </Card>
     )
 }
+
+const useStyles = makeStyles({
+    root: {
+        maxWidth: 630,
+        margin: 20,
+        color: "#434C5C",
+    },
+    media: {
+        height: 160,
+    },
+});
+  

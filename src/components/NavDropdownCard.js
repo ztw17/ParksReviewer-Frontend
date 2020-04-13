@@ -1,18 +1,14 @@
 import React, { Fragment } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import { ListSubheader } from '@material-ui/core/';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
+import { withStyles, ListItem, ListItemText, Collapse, List } from '@material-ui/core';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import List from '@material-ui/core/List';
 
 const styles = theme => ({
     root: {
       width: '100%',
       maxWidth: 360,
       backgroundColor: theme.palette.background.paper,
+      color: "#434C5C",
     },
     nested: {
       paddingLeft: theme.spacing(4),

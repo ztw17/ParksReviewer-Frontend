@@ -14,6 +14,7 @@ const styles = theme => ({
         direction: "column",
         justify: "center",
         alignItems: "center",
+        color: "#434C5C"
     },
     cards: {
         direction: "column",
@@ -46,7 +47,7 @@ class TagPage extends React.Component {
                     <Grid className={classes.mainGrid}>
                         <Grid>
                             <Typography align="center" variant="h5">
-                                Parks with the Tag of
+                                Parks with the tag of
                             </Typography>
                             <Typography align="center" variant="h2">
                                 {this.titleCase(this.props.appState.showTag.name)}
