@@ -7,28 +7,33 @@
 .mapboxgl-popup {
   max-width: 400px;
   max-height: 300px;
-  font: 12px/20px 'Open Sans', sans-serif;
+  font: 12px/20px 'Raleway', sans-serif;
   border-radius: 5px;
 }
 
-/* body {
-  background: linear-gradient(200deg, rgb(90,107,133), rgb(118,92,117), rgb(189,138,124), rgb(193,198,202));
-  background-size: 600% 600%;
-  background-attachment: fixed;
-  height: 100%;
-  min-height: 100%;
-  animation: TackyGradient 8s ease infinite;
+body {
+  background: #F2F2F2
 }
-@keyframes TackyGradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-} */
+
 
 @import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+
+  /* body {
+    background: linear-gradient(200deg, rgb(90,107,133), rgb(118,92,117), rgb(189,138,124), rgb(193,198,202));
+    background-size: 600% 600%;
+    background-attachment: fixed;
+    height: 100%;
+    min-height: 100%;
+    animation: TackyGradient 8s ease infinite;
+  }
+  @keyframes TackyGradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  } */

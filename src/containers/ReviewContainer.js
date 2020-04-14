@@ -18,16 +18,8 @@ const useStyles = makeStyles((theme) => ({
     margin: 15,
     maxWidth: 600,
   },
-  image: {
-    width: 128,
-    height: 128,
-  },
-  img: {
-    margin: 'auto',
-    display: 'block',
-    maxWidth: 40,
-    maxHeight: 40,
-    // <img className={classes.img} src="/static/images/grid/complex.jpg" />
+  header: {
+    fontWeight: "bold",
   },
   reviewUsername: {
     textAlign: 'center'
@@ -67,21 +59,21 @@ export default function ReviewContainer(props) {
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography variant="h6">
+                <Typography variant="h6" className={classes.header}>
                   {props.reviewInfo.park.name}
                 </Typography>
                 <Divider/>
                 <Typography align="left" gutterBottom variant="subtitle1">
                   {props.reviewInfo.content}
                 </Typography>
-                <Typography>
+                <Typography className={classes.header}>
                   Visit Date
                 </Typography>
                 <Divider/>
                 <Typography align="left" variant="body2" gutterBottom>
                   {visitDate}
                 </Typography>
-                <Typography>
+                <Typography className={classes.header}>
                   Rating
                 </Typography>
                 <Divider/>

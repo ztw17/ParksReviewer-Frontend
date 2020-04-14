@@ -1,14 +1,15 @@
 import React from 'react';
 import AllTag from './AllTag';
-import { withStyles, Card } from '@material-ui/core';
+import { withStyles, Card, Container } from '@material-ui/core';
 
 const styles = theme => ({
     tag: {
         margin: 5
     },
     card: {
-        margin: 200,
-        alignItem: "center"
+        margin: 125,
+        alignItem: "center",
+        maxWidth: "1100px"
     }
 })
 
@@ -21,7 +22,7 @@ function AllTagsPage(props) {
     }
 
     return (
-        <Card className={classes.card}>{renderTags()}</Card>
+        <Container className={classes.card}>{renderTags()}</Container>
     )
 }
 

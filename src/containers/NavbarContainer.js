@@ -35,8 +35,11 @@ const styles = theme => ({
         textDecoration: "none", 
         color: '#434C5C',
     },
-    imageIcon: {
-        // transform: "scale(.09)",
+    mapIcon: {
+        height: "40px",
+        width: "40px",
+    },
+    icon: {
         height: "30px",
         width: "30px",
     },
@@ -71,28 +74,30 @@ class Navbar extends React.Component {
                     <Toolbar>
                         <Tooltip title="Find a park by state name">
                             <IconButton onClick={this.toggleDrawer} className={classes.menuButton}>
-                                <img className={classes.imageIcon} alt="america" src={us_map}/>
+                                <img className={classes.mapIcon} alt="us_map" src={us_map}/>
                             </IconButton>
                         </Tooltip>
                         <Tooltip title="Find a park by map">
                             <IconButton onClick={this.routeToMap} className={classes.menuButton}>
-                                <img className={classes.imageIcon} alt="pin" src={pin}/>
+                                <img className={classes.icon} alt="pin" src={pin}/>
                             </IconButton>
                         </Tooltip>
                         <Tooltip title="Find a park by tag name">
                             <IconButton onClick={this.routeToTags} className={classes.menuButton}>
-                                <img className={classes.imageIcon} alt="tag" src={tag}/>
+                                <img className={classes.icon} alt="tag" src={tag}/>
                             </IconButton>
                         </Tooltip>
-                        <IconButton onClick={this.props.handleLogoClick} className={classes.title}>
-                            <img src={logo} alt="logo"/>
-                        </IconButton>
+                        <Tooltip title="Home">
+                            <IconButton onClick={this.props.handleLogoClick} className={classes.title}>
+                                <img src={logo} alt="logo"/>
+                            </IconButton>
+                        </Tooltip>
                         {
                             this.props.loggedIn ?
                             <Fragment>
                                 <Tooltip title="Profile">
                                     <Link to="/profile" className={classes.navbarStyles}>
-                                        <img className={classes.imageIcon} alt="tag" src={account}/>
+                                        <img className={classes.icon} alt="profile" src={account}/>
                                     </Link>
                                 </Tooltip>
                                 <Link to="/" className={classes.navbarStyles}>

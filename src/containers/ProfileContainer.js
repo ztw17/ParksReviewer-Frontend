@@ -1,12 +1,8 @@
-import React, { Fragment } from 'react';
-import ReviewContainer from './ReviewContainer';
-import { Typography, withStyles, Paper, Card, Grid, ButtonBase, Divider } from '@material-ui/core';
+import React from 'react';
+import { Typography, withStyles, Paper, Card, Grid, Divider } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import { teal } from '@material-ui/core/colors';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ReviewContainer from './ReviewContainer';
 import FavoritesParkCard from '../components/FavoritesParkCard';
 
 const styles = theme => ({
@@ -36,6 +32,7 @@ const styles = theme => ({
         maxWidth: 1200,
         backgroundColor: '#434C5C',
         color: "white",
+        fontWeight: "bold",
     },
     sectionHeader: {
         padding: theme.spacing(2),
@@ -43,6 +40,7 @@ const styles = theme => ({
         maxWidth: 1100,
         backgroundColor: '#434C5C',
         color: "white",
+        fontWeight: "bold",
     },
     teal: {
         color: theme.palette.getContrastText(teal[300]),
@@ -129,50 +127,54 @@ class UserProfile extends React.Component {
                         Your Favorited Parks
                     </Paper>
                     <Grid item align="center" className={classes.reviews}>
-                            {this.renderFavorites()}
+                        {this.props.appState.userFavorites.length ? this.renderFavorites() : <Typography>You haven't favorited any parks yet. Favorite one today!</Typography>}
                     </Grid>
                     <Paper variant="subtitle1" className={classes.sectionHeader}>
                         Your Reviews
                     </Paper>
                     <Grid item align="center" className={classes.reviews}>
-                            {this.renderUserReviews()}
+                        {this.props.userReviews.length ? this.renderUserReviews() : <Typography>You haven't written any reviews yet. Write one today!</Typography>}
                     </Grid>
                 </Grid>
-
-                <div className={classes.root}>
-      <ExpansionPanel expanded={this.state.expanded === 'panel1'} onChange={() => this.handleChange('panel1')}>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
-          <Typography className={classes.heading}>Your Favorited Parks</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-            <Grid item align="center" className={classes.reviews}>
-                {this.renderFavorites()}
-            </Grid>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-      <ExpansionPanel expanded={this.state.expanded === 'panel2'} onChange={() => this.handleChange('panel2')}>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2bh-content"
-          id="panel2bh-header"
-        >
-          <Typography className={classes.heading}>Your Reviews</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-            <Grid item align="center" className={classes.reviews}>
-                {this.renderUserReviews()}
-            </Grid>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-    </div>
-
             </React.Fragment>
         )
     }
 }
 
 export default  withStyles(styles)(UserProfile)
+
+// import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+// import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+// import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+{/* <div className={classes.root}>
+    <ExpansionPanel expanded={this.state.expanded === 'panel1'} onChange={() => this.handleChange('panel1')}>
+        <ExpansionPanelSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1bh-content"
+        id="panel1bh-header"
+        >
+        <Typography className={classes.heading}>Your Favorited Parks</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+            <Grid item align="center" className={classes.reviews}>
+                {this.renderFavorites()}
+            </Grid>
+        </ExpansionPanelDetails>
+    </ExpansionPanel>
+    <ExpansionPanel expanded={this.state.expanded === 'panel2'} onChange={() => this.handleChange('panel2')}>
+        <ExpansionPanelSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel2bh-content"
+        id="panel2bh-header"
+        >
+        <Typography className={classes.heading}>Your Reviews</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+            <Grid item align="center" className={classes.reviews}>
+                {this.renderUserReviews()}
+            </Grid>
+        </ExpansionPanelDetails>
+    </ExpansionPanel>
+</div> */}

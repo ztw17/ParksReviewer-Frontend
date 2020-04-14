@@ -21,8 +21,8 @@ export default function ParkBanner(props) {
       </Fab>
   </Tooltip>
     } else return <Tooltip title="Add park to favorites">
-    <Fab color="secondary" aria-label="favorite" className={classes.buttonOverlay} onClick={() => props.handleFavoritesClick(props.showPark.id)}>
-      <FavoriteIcon />
+    <Fab color="secondary" aria-label="favorite" className={classes.buttonOverlay}>
+      <FavoriteIcon onClick={() => props.handleFavoritesClick(props.showPark.id)}/>
     </Fab>
   </Tooltip>
   }

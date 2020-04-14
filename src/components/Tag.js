@@ -25,6 +25,7 @@ function Tag(props) {
         <React.Fragment>
         <CssBaseline />
             <Chip 
+                key={props.tagInfo.id}
                 label={props.tagInfo.name}
                 onClick={() => clickedTag(props.tagInfo.id)}
                 onDelete={() => deleteTag(props.tagInfo.id)}

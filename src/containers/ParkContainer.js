@@ -6,18 +6,12 @@ import Tag from '../components/Tag';
 import ReviewContainer from './ReviewContainer';
 import AddTag from '../components/AddTag';
 import Map from '../components/Map';
-import Image from '../images/Map.png';
 
 const styles = theme => ({
     root: {
-        // margin: "20px",
         padding: "50px",
         backgroundColor: "#F2F2F2",
         color: "#434C5C",
-    },
-    card: {
-        display: 'flex',
-        margin: "2px"
     },
     cardDetails: {
         flex: 1,
@@ -34,28 +28,6 @@ const styles = theme => ({
         alignContent: "flex-start",
         flexWrap: "nowrap",
     },
-    location: {
-        // display: 'flex',
-        // flexDirection: 'column',
-        alignItems: 'center'
-    },
-    reviews: {
-        // direction: "column",
-        // justify: "center",
-        // alignItems: "center",
-    },
-    img: {
-        backgroundImage: `url(${Image})`,
-        margin: 'auto',
-        display: 'block',
-        // width: "100%",
-        // maxHeight: 150,
-        // padding: 500,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        padding: 300,
-    },
     reviewTitle: {
         textAlign: 'center',
         backgroundColor: '#434C5C',
@@ -70,6 +42,17 @@ const styles = theme => ({
         left: '60px',
         position: 'relative',
     },
+    sectionHeader: {
+        backgroundColor: '#434C5C',
+        color: "white",
+        padding: 8
+    },
+    content: {
+        padding: 8
+    },
+    bold: {
+        fontWeight: "bold"
+    }
 })
 
 class ParkContainer extends React.Component {
@@ -119,9 +102,9 @@ class ParkContainer extends React.Component {
                             <Grid>
                                 <Card>
                                     <CardContent>
-                                        <Typography variant="h6">
-                                                Overview
-                                            </Typography>
+                                        <Typography className={classes.bold} variant="h6">
+                                            Overview
+                                        </Typography>
                                         <Divider/>
                                         <Typography varient="h6">
                                             {this.props.showPark.description}
@@ -134,7 +117,7 @@ class ParkContainer extends React.Component {
                             <Grid>
                                 <Card>
                                     <CardContent>
-                                        <Typography variant="h6">
+                                        <Typography className={classes.bold} variant="h6">
                                             Weather
                                         </Typography>
                                     <Divider/>
@@ -149,7 +132,7 @@ class ParkContainer extends React.Component {
                             <Grid item xs={2}>
                                 <Card className={classes.cardDetails}>
                                     <CardContent>
-                                        <Typography variant="h6">
+                                        <Typography className={classes.bold} variant="h6">
                                             Location
                                         </Typography>
                                         <Divider />
@@ -162,7 +145,7 @@ class ParkContainer extends React.Component {
                             <Grid item lg={10}>
                                 <Card className={classes.cardDetails}>
                                     <CardContent>
-                                        <Typography variant="h6">
+                                        <Typography className={classes.bold} variant="h6">
                                             Tags
                                         </Typography>
                                         <Divider/>
@@ -184,6 +167,7 @@ class ParkContainer extends React.Component {
                                 <Typography component="h3" variant="h4" className={classes.reviewTitle}>
                                     User Reviews
                                 </Typography>
+                            </Card>
                                 { this.props.appState.loggedIn ? 
                                 <Tooltip title="Write a review">
                                     <Fab color="secondary" className={classes.addReviewBtn}>
@@ -193,7 +177,6 @@ class ParkContainer extends React.Component {
                                 <Grid item align="center" className={classes.reviews}>
                                     {this.props.showPark.reviews.length ? this.renderReviews() : <Typography>No reviews for {this.props.showPark.name} yet. Write one today!</Typography>}
                                 </Grid>
-                            </Card>
                         </Grid>
                     </main>
             </React.Fragment>

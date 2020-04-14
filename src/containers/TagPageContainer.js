@@ -4,10 +4,10 @@ import TagParkCard from '../components/TagParkCard';
 
 const styles = theme => ({
     root: {
-        padding: 10,
+        padding: 60,
         backgroundColor: "#F2F2F2",
-        width: '100%',
-        margin: 5,
+        // width: '100%',
+        // margin: 40,
     },
     mainGrid: {
         marginTop: theme.spacing(2),
@@ -26,7 +26,6 @@ const styles = theme => ({
 class TagPage extends React.Component {
 
     renderTagParks = () => {
-        // console.log(this.props.appState.showTag.parks)
         return this.props.appState.showTag.parks.map(park => <TagParkCard parkInfo={park} handleParkClick={this.props.handleParkClick} parks={this.props.parks} history={this.props.history}/>)
     }
 

@@ -52,16 +52,16 @@ class App extends React.Component {
       reviewRating: appState.reviewRating || "",
       reviewVisitDate: appState.reviewVisitDate || "",
       viewport: appState.viewport || {},
-      parks: [],
-      tags: [],
-      users: [],
-      reviews: [],
-      favorites: [],
-      showPark: {},
-      showUser: {},
-      showTag: {},
-      editReview: {},
-      selectedFile: null,
+      parks: appState.parks || [],
+      tags: appState.tags || [],
+      users: appState.users || [],
+      reviews: appState.reviews || [],
+      favorites: appState.favorites || [],
+      showPark: appState.showPark || {},
+      showUser: appState.showUser || {},
+      showTag: appState || {},
+      editReview: appState.editReview || {},
+      selectedFile: appState.selectedFile || null,
     }
   }
 
@@ -252,9 +252,15 @@ class App extends React.Component {
     .then( newTag => {
       const newShowPark = this.state.showPark
       newShowPark.tags = [...newShowPark.tags, newTag]
-
+      var newTags = this.state.tags
+      const foundTag = newTags.find(tag => tag.id === newTag.id)
+      if (foundTag) {
+        foundTag.parks = newTag.parks
+      } else {
+        newTags = [...newTags, newTag]
+      }
       this.setState({
-        tags: [...this.state.tags, newTag], 
+        tags: newTags, 
         showPark: newShowPark
       })
     })
@@ -344,10 +350,9 @@ class App extends React.Component {
     })
     .then( resp => resp.json() )
     .then( resp => {
-      if (resp[0] === "Invalid credentials, please try again") {
-        alert(resp[0])
+      if (resp.error === "Invalid credentials, please try again") {
+        alert(resp.error)
       } else {
-        debugger
         this.setState({
           loggedIn: true,
           firstName: resp.first_name,
@@ -494,7 +499,7 @@ class App extends React.Component {
               <Route path='/review/:id/edit' render={() => <EditReviewForm appState={this.state} editReview={this.state.editReview} handleEditedReview={this.handleEditedReview} showPark={this.state.showPark} handleParkClick={this.handleParkClick} reviewInfo={this.state.reviewInfo} parks={this.state.parks} history={this.props.history}/>}/>
               <Route path='/map' render={() => <AllParksMap parks={this.state.parks} history={this.props.history} handleParkClick={this.handleParkClick}/>}/>
               <Route path='/tags' render={() => <AllTagsPage tags={this.state.tags} history={this.props.history} handleTagClick={this.handleTagClick}/>}/>
-              <Route path='/' render={() => <LandingPage appState={this.state}/>}/>
+              <Route path='/' render={() => <LandingPage appState={this.state} parks={this.state.parks} showPark={this.state.showpark} history={this.props.history} handleParkClick={this.handleParkClick}/>}/>
             </Switch>
         </div>
       </MuiThemeProvider>
