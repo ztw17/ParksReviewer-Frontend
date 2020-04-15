@@ -12,7 +12,7 @@ import TagPageContainer from './containers/TagPageContainer';
 import AddReviewForm from './components/AddReviewForm';
 import EditReviewForm from './components/EditReviewForm';
 import AllParksMap from './components/AllParksMap';
-import AllTagsPage from './components/AllTagsPage';
+import AllTagsContainer from './containers/AllTagsContainer';
 
 const font =  "'Raleway', sans-serif";
 
@@ -62,6 +62,7 @@ class App extends React.Component {
       showTag: appState || {},
       editReview: appState.editReview || {},
       selectedFile: appState.selectedFile || null,
+      searchTerm: appState.searchTerm || "",
     }
   }
 
@@ -470,6 +471,7 @@ class App extends React.Component {
       showTag: {},
       editReview: {},
       selectedFile: null,
+      searchTerm: ""
     })
   }
 
@@ -480,6 +482,19 @@ class App extends React.Component {
   updateViewport = (viewport) => {
     this.setState({
       viewport: viewport
+    })
+  }
+
+  handleSearchChange = (event) => {
+    console.log(event.target.value)
+    this.setState({
+      searchTerm: event.target.value
+    })
+  }
+
+  filteredSearch = () => {
+    return this.state.tags.filter(tag => {
+      return tag.name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
     })
   }
 
@@ -498,7 +513,7 @@ class App extends React.Component {
               <Route path='/review/park/:id' render={() => <AddReviewForm appState={this.state} showPark={this.state.showPark} history={this.props.history} handleAddReview={this.handleAddReview} fileSelectedHandler={this.fileSelectedHandler}/>}/>
               <Route path='/review/:id/edit' render={() => <EditReviewForm appState={this.state} editReview={this.state.editReview} handleEditedReview={this.handleEditedReview} showPark={this.state.showPark} handleParkClick={this.handleParkClick} reviewInfo={this.state.reviewInfo} parks={this.state.parks} history={this.props.history}/>}/>
               <Route path='/map' render={() => <AllParksMap parks={this.state.parks} history={this.props.history} handleParkClick={this.handleParkClick}/>}/>
-              <Route path='/tags' render={() => <AllTagsPage tags={this.state.tags} history={this.props.history} handleTagClick={this.handleTagClick}/>}/>
+              <Route path='/tags' render={() => <AllTagsContainer tags={this.filteredSearch()} searchTerm={this.state.searchTerm} history={this.props.history} handleTagClick={this.handleTagClick} handleSearchChange={this.handleSearchChange} />}/>
               <Route path='/' render={() => <LandingPage appState={this.state} parks={this.state.parks} showPark={this.state.showpark} history={this.props.history} handleParkClick={this.handleParkClick}/>}/>
             </Switch>
         </div>

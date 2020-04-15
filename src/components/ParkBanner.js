@@ -58,9 +58,9 @@ const useStyles = makeStyles((theme) => ({
     },
     buttonOverlay: {
       position: 'relative',
-      top: -130,
+      top: -125,
       bottom: 800,
       right: 0,
-      left: 950,
+      left: 960,
     },
 }));

@@ -10,7 +10,7 @@ const styles = theme => ({
         height: "100%",
         padding: "50px",
         spacing: "25px",
-        backgroundColor: "#F2F2F2",
+        backgroundColor: "#dee0e3",
         color: "#434C5C",
     },
     headerCard: {

@@ -96,9 +96,11 @@ class Navbar extends React.Component {
                             this.props.loggedIn ?
                             <Fragment>
                                 <Tooltip title="Profile">
-                                    <Link to="/profile" className={classes.navbarStyles}>
-                                        <img className={classes.icon} alt="profile" src={account}/>
-                                    </Link>
+                                    <IconButton>
+                                        <Link to="/profile" className={classes.navbarStyles}>
+                                            <img className={classes.icon} alt="profile" src={account}/>
+                                        </Link>
+                                    </IconButton>
                                 </Tooltip>
                                 <Link to="/" className={classes.navbarStyles}>
                                     <Button onClick={this.props.handleLogout} color="inherit">Logout</Button>

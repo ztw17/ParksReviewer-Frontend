@@ -12,28 +12,33 @@
 }
 
 body {
-  background: #F2F2F2
+  background-color: #dee0e3 !important
 }
-
 
 @import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
 
-  /* body {
-    background: linear-gradient(200deg, rgb(90,107,133), rgb(118,92,117), rgb(189,138,124), rgb(193,198,202));
-    background-size: 600% 600%;
-    background-attachment: fixed;
-    height: 100%;
-    min-height: 100%;
-    animation: TackyGradient 8s ease infinite;
+.MuiChip-root {
+  /* background: linear-gradient(200deg, rgb(90,107,133), rgb(118,92,117), rgb(189,138,124), rgb(193,198,202)); */
+  /* background: rgb(131,58,180);
+  background: linear-gradient(200deg, rgba(131,58,180,1) 0%, rgba(29,246,253,1) 50%, rgba(252,176,69,1) 100%); */
+  /* background: rgb(2,0,36);
+  background: linear-gradient(82deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); */
+  background: rgb(9,9,121);
+  background: linear-gradient(82deg, rgba(9,9,121,0.9037990196078431) 0%, rgba(0,212,255,0.8645833333333334) 35%, rgba(54,170,105,0.8897934173669468) 100%);
+  background-size: 500% 500%;
+  background-attachment: fixed;
+  height: 25%;
+  min-height: 25%;
+  animation: TackyGradient 12s ease infinite;
+}
+@keyframes TackyGradient {
+  0% {
+    background-position: 0% 50%;
   }
-  @keyframes TackyGradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  } */
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

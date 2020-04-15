@@ -9,7 +9,6 @@ export default function RenderStarRating(props) {
     <div>
       <Box component="fieldset" mb={3} borderColor="transparent">
         <Rating
-          name="simple-controlled"
           value={props.reviewInfo.rating}
           name="rating"
           onChange={(event, newValue) => {

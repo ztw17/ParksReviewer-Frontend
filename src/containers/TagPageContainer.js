@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react';
-import { withStyles, Paper, Typography, Divider, Card, CardContent, Grid, Box, Button } from '@material-ui/core';
+import React from 'react';
+import { withStyles, Typography, Divider, Grid } from '@material-ui/core';
 import TagParkCard from '../components/TagParkCard';
 
 const styles = theme => ({
     root: {
         padding: 60,
-        backgroundColor: "#F2F2F2",
+        backgroundColor: "#dee0e3",
         // width: '100%',
         // margin: 40,
     },

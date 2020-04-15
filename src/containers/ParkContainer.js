@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import { withStyles, Paper, Typography, Divider, Card, CardContent, Grid, Box, Fab, Tooltip } from '@material-ui/core';
+import React from 'react'
+import { withStyles, Typography, Divider, Card, CardContent, Grid, Box, Fab, Tooltip } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import ParkBanner from '../components/ParkBanner';
 import Tag from '../components/Tag';
@@ -10,12 +10,12 @@ import Map from '../components/Map';
 const styles = theme => ({
     root: {
         padding: "50px",
-        backgroundColor: "#F2F2F2",
-        color: "#434C5C",
+        backgroundColor: "#dee0e3",
+        fontColor: "#434C5C",
     },
     cardDetails: {
         flex: 1,
-        height: 140,
+        height: 170,
     },
     mainGrid: {
         marginTop: theme.spacing(2),
@@ -26,7 +26,7 @@ const styles = theme => ({
         flexDirection: "row",
         justifyContent: "flex-start",
         alignContent: "flex-start",
-        flexWrap: "nowrap",
+        flexWrap: "wrap",
     },
     reviewTitle: {
         textAlign: 'center',
@@ -52,7 +52,7 @@ const styles = theme => ({
     },
     bold: {
         fontWeight: "bold"
-    }
+    },
 })
 
 class ParkContainer extends React.Component {
@@ -69,28 +69,6 @@ class ParkContainer extends React.Component {
         this.props.history.push(`/review/park/${id}`)
     }
 
-    // parkComparison = () => {
-    //     return (props.appState.userFavorites.some(favorite => {
-    //       return (favorite.park.name === props.showPark.name)
-    //     }))
-    //   }
-    
-    // writeReviewButton = () => {
-    //     if (!props.appState.loggedIn) {
-    //       return null
-    //     } else if (parkComparison()) {
-    //       return <Tooltip title="Add park to favorites">
-    //       <Fab disabled color="secondary" aria-label="favorite" className={classes.buttonOverlay}>
-    //         <FavoriteIcon />
-    //       </Fab>
-    //   </Tooltip>
-    //     } else return <Tooltip title="Add park to favorites">
-    //     <Fab color="secondary" aria-label="favorite" className={classes.buttonOverlay} onClick={() => props.handleFavoritesClick(props.showPark.id)}>
-    //       <FavoriteIcon />
-    //     </Fab>
-    //   </Tooltip>
-    // }
-
     render() {
         const {classes} = this.props
 
@@ -98,9 +76,9 @@ class ParkContainer extends React.Component {
             <React.Fragment>
                 <main className={classes.root}>
                     <ParkBanner showPark={this.props.showPark} appState={this.props.appState} handleFavoritesClick={this.props.handleFavoritesClick} parks={this.props.parks} />
-                        <Grid className={classes.mainGrid}>
-                            <Grid>
-                                <Card>
+                        <Grid container spacing={2} className={classes.mainGrid}>
+                            <Grid item lg={10}>
+                                <Card className={classes.cardDetails}>
                                     <CardContent>
                                         <Typography className={classes.bold} variant="h6">
                                             Overview
@@ -109,6 +87,19 @@ class ParkContainer extends React.Component {
                                         <Typography varient="h6">
                                             {this.props.showPark.description}
                                         </Typography>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                            <Grid item xs={2}>
+                                <Card className={classes.cardDetails}>
+                                    <CardContent>
+                                        <Typography className={classes.bold} variant="h6">
+                                            Location
+                                        </Typography>
+                                        <Divider />
+                                            <Typography>
+                                                {this.props.showPark.state}
+                                            </Typography>
                                     </CardContent>
                                 </Card>
                             </Grid>
@@ -128,21 +119,8 @@ class ParkContainer extends React.Component {
                                 </Card>
                             </Grid>
                         </Grid>
-                        <Grid container spacing={2} className={classes.mainGrid}>
-                            <Grid item xs={2}>
-                                <Card className={classes.cardDetails}>
-                                    <CardContent>
-                                        <Typography className={classes.bold} variant="h6">
-                                            Location
-                                        </Typography>
-                                        <Divider />
-                                        <Typography className={classes.location}>
-                                            {this.props.showPark.state}
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item lg={10}>
+                        <Grid className={classes.mainGrid}>
+                            <Grid>
                                 <Card className={classes.cardDetails}>
                                     <CardContent>
                                         <Typography className={classes.bold} variant="h6">

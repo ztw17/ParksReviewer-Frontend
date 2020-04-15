@@ -9,7 +9,6 @@ export default function StarRating(props) {
     <div>
       <Box component="fieldset" mb={3} borderColor="transparent">
         <Rating
-          name="simple-controlled"
           value={props.rating ? props.rating : value}
           name="rating"
           onChange={(event, newValue) => {
@@ -20,5 +19,5 @@ export default function StarRating(props) {
         />
       </Box>
     </div>
-  );
+  )
 }

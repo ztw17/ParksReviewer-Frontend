@@ -3,7 +3,8 @@ import { withStyles, CssBaseline, Chip } from '@material-ui/core';
 
 const styles = theme => ({
     tag: {
-        margin: 5
+        margin: 5,
+        color: "white"
     }
 })
 
@@ -29,8 +30,8 @@ function Tag(props) {
                 label={props.tagInfo.name}
                 onClick={() => clickedTag(props.tagInfo.id)}
                 onDelete={() => deleteTag(props.tagInfo.id)}
-                color="primary" 
-                variant="outlined" 
+                // color="primary" 
+                // variant="outlined" 
                 className={classes.tag}
             />
         </React.Fragment>

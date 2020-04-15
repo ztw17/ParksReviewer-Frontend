@@ -5,11 +5,12 @@ const styles = theme => ({
     tag: {
         margin: 5,
         color: "white",
-        width: 200,
-        height: 60,
-        background: 'linear-gradient(to right bottom, #113649, #669D7A, #FCBD62)',
+        // width: 200,
+        // height: 60,
+        // background: 'linear-gradient(to right bottom, #113649, #669D7A, #FCBD62)',
+
         // background: 'linear-gradient(to right bottom, #452171, #D36B76, #F9A57A)',
-        fontSize: "20px"
+        // fontSize: "20px"
     }
 })
 
@@ -26,7 +27,7 @@ function AllTag(props) {
         <React.Fragment>
         <CssBaseline />
             <Chip
-                key={props.tagInfo.id}
+                // key={props.tagInfo.id}
                 label={props.tagInfo.name}
                 onClick={() => clickedTag(props.tagInfo.id)}
                 clickable

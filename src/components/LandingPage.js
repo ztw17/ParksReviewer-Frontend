@@ -27,10 +27,8 @@ function LandingPage(props) {
 
   const handleIntroClick = () => {
     const randomParkId = props.parks[Math.floor(Math.random() * props.parks.length)].id
-    console.log("randomParkId", randomParkId)
     const showPark = props.parks.find(park => park.id === randomParkId)
     props.handleParkClick(showPark)
-    console.log("showPark", showPark)
     props.history.push(`park/${randomParkId}`)
   }
 

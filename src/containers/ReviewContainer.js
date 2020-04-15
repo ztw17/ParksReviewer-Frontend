@@ -52,7 +52,7 @@ export default function ReviewContainer(props) {
         <Grid container spacing={3}>
           <Grid item>
             <Avatar className={classes.teal}>{props.reviewInfo.user.first_name[0]}</Avatar>
-            <Typography className={classes.reviewUsername}variant="h9">
+            <Typography className={classes.reviewUsername} variant="h9">
               {props.reviewInfo.user.username}
             </Typography>
           </Grid>
