@@ -12,6 +12,7 @@ const styles = theme => ({
         padding: "50px",
         backgroundColor: "#dee0e3",
         fontColor: "#434C5C",
+        marginTop: 10,
     },
     cardDetails: {
         flex: 1,

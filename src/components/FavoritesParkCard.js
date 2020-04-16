@@ -12,7 +12,6 @@ export default function FavoritesParkCard(props) {
 
     const removeFavorite = (id) => {
         props.handleFavoriteDelete(id)
-        console.log("hit delete", id)
     }
 
     return (
@@ -38,7 +37,7 @@ export default function FavoritesParkCard(props) {
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 630,
+        width: 550,
         margin: 20,
         color: "#434C5C",
     },

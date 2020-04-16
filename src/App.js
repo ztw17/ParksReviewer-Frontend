@@ -428,7 +428,6 @@ class App extends React.Component {
   // }
 
   // fileUploadHandler = () => {
-
   // }
 
   handleLogout = () => {

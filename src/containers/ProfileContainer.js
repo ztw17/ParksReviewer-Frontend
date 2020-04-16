@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, withStyles, Paper, Card, Grid, Divider } from '@material-ui/core';
+import { Typography, withStyles, Paper, Card, Grid, Divider, Box } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import { teal } from '@material-ui/core/colors';
 import ReviewContainer from './ReviewContainer';
@@ -10,14 +10,22 @@ const styles = theme => ({
         height: "100%",
         padding: "50px",
         spacing: "25px",
-        backgroundColor: "#dee0e3",
+        backgroundColor: "#DEE0E3",
         color: "#434C5C",
     },
     headerCard: {
         margin: "25px"
     },
+    favorites: {
+        flexWrap:"wrap",
+        direction: "row",
+        margin: "auto",
+        justify: "center",
+        alignItems: "center",
+    },
     reviews: {
         direction: "column",
+        margin: "auto",
         justify: "center",
         alignItems: "center",
     },
@@ -48,15 +56,9 @@ const styles = theme => ({
         width: theme.spacing(7),
         height: theme.spacing(7),
     },
-    heading: {
-        fontSize: theme.typography.pxToRem(15),
-        flexBasis: '33.33%',
-        flexShrink: 0,
-    },
-    secondaryHeading: {
-        fontSize: theme.typography.pxToRem(15),
-        color: theme.palette.text.secondary,
-    },
+    text: {
+        padding: "20px"
+    }
 })
 
 class UserProfile extends React.Component {
@@ -68,17 +70,11 @@ class UserProfile extends React.Component {
     }
 
     renderUserReviews = () => {
-        return this.props.userReviews.map(review => <ReviewContainer handleEditReviewClick={this.props.handleEditReviewClick} handleDeleteReview={this.props.handleDeleteReview} appState={this.props.appState} history={this.props.history} reviewInfo={review} reviews={this.props.reviews}/>)
+        return this.props.userReviews.map(review => <ReviewContainer renderParkName={true} handleEditReviewClick={this.props.handleEditReviewClick} handleDeleteReview={this.props.handleDeleteReview} appState={this.props.appState} history={this.props.history} reviewInfo={review} reviews={this.props.reviews}/>)
     }
 
     renderFavorites = () => {
         return this.props.appState.userFavorites.map(favorite => <FavoritesParkCard favoriteInfo={favorite} parks={this.props.parks} handleParkClick={this.props.handleParkClick} handleFavoriteDelete={this.props.handleFavoriteDelete} history={this.props.history}/>)
-    }
-
-    handleChange = (panel) => {
-        this.setState ({
-            expanded: panel
-        })
     }
 
     render() {
@@ -127,13 +123,16 @@ class UserProfile extends React.Component {
                         Your Favorited Parks
                     </Paper>
                     <Grid item align="center" className={classes.reviews}>
-                        {this.props.appState.userFavorites.length ? this.renderFavorites() : <Typography>You haven't favorited any parks yet. Favorite one today!</Typography>}
+                        {this.props.appState.userFavorites.length ? null : <Typography className={classes.text}>You haven't favorited any parks yet. Favorite one today!</Typography>}
+                    </Grid>
+                    <Grid container align="center" spacing={2} className={classes.favorites}>
+                        {this.props.appState.userFavorites.length ? this.renderFavorites() : null }
                     </Grid>
                     <Paper variant="subtitle1" className={classes.sectionHeader}>
                         Your Reviews
                     </Paper>
                     <Grid item align="center" className={classes.reviews}>
-                        {this.props.userReviews.length ? this.renderUserReviews() : <Typography>You haven't written any reviews yet. Write one today!</Typography>}
+                        {this.props.userReviews.length ? this.renderUserReviews() : <Typography className={classes.text}>You haven't written any reviews yet. Write one today!</Typography>}
                     </Grid>
                 </Grid>
             </React.Fragment>
@@ -178,3 +177,19 @@ export default  withStyles(styles)(UserProfile)
         </ExpansionPanelDetails>
     </ExpansionPanel>
 </div> */}
+
+// handleChange = (panel) => {
+//     this.setState ({
+//         expanded: panel
+//     })
+// }
+
+// heading: {
+//     fontSize: theme.typography.pxToRem(15),
+//     flexBasis: '33.33%',
+//     flexShrink: 0,
+// },
+// secondaryHeading: {
+//     fontSize: theme.typography.pxToRem(15),
+//     color: theme.palette.text.secondary,
+// },
