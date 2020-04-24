@@ -7,7 +7,7 @@ export default function RenderStarRating(props) {
 
   return (
     <div>
-      <Box component="fieldset" mb={3} borderColor="transparent">
+      <Box align="left" component="fieldset" mb={3} borderColor="transparent">
         <Rating
           value={props.reviewInfo.rating}
           name="rating"

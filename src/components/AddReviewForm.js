@@ -173,7 +173,7 @@ class AddReviewForm extends React.Component {
           </Card>
         </Container>
       </Paper>
-    );
+    )
   }
 }
 

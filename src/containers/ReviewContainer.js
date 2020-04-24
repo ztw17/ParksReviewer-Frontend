@@ -68,22 +68,22 @@ export default function ReviewContainer(props) {
                 {/* <Typography align="left" className={classes.header}>
                   Review
                 </Typography> */}
-                <Divider/>
+                {/* <Divider/> */}
                 <Typography align="left" gutterBottom>
                   {props.reviewInfo.content}
                 </Typography>
-                <Typography align="left" className={classes.header}>
+                <Typography align="left" variant="body2" className={classes.header}>
                   Visit Date
                 </Typography>
                 <Divider/>
                 <Typography align="left" variant="body2" gutterBottom>
                   {visitDate}
                 </Typography>
-                <Typography align="left" className={classes.header}>
+                <Typography align="left" variant="body2" className={classes.header}>
                   Rating
                 </Typography>
                 <Divider/>
-                  <RenderStarRating align="left" readOnly={true} reviewInfo={props.reviewInfo} />
+                  <RenderStarRating readOnly={true} reviewInfo={props.reviewInfo} />
               </Grid>
             </Grid>
           </Grid>

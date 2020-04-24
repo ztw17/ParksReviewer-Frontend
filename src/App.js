@@ -13,6 +13,7 @@ import AddReviewForm from './components/AddReviewForm';
 import EditReviewForm from './components/EditReviewForm';
 import AllParksMap from './components/AllParksMap';
 import AllTagsContainer from './containers/AllTagsContainer';
+import AddParkForm from './components/AddParkForm';
 
 const font =  "'Raleway', sans-serif";
 
@@ -40,8 +41,8 @@ class App extends React.Component {
       userReviews: appState.userReviews || [],
       userFavorites: appState.userFavorites || [],
       loggedIn: appState.loggedIn || false,
-      loginEmail: appState.loginEmail || "zweb@email.com",
-      loginPassword: appState.loginPassword || "password",
+      loginEmail: appState.loginEmail || "",
+      loginPassword: appState.loginPassword || "",
       signUpFirstName: appState.signUpFirstName || "",
       signUpLastName: appState.signUpLastName || "",
       signUpUsername: appState.signUpUsername || "",
@@ -321,6 +322,27 @@ class App extends React.Component {
     })
   }
 
+  handleAddPark = (newPark) => {
+    fetch("http://localhost:3000/parks",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accepts": "application/json"
+      },
+      body: JSON.stringify(newPark)
+    })
+    .then( resp => resp.json() )
+    .then(newPark => {
+      if (newPark.error) {
+        alert (newPark.error)
+      } else {
+        this.setState({
+          parks: [...this.state.parks, newPark],
+        })
+      }
+    })
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
       const json = JSON.stringify(this.state);
@@ -507,6 +529,7 @@ class App extends React.Component {
               <Route path='/login' render={() => <Login appState={this.state} handleInputChange={this.handleInputChange} validateUserLogin={this.validateUserLogin}/>}/>
               <Route path='/signup' render={() => <SignUp appState={this.state} handleInputChange={this.handleInputChange} validateSignUpUser={this.validateSignUpUser} fileSelectedHandler={this.fileSelectedHandler}/>}/>
               <Route path='/profile' render={() => <ProfileContainer appState={this.state} userReviews={this.state.userReviews} parks={this.state.parks} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} handleParkClick={this.handleParkClick} handleFavoriteDelete={this.handleFavoriteDelete} history={this.props.history}/>}/>
+              <Route path='/park/new' render={() => <AddParkForm appState={this.state} history={this.props.history} handleAddPark={this.handleAddPark}/>}/>
               <Route path='/park/:id' render={() => <ParkContainer appState={this.state} showPark={this.state.showPark} updateViewport={this.updateViewport} handleFavoritesClick={this.handleFavoritesClick} handleTagClick={this.handleTagClick} handleTagAdd={this.handleTagAdd} handleTagDelete={this.handleTagDelete} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} viewport={this.state.viewport} tags={this.state.tags} parks={this.state.parks} reviews={this.state.reviews} users={this.state.users} history={this.props.history}/>}/>
               <Route path='/tag/:id' render={() => <TagPageContainer appState={this.state} showTag={this.state.showTag} handleParkClick={this.handleParkClick} parks={this.state.parks} history={this.props.history}/>}/>
               <Route path='/review/park/:id' render={() => <AddReviewForm appState={this.state} showPark={this.state.showPark} history={this.props.history} handleAddReview={this.handleAddReview} fileSelectedHandler={this.fileSelectedHandler}/>}/>

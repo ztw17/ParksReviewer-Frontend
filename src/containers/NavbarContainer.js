@@ -64,6 +64,10 @@ class Navbar extends React.Component {
         this.props.history.push('/tags')
     }
 
+    routeToParkAdd = () => {
+        this.props.history.push('/park/new')
+    }
+
     render() {
         const {classes} = this.props
 
@@ -95,6 +99,7 @@ class Navbar extends React.Component {
                         {
                             this.props.loggedIn ?
                             <Fragment>
+                                <Button onClick={this.routeToParkAdd}>Add A Park</Button>
                                 <Tooltip title="Profile">
                                     <IconButton>
                                         <Link to="/profile" className={classes.navbarStyles}>

@@ -7,7 +7,7 @@ export default function StarRating(props) {
 
   return (
     <div>
-      <Box component="fieldset" mb={3} borderColor="transparent">
+      <Box align="left"  component="fieldset" mb={3} borderColor="transparent">
         <Rating
           value={props.rating ? props.rating : value}
           name="rating"
