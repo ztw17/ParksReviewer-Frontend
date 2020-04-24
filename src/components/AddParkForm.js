@@ -37,13 +37,13 @@ class AddParkForm extends React.Component {
     constructor() {
         super()
         this.state = {
-            parkName: "",
-            parkState: "",
-            parkDescription: "",
-            parkWeather: "",
-            parkLongitude: "",
-            parkLatitude: "",
-            parkImage: "",
+            parkName: "Hawaiʻi Volcanoes National Park",
+            parkState: "Hawaii",
+            parkDescription: "Hawaii Volcanoes National Park is on Hawaii Island (the Big Island). At its heart are the Kīlauea and Mauna Loa active volcanoes. The Crater Rim Drive passes steam vents and the Jaggar Museum, which features volcanology exhibits and a viewpoint overlooking Halema'uma'u Crater. Thick ferns mark the entrance to the Thurston Lava Tube (Nāhuku). The Chain of Craters Road weaves over lava. Trails crisscross the park.",
+            parkWeather: "Island weather is unpredictable. Visitors should be prepared for rain and wear layers of clothing to ensure their comfort while exploring the park. Local weather at Kīlauea's summit (4000' elevation) varies daily and may be rainy and chilly any time of the year. Temperature varies by elevation. At the summit of the volcano, temperatures may be 12 to 15 degrees cooler than at sealevel. The coastal plain at the end of Chain of Craters Road, where lava crossed the road in 2003, is often hot, dry, and windy with the possibility of passing showers.",
+            parkLongitude: -155.602829,
+            parkLatitude: 19.479488,
+            parkImage: "https://www.destinationparks.com/images/park/hawaii-volcanoes-national-park-1280x853.jpg",
         }
     }
 

@@ -89,8 +89,8 @@ export default class AllParksMap extends React.Component {
             {this.state.selectedPark ? (
                 <Card>
             <Popup
-                latitude={this.state.selectedPark.latitude}
-                longitude={this.state.selectedPark.longitude}
+                latitude={parseFloat(this.state.selectedPark.latitude)}
+                longitude={parseFloat(this.state.selectedPark.longitude)}
                 class="mapboxgl-popup"
             >
                 <div>
