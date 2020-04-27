@@ -21,9 +21,15 @@ const styles = theme => ({
 });
 
 class NavDropdown extends React.Component {
-    state = {
-      open: false
-    }
+  state = {
+    open: false
+  }
+
+  alphabetizeParks = () => {
+    const parks = this.props.parks
+    const alphaParks = parks.sort( (parkA, parkB) => parkA.name > parkB.name ? 1 : -1)
+    return alphaParks
+  }
 
   getStates = () => {
     const uniqueStates = []
@@ -34,7 +40,7 @@ class NavDropdown extends React.Component {
     let uniqStateObjArr = uniqueStates.map( uniqState => {
       return {state: uniqState, parks: []}
     })
-    this.props.parks.forEach( (park) => {
+    this.alphabetizeParks().forEach( (park) => {
       uniqStateObjArr.forEach( (uniquePark) => {
         if (uniquePark.state === park.state) {
         uniquePark.parks.push({id: park.id, name: park.name})
