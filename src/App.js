@@ -62,7 +62,7 @@ class App extends React.Component {
       showUser: appState.showUser || {},
       showTag: appState || {},
       editReview: appState.editReview || {},
-      selectedFile: appState.selectedFile || null,
+      // selectedFile: appState.selectedFile || null,
       searchTerm: appState.searchTerm || "",
     }
   }
@@ -492,7 +492,7 @@ class App extends React.Component {
       showUser: {},
       showTag: {},
       editReview: {},
-      selectedFile: null,
+      // selectedFile: null,
       searchTerm: ""
     })
   }
@@ -508,7 +508,7 @@ class App extends React.Component {
   }
 
   handleSearchChange = (event) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     this.setState({
       searchTerm: event.target.value
     })
@@ -521,7 +521,6 @@ class App extends React.Component {
   }
 
   render() {
-
     return (
       <MuiThemeProvider theme={theme}>
         <div>

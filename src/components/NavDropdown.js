@@ -27,8 +27,8 @@ class NavDropdown extends React.Component {
 
   alphabetizeParks = () => {
     const parks = this.props.parks
-    const alphaParks = parks.sort( (parkA, parkB) => parkA.name > parkB.name ? 1 : -1)
-    return alphaParks
+    const alphabetizedParks = parks.sort( (parkA, parkB) => parkA.name > parkB.name ? 1 : -1)
+    return alphabetizedParks
   }
 
   getStates = () => {
@@ -51,9 +51,9 @@ class NavDropdown extends React.Component {
   }
 
   alphabetizeStates = () => {
-    const alphaStates = this.getStates()
-    const sortedStates = alphaStates.sort( (stateA, stateB) => stateA.state > stateB.state ? 1 : -1)
-    return sortedStates
+    const sortedStates = this.getStates()
+    const alphabetized = sortedStates.sort( (stateA, stateB) => stateA.state > stateB.state ? 1 : -1)
+    return alphabetized
   }
 
   listedStates = () => {

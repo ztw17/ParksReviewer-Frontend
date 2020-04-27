@@ -7,6 +7,7 @@ import pin from '../images/pin.png';
 import tag from '../images/tag.png';
 import account from '../images/account.png';
 import us_map from '../images/us_map.png';
+import mountain from '../images/mountain.png';
 
 const styles = theme => ({
     root: {
@@ -99,7 +100,11 @@ class Navbar extends React.Component {
                         {
                             this.props.loggedIn ?
                             <Fragment>
-                                <Button onClick={this.routeToParkAdd}>Add A Park</Button>
+                                <Tooltip title="Add a park">
+                                    <IconButton onClick={this.routeToParkAdd} className={classes.menuButton}>
+                                        <img className={classes.mapIcon} src={mountain} alt="mountain"/>
+                                    </IconButton>
+                                </Tooltip>
                                 <Tooltip title="Profile">
                                     <IconButton>
                                         <Link to="/profile" className={classes.navbarStyles}>
