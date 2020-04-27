@@ -332,12 +332,13 @@ class App extends React.Component {
       body: JSON.stringify(newPark)
     })
     .then( resp => resp.json() )
-    .then(newPark => {
+    .then( newPark => {
       if (newPark.error) {
         alert (newPark.error)
       } else {
         this.setState({
           parks: [...this.state.parks, newPark],
+          showPark: newPark
         })
       }
     })

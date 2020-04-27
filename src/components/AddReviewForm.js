@@ -126,7 +126,6 @@ class AddReviewForm extends React.Component {
                       type="date"
                       defaultValue=""
                       // onChange={(event) => this.onChange(event)}
-                      className={classes.textField}
                       InputLabelProps={{
                         shrink: true,
                       }}
