@@ -1,5 +1,5 @@
 import React from 'react'
-import { withStyles, Typography, Divider, Card, CardContent, Grid, Box, Fab, Tooltip } from '@material-ui/core';
+import { withStyles, Typography, Divider, Card, CardContent, Grid, Box, Fab, Tooltip, Button } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import ParkBanner from '../components/ParkBanner';
 import Tag from '../components/Tag';
@@ -70,6 +70,13 @@ class ParkContainer extends React.Component {
         this.props.history.push(`/review/park/${id}`)
     }
 
+    handleParkEditClick = (id) => {
+        // console.log(id)
+        this.props.history.push(`/park/${id}/edit`)
+        const clickedParkObj = this.props.showPark
+        this.props.editPark(clickedParkObj)
+    }
+
     render() {
         const {classes} = this.props
 
@@ -82,7 +89,7 @@ class ParkContainer extends React.Component {
                                 <Card className={classes.cardDetails}>
                                     <CardContent>
                                         <Typography className={classes.bold} variant="h6">
-                                            Overview
+                                            Overview <Button onClick={() => this.handleParkEditClick(this.props.showPark.id)}></Button>
                                         </Typography>
                                         <Divider/>
                                         <Typography varient="h6">

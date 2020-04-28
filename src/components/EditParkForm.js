@@ -31,17 +31,17 @@ const styles = theme => ({
     }
 });
 
-class AddParkForm extends React.Component {
-    constructor() {
-        super()
+class EditParkForm extends React.Component {
+    constructor(props) {
+        super(props)
         this.state = {
-            parkName: "",
-            parkState: "",
-            parkDescription: "",
-            parkWeather: "",
-            parkLongitude: "",
-            parkLatitude: "",
-            parkImage: "",
+            parkName: props.editPark.name,
+            parkState: props.editPark.state,
+            parkDescription: props.editPark.description,
+            parkWeather: props.editPark.weather,
+            parkLongitude: props.editPark.longitude,
+            parkLatitude: props.editPark.latitude,
+            parkImage: props.editPark.image,
         }
     }
 
@@ -52,9 +52,9 @@ class AddParkForm extends React.Component {
         })
     }
 
-    createNewPark= (event) => {
+    editPark = (event) => {
         event.preventDefault()
-        const newPark = {
+        const editedPark = {
             name: this.state.parkName,
             state: this.state.parkState,
             description: this.state.parkDescription,
@@ -63,9 +63,9 @@ class AddParkForm extends React.Component {
             latitude: this.state. parkLatitude,
             image: this.state.parkImage,
             creator_id: this.props.appState.userId,
-
+            id: this.props.showPark.id
         }
-        this.props.handleAddPark(newPark)
+        this.props.handleEditedPark(editedPark)
         this.setState({
             parkName: "",
             parkState: "",
@@ -75,7 +75,9 @@ class AddParkForm extends React.Component {
             parkLatitude: "",
             parkImage: "",
         })
-        this.props.history.push(`/park/${this.props.appState.showPark.id}`)
+        const showPark = this.props.parks.find(park => park.id === editedPark.id)
+        this.props.handleParkClick(showPark)
+        this.props.history.push(`/park/${showPark.id}`)
     }
 
     render() {
@@ -89,10 +91,13 @@ class AddParkForm extends React.Component {
                         <div>
                         <Grid align="center">
                             <Typography component="h1" variant="h5">
-                            Add A New Park
+                                Edit
+                            </Typography >
+                            <Typography component="h1" variant="h4">
+                                {this.props.editPark.name}
                             </Typography>
                         </Grid>
-                        <form className={classes.form} onSubmit={this.createNewPark}>
+                        <form className={classes.form} onSubmit={this.editPark}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
@@ -101,6 +106,7 @@ class AddParkForm extends React.Component {
                                     id="outlined-static"
                                     label="Park Name"
                                     name="parkName"
+                                    value={this.state.parkName}
                                     fullWidth
                                     variant="outlined"
                                     className={classes.textField}
@@ -177,6 +183,7 @@ class AddParkForm extends React.Component {
                                         id="outlined-multiline-static"
                                         label="Write a description of the park"
                                         name="parkDescription"
+                                        value={this.state.parkDescription}
                                         multiline
                                         fullWidth
                                         rows="3"
@@ -191,6 +198,7 @@ class AddParkForm extends React.Component {
                                         id="outlined-multiline-static"
                                         label="Write an overview of the park's weather"
                                         name="parkWeather"
+                                        value={this.state.parkWeather}
                                         multiline
                                         fullWidth
                                         rows="3"
@@ -205,6 +213,7 @@ class AddParkForm extends React.Component {
                                         required
                                         fullWidth
                                         name="parkLatitude"
+                                        value={this.state.parkLatitude}
                                         id="latitude"
                                         label="Latitude"
                                         autoFocus
@@ -218,6 +227,7 @@ class AddParkForm extends React.Component {
                                         required
                                         fullWidth
                                         name="parkLongitude"
+                                        value={this.state.parkLongitude}
                                         id="longitude"
                                         label="Longitude"
                                         autoFocus
@@ -229,6 +239,7 @@ class AddParkForm extends React.Component {
                                         required
                                         onChange={this.handleInputChange}
                                         name="parkImage"
+                                        value={this.state.parkImage}
                                         id="outlined-static"
                                         label="Image URL"
                                         fullWidth
@@ -255,4 +266,4 @@ class AddParkForm extends React.Component {
       }
 }
 
-export default withStyles(styles)(AddParkForm)
+export default withStyles(styles)(EditParkForm)

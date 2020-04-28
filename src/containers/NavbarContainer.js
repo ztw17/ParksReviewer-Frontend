@@ -92,6 +92,14 @@ class Navbar extends React.Component {
                                 <img className={classes.icon} alt="tag" src={tag}/>
                             </IconButton>
                         </Tooltip>
+                        {
+                            this.props.loggedIn ?
+                        <Tooltip title="Add a park">
+                                <IconButton onClick={this.routeToParkAdd} className={classes.menuButton}>
+                                    <img className={classes.mapIcon} src={mountain} alt="mountain"/>
+                                </IconButton>
+                        </Tooltip>
+                        : null }
                         <Tooltip title="Home">
                             <IconButton onClick={this.props.handleLogoClick} className={classes.title}>
                                 <img src={logo} alt="logo"/>
@@ -100,11 +108,11 @@ class Navbar extends React.Component {
                         {
                             this.props.loggedIn ?
                             <Fragment>
-                                <Tooltip title="Add a park">
+                                {/* <Tooltip title="Add a park">
                                     <IconButton onClick={this.routeToParkAdd} className={classes.menuButton}>
                                         <img className={classes.mapIcon} src={mountain} alt="mountain"/>
                                     </IconButton>
-                                </Tooltip>
+                                </Tooltip> */}
                                 <Tooltip title="Profile">
                                     <IconButton>
                                         <Link to="/profile" className={classes.navbarStyles}>

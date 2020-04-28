@@ -1,15 +1,6 @@
 import React from "react";
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import { Paper } from '@material-ui/core'
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import { Paper, Card, Button, CssBaseline, TextField, Link, Grid, Typography, makeStyles, Container, Avatar } from '@material-ui/core'
 import Image from './images/Zion2.jpeg';
 
 export default function Login(props) {
@@ -18,67 +9,62 @@ export default function Login(props) {
     return (
       <Paper className={classes.backGroundImg}>
         <Container component="main" maxWidth="xs">
+          <Card className={classes.paper}>
           <CssBaseline />
-          <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
-            <form className={classes.form} noValidate onSubmit={props.validateUserLogin}>
-              <TextField
-                value={props.appState.loginEmail}
-                onChange={event => props.handleInputChange("loginEmail", event.target.value)}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-              />
-              <TextField
-                value={props.appState.loginPassword}
-                onChange={event => props.handleInputChange("loginPassword", event.target.value)}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                // autoComplete="current-password"
-              />
-              {/* <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              /> */}
-              <Button
-                // onClick={props.validateUserLogin}
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Sign In
-              </Button>
-              <Grid container>
-                <Grid item>
-                  <Link href="/signup" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
+            <div>
+              <Grid align="center">
+                <Avatar className={classes.avatar}>
+                  <LockOutlinedIcon />
+                </Avatar>
               </Grid>
-            </form>
-          </div>
-          {/* <Box mt={8}>
-            <Copyright />
-          </Box> */}
+              <Typography align="center" component="h1" variant="h5">
+                Sign in
+              </Typography>
+              <form className={classes.form} noValidate onSubmit={props.validateUserLogin}>
+                <TextField
+                  value={props.appState.loginEmail}
+                  onChange={event => props.handleInputChange("loginEmail", event.target.value)}
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                />
+                <TextField
+                  value={props.appState.loginPassword}
+                  onChange={event => props.handleInputChange("loginPassword", event.target.value)}
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                >
+                  Sign In
+                </Button>
+                <Grid container>
+                  <Grid item>
+                    <Link href="/signup" variant="body2">
+                      {"Don't have an account? Sign Up"}
+                    </Link>
+                  </Grid>
+                </Grid>
+              </form>
+            </div>
+          </Card>
         </Container>
       </Paper>
   );
@@ -91,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: 'column',
       alignItems: 'center',
       backgroundColor: 'white',
-      padding: '10px'
+      padding: '15px'
     },
     avatar: {
       margin: theme.spacing(1),
