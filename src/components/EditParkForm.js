@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Card, Paper, CssBaseline, TextField, Grid, Typography, withStyles, Container, InputLabel, Select, MenuItem, FormControl } from '@material-ui/core';
-import Image from '../images/Sequoia.jpg';
+// import Image from '../images/Sequoia.jpg';
 
 const styles = theme => ({
     paper: {
@@ -17,10 +17,10 @@ const styles = theme => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
-        background: "#B1C958"
+        // background: "#B1C958"
     },
     backGroundImg: {
-        backgroundImage: `url(${Image})`,
+        // backgroundImage: `url(${Image})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
@@ -84,7 +84,7 @@ class EditParkForm extends React.Component {
         const { classes } = this.props
     
         return (
-          <Paper className={classes.backGroundImg}>
+          <Paper className={classes.backGroundImg}  style={{ backgroundImage: `url(${this.props.editPark.image})` }}>
                 <Container component="main" maxWidth="sm">
                     <Card className={classes.paper}>
                     <CssBaseline />
@@ -109,7 +109,6 @@ class EditParkForm extends React.Component {
                                     value={this.state.parkName}
                                     fullWidth
                                     variant="outlined"
-                                    className={classes.textField}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -122,7 +121,6 @@ class EditParkForm extends React.Component {
                                             value={this.state.parkState}
                                             label="Park Location"
                                             onChange={this.handleInputChange}
-                                            className={classes.textField}
                                         >
                                             <MenuItem value="Alabama">Alabama</MenuItem>
                                             <MenuItem value="Alaska">Alaska</MenuItem>
@@ -188,7 +186,6 @@ class EditParkForm extends React.Component {
                                         fullWidth
                                         rows="3"
                                         variant="outlined"
-                                        className={classes.textField}
                                         required
                                         />
                                 </Grid>
@@ -216,8 +213,6 @@ class EditParkForm extends React.Component {
                                         value={this.state.parkLatitude}
                                         id="latitude"
                                         label="Latitude"
-                                        autoFocus
-                                        className={classes.textField}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -230,8 +225,6 @@ class EditParkForm extends React.Component {
                                         value={this.state.parkLongitude}
                                         id="longitude"
                                         label="Longitude"
-                                        autoFocus
-                                        className={classes.textField}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -244,7 +237,6 @@ class EditParkForm extends React.Component {
                                         label="Image URL"
                                         fullWidth
                                         variant="outlined"
-                                        className={classes.textField}
                                     />
                                 </Grid>
                             <Button

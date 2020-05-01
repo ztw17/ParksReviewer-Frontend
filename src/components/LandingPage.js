@@ -2,13 +2,15 @@ import React from 'react';
 import { Paper, Grid, Typography, IconButton, withStyles } from '@material-ui/core';
 import Image from '../images/Olympic.jpg';
 
+const font =  "'Amatic SC', cursive";
+
 const styles = theme => ({
   root: {
     backgroundImage: `url(${Image})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    padding: 310,
+    backgroundPosition: 'fixed',
+    padding: 290,
   },
   imageIcon: {
     height: "30px",
@@ -16,10 +18,13 @@ const styles = theme => ({
   },
   introGrid: {
     margin: "auto",
+    align: "center",
+    alignText: "center"
   },
   introText: {
-    color: "white"
-  }
+    color: "white",
+    fontFamily: font
+  },
 });
 
 function LandingPage(props) {
@@ -36,7 +41,7 @@ function LandingPage(props) {
     <Paper className={classes.root}>
       <Grid container className={classes.introGrid}>
         <IconButton onClick={() => handleIntroClick()}>
-          <Typography className={classes.introText} variant="h2" cursor="pointer">
+          <Typography className={classes.introText} variant="h1" cursor="pointer">
             Find your next adventure
           </Typography >
         </IconButton>

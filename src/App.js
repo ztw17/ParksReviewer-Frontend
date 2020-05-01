@@ -16,7 +16,7 @@ import AllTagsContainer from './containers/AllTagsContainer';
 import AddParkForm from './components/AddParkForm';
 import EditParkForm from './components/EditParkForm';
 
-const font =  "'Raleway', sans-serif";
+const font =  "'Quicksand', sans-serif";
 
 const theme = createMuiTheme({
   typography: {
