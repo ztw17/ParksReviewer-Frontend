@@ -5,7 +5,7 @@ import Image from '../images/Sequoia.jpg';
 const styles = theme => ({
     paper: {
         margin: "auto",
-        padding: 40,
+        padding: 30,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -28,8 +28,13 @@ const styles = theme => ({
     },
     inputLabel: {
         left: 20
+    },
+    heading: {
+        fontFamily: font
     }
 });
+
+const font =  "'Amatic SC', cursive";
 
 class AddParkForm extends React.Component {
     constructor() {
@@ -46,7 +51,7 @@ class AddParkForm extends React.Component {
     }
 
     handleInputChange = (event) => {
-        console.log(event.target.value)
+        // console.log(event.target.value)
         this.setState({
           [event.target.name]: event.target.value
         })
@@ -88,7 +93,7 @@ class AddParkForm extends React.Component {
                     <CssBaseline />
                         <div>
                         <Grid align="center">
-                            <Typography component="h1" variant="h5">
+                            <Typography className={classes.heading} component="h1" variant="h3">
                             Add A New Park
                             </Typography>
                         </Grid>
@@ -246,7 +251,7 @@ class AddParkForm extends React.Component {
                 </Container>
           </Paper>
         )
-      }
+    }
 }
 
 export default withStyles(styles)(AddParkForm)

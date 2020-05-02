@@ -340,14 +340,20 @@ class App extends React.Component {
       } else {
         this.setState({
           parks: [...this.state.parks, newPark],
-          showPark: newPark
+          showPark: newPark,
+          viewport: {
+            latitude: newPark.latitude,
+            longitude: newPark.longitude,
+            zoom: 10,
+            bearing: 0,
+            pitch: 0
+          }
         })
       }
     })
   }
 
   editPark = (park) => {
-    console.log(park)
     this.setState({
       editPark: park
     })
@@ -547,7 +553,6 @@ class App extends React.Component {
   }
 
   handleSearchChange = (event) => {
-    // console.log(event.target.value)
     this.setState({
       searchTerm: event.target.value
     })

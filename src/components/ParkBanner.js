@@ -32,13 +32,19 @@ export default function ParkBanner(props) {
       {favoriteButton()}
       {<img style={{ display: 'none' }} src={props.showPark.image} alt={props.showPark.name} />}
       <div className={classes.overlay}>
-        <Typography component="h3" variant="h2" color="inherit" gutterBottom>
+        <Typography className={classes.text} variant="h2">
           {props.showPark.name}
         </Typography>
       </div>
     </Paper>
   );
 }
+
+// component="h3"
+// color="inherit"
+// gutterBottom
+
+const font =  "'Amatic SC', cursive";
 
 const useStyles = makeStyles((theme) => ({
     mainFeaturedPost: {
@@ -63,4 +69,7 @@ const useStyles = makeStyles((theme) => ({
       right: 0,
       left: 960,
     },
+    text: {
+      fontFamily: font
+    }
 }));

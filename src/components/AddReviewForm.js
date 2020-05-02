@@ -20,8 +20,8 @@ const styles = theme => ({
   },
   form: {
     width: '100%',
-    // marginTop: theme.spacing(3),
-    margin: "auto"
+    marginTop: theme.spacing(3),
+    // margin: "auto"
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -34,7 +34,12 @@ const styles = theme => ({
     backgroundPosition: 'center',
     padding: 80,
   },
+  heading: {
+    fontFamily: font
+  }
 });
+
+const font =  "'Amatic SC', cursive";
 
 class AddReviewForm extends React.Component {
   constructor() {
@@ -87,10 +92,10 @@ class AddReviewForm extends React.Component {
           <CssBaseline />
             <div>
               <Grid align="center">
-                <Typography component="h1" variant="h5">
+                <Typography className={classes.heading} component="h1" variant="h5">
                   Share your experience at
                 </Typography>
-                <Typography component="h1" variant="h4">
+                <Typography className={classes.heading} component="h1" variant="h4">
                   {this.props.showPark.name}
                 </Typography>
               </Grid>

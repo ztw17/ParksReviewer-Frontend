@@ -37,7 +37,12 @@ const styles = theme => ({
     backgroundPosition: 'center',
     padding: 120,
   },
+  heading: {
+    fontFamily: font
+  }
 });
+
+const font =  "'Amatic SC', cursive";
 
 class EditReviewForm extends React.Component {
   constructor(props) {
@@ -86,10 +91,10 @@ class EditReviewForm extends React.Component {
             <CssBaseline />
             <div className={classes.paper}>
               <Grid align="center">
-                <Typography component="h1" variant="h5">
+                <Typography className={classes.heading} component="h1" variant="h5">
                   Edit your review of
                 </Typography>
-                <Typography component="h1" variant="h4">
+                <Typography className={classes.heading} component="h1" variant="h4">
                   {this.props.editReview.park.name}
                 </Typography>
               </Grid>
@@ -99,7 +104,7 @@ class EditReviewForm extends React.Component {
                     <TextField
                       onChange={this.handleInputChange}
                       id="outlined-multiline-static"
-                      label="Write your review"
+                      label="Edit your review"
                       value={this.state.content}
                       name="content"
                       multiline

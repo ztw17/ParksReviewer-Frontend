@@ -44,3 +44,11 @@ body {
     background-position: 0% 50%;
   }
 }
+
+.makeStyles-text-282 {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+/* .LandingPage-introText-952 {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+} */
