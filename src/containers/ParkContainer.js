@@ -71,10 +71,15 @@ class ParkContainer extends React.Component {
     }
 
     handleParkEditClick = (id) => {
-        // console.log(id)
         this.props.history.push(`/park/${id}/edit`)
         const clickedParkObj = this.props.showPark
         this.props.editPark(clickedParkObj)
+    }
+
+    handleParkDeleteClick = (id) => {
+        console.log(id)
+        this.props.history.push('/')
+        this.props.handleParkDelete(id)
     }
 
     render() {
@@ -102,7 +107,7 @@ class ParkContainer extends React.Component {
                                 <Card className={classes.cardDetails}>
                                     <CardContent>
                                         <Typography className={classes.bold} variant="h6">
-                                            Location
+                                            Location <Button onClick={() => this.handleParkDeleteClick(this.props.showPark.id)}></Button>
                                         </Typography>
                                         <Divider />
                                             <Typography>
