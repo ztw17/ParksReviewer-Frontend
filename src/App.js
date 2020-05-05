@@ -69,6 +69,13 @@ class App extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
+      const json = JSON.stringify(this.state);
+      localStorage.setItem("appState", json);
+    }
+  }
+
   componentDidMount() {
     this.getParks()
     this.getTags()
@@ -215,7 +222,7 @@ class App extends React.Component {
   }
 
   handleInputChange = (input, value) => {
-    console.log(input, value) 
+    // console.log(input, value) 
     this.setState({
       [input]: value
     })
@@ -279,7 +286,6 @@ class App extends React.Component {
       const newTags = this.state.tags.filter(tag => tag.id !== deletedTag.id)
       const newShowPark = this.state.showPark
       newShowPark.tags = newShowPark.tags.filter(tag => tag.id !== deletedTag.id)
-
       this.setState({
         tags: newTags,
         showPark: newShowPark
@@ -316,7 +322,6 @@ class App extends React.Component {
     .then( deletedFavorite => {
       const newFavorites = this.state.favorites.filter(favorite => favorite.id !== deletedFavorite.id)
       const newUserFavorites = this.state.userFavorites.filter(favorite => favorite.id !== deletedFavorite.id)
-
       this.setState({
         favorites: newFavorites,
         userFavorites: newUserFavorites
@@ -406,13 +411,6 @@ class App extends React.Component {
         parks: newParks
       })
     })
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
-      const json = JSON.stringify(this.state);
-      localStorage.setItem("appState", json);
-    }
   }
 
   validateUserLogin = (event) => {
