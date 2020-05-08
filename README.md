@@ -5,13 +5,15 @@
 Backend repo: https://github.com/ztw17/ParksReviewer-Backend
 
 Demo: https://www.youtube.com/watch?v=Ov322Iv3fDQ&t=2s
+
+Live app: https://dry-falls-40920.herokuapp.com/
 ***
 MyParks Explorer is a platform that gives users the ability to find, review, tag, and favorite national and state parks.
 ***
 ### Prerequisites
 Before you continue, ensure you have met the following requirements:
-- Ruby version 2.6.1 or higher
-- Rails version 6.0.2 or higher
+- Ruby version 2.6.1 or later
+- Rails version 6.0.2 or later
 
 While this app can mostly be cloned as is (don't forget the backend repo, linked above), it does assume you have an active Mapbox account. If you don't have one, you can create one (and get an access token) here: https://www.mapbox.com/.
 
