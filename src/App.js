@@ -15,6 +15,14 @@ import AllParksMap from './components/AllParksMap';
 import AllTagsContainer from './containers/AllTagsContainer';
 import AddParkForm from './components/AddParkForm';
 import EditParkForm from './components/EditParkForm';
+import { config } from './Constants';
+
+const API_FAVORITES = config.url.API_FAVORITES
+const API_LOGIN = config.url.API_LOGIN
+const API_PARKS = config.url.API_PARKS
+const API_REVIEWS = config.url.API_REVIEWS
+const API_TAGS = config.url.API_TAGS
+const API_USERS = config.url.API_USERS
 
 const font =  "'Quicksand', sans-serif";
 
@@ -85,7 +93,7 @@ class App extends React.Component {
   }
   
   getParks = () => {
-    fetch("http://localhost:3000/parks")
+    fetch(API_PARKS)
       .then( resp => resp.json() )
       .then( parksData => this.setState({
         parks: parksData
@@ -93,7 +101,7 @@ class App extends React.Component {
   }
 
   getTags = () => {
-    fetch("http://localhost:3000/tags")
+    fetch(API_TAGS)
       .then( resp => resp.json() )
       .then( tagsData => this.setState({
         tags: tagsData
@@ -101,7 +109,7 @@ class App extends React.Component {
   }
 
   getReviews = () => {
-    fetch("http://localhost:3000/reviews")
+    fetch(API_REVIEWS)
       .then( resp => resp.json() )
       .then( reviewsData => this.setState({
         reviews: reviewsData
@@ -109,7 +117,7 @@ class App extends React.Component {
   }
   
   getUsers = () => {
-    fetch("http://localhost:3000/users")
+    fetch(API_USERS)
       .then( resp => resp.json() )
       .then( usersData => this.setState({
         users: usersData
@@ -117,7 +125,7 @@ class App extends React.Component {
   }
 
   getFavorites = () => {
-    fetch("http://localhost:3000/favorites")
+    fetch(API_FAVORITES)
       .then( resp => resp.json() )
       .then( favoritesData => this.setState({
         favorites: favoritesData
@@ -125,7 +133,7 @@ class App extends React.Component {
   }
 
   handleAddReview = (newReview) => {
-    fetch("http://localhost:3000/reviews", {
+    fetch(API_REVIEWS, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -156,7 +164,7 @@ class App extends React.Component {
   }
 
   handleEditedReview = (editedReview) => {
-    fetch(`http://localhost:3000/reviews/${editedReview.review_id}`, {
+    fetch(`${API_REVIEWS}/${editedReview.review_id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -202,7 +210,7 @@ class App extends React.Component {
   }
 
   handleDeleteReview = (id) => {
-    fetch(`http://localhost:3000/reviews/${id}`, {
+    fetch(`${API_REVIEWS}/${id}`, {
       method: "DELETE"
     })
     .then( resp => resp.json() )
@@ -248,7 +256,7 @@ class App extends React.Component {
   };
 
   handleTagAdd = (name) => {
-    fetch("http://localhost:3000/tags", {
+    fetch(API_TAGS, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -278,7 +286,7 @@ class App extends React.Component {
   }
 
   handleTagDelete = (id) => {
-    fetch(`http://localhost:3000/tags/${id}`, {
+    fetch(`${API_TAGS}/${id}`, {
       method: "DELETE"
     })
     .then( resp => resp.json())
@@ -294,7 +302,7 @@ class App extends React.Component {
   }
 
   handleFavoritesClick = (id) => {
-    fetch("http://localhost:3000/favorites", {
+    fetch(API_FAVORITES, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -315,7 +323,7 @@ class App extends React.Component {
   }
 
   handleFavoriteDelete = (id) => {
-    fetch(`http://localhost:3000/favorites/${id}`, {
+    fetch(`${API_FAVORITES}/${id}`, {
       method: "DELETE"
     })
     .then( resp => resp.json() )
@@ -330,7 +338,7 @@ class App extends React.Component {
   }
 
   handleAddPark = (newPark) => {
-    fetch("http://localhost:3000/parks",{
+    fetch(API_PARKS,{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -365,7 +373,7 @@ class App extends React.Component {
   }
 
   handleEditedPark = (editedPark) => {
-    fetch(`http://localhost:3000/parks/${editedPark.id}`, {
+    fetch(`${API_PARKS}/${editedPark.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -401,7 +409,7 @@ class App extends React.Component {
   }
 
   handleParkDelete = (id) => {
-    fetch(`http://localhost:3000/parks/${id}`, {
+    fetch(`${API_PARKS}/${id}`, {
       method: "DELETE"
     })
     .then( resp => resp.json() )
@@ -423,7 +431,7 @@ class App extends React.Component {
   }
 
   loginUser = () => {
-    fetch("http://localhost:3000/login", {
+    fetch(API_LOGIN, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -466,7 +474,7 @@ class App extends React.Component {
   }
 
   signUpUser = () => {
-    fetch("http://localhost:3000/users", {
+    fetch(API_USERS, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

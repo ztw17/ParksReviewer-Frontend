@@ -8,6 +8,8 @@ const styles = theme => ({
   root: {
     backgroundImage: `url(${Image})`,
     backgroundSize: 'cover',
+    // width: "100%",
+    // height: "100%",
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'fixed',
     padding: 290,
