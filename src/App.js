@@ -75,14 +75,14 @@ class App extends React.Component {
       // selectedFile: appState.selectedFile || null,
       searchTerm: appState.searchTerm || "",
     }
-  }
+  };
 
   componentDidUpdate(prevProps, prevState) {
     if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
       const json = JSON.stringify(this.state);
       localStorage.setItem("appState", json);
     }
-  }
+  };
 
   componentDidMount() {
     this.getParks()
@@ -90,7 +90,7 @@ class App extends React.Component {
     this.getReviews()
     this.getUsers()
     this.getFavorites()
-  }
+  };
   
   getParks = () => {
     fetch(API_PARKS)
@@ -98,7 +98,7 @@ class App extends React.Component {
       .then( parksData => this.setState({
         parks: parksData
     }))
-  }
+  };
 
   getTags = () => {
     fetch(API_TAGS)
@@ -106,7 +106,7 @@ class App extends React.Component {
       .then( tagsData => this.setState({
         tags: tagsData
     }))
-  }
+  };
 
   getReviews = () => {
     fetch(API_REVIEWS)
@@ -114,7 +114,7 @@ class App extends React.Component {
       .then( reviewsData => this.setState({
         reviews: reviewsData
     }))
-  }
+  };
   
   getUsers = () => {
     fetch(API_USERS)
@@ -122,7 +122,7 @@ class App extends React.Component {
       .then( usersData => this.setState({
         users: usersData
     }))
-  }
+  };
 
   getFavorites = () => {
     fetch(API_FAVORITES)
@@ -130,7 +130,7 @@ class App extends React.Component {
       .then( favoritesData => this.setState({
         favorites: favoritesData
     }))
-  }
+  };
 
   handleAddReview = (newReview) => {
     fetch(API_REVIEWS, {
@@ -155,13 +155,13 @@ class App extends React.Component {
         })
       }
     })
-  }
+  };
 
   handleEditReviewClick = (review) => {
     this.setState({
       editReview: review
     })
-  }
+  };
 
   handleEditedReview = (editedReview) => {
     fetch(`${API_REVIEWS}/${editedReview.review_id}`, {
@@ -207,7 +207,7 @@ class App extends React.Component {
         })
       }
     })
-  }
+  };
 
   handleDeleteReview = (id) => {
     fetch(`${API_REVIEWS}/${id}`, {
@@ -227,14 +227,14 @@ class App extends React.Component {
         userReviews: newUserReviews
       })
     })
-  }
+  };
 
   handleInputChange = (input, value) => {
     // console.log(input, value) 
     this.setState({
       [input]: value
     })
-  }
+  };
 
   handleParkClick = (park) => {
     this.setState({
@@ -247,7 +247,7 @@ class App extends React.Component {
         pitch: 0,
       }
     })
-  }
+  };
 
   handleTagClick = (tag) => {
     this.setState({
@@ -283,7 +283,7 @@ class App extends React.Component {
         showPark: newShowPark
       })
     })
-  }
+  };
 
   handleTagDelete = (id) => {
     fetch(`${API_TAGS}/${id}`, {
@@ -299,7 +299,7 @@ class App extends React.Component {
         showPark: newShowPark
       })
     })
-  }
+  };
 
   handleFavoritesClick = (id) => {
     fetch(API_FAVORITES, {
@@ -320,7 +320,7 @@ class App extends React.Component {
         userFavorites: [...this.state.userFavorites, newFavorite]
       })
     })
-  }
+  };
 
   handleFavoriteDelete = (id) => {
     fetch(`${API_FAVORITES}/${id}`, {
@@ -335,7 +335,7 @@ class App extends React.Component {
         userFavorites: newUserFavorites
       })
     })
-  }
+  };
 
   handleAddPark = (newPark) => {
     fetch(API_PARKS,{
@@ -364,7 +364,7 @@ class App extends React.Component {
         })
       }
     })
-  }
+  };
 
   editPark = (park) => {
     this.setState({
@@ -406,7 +406,7 @@ class App extends React.Component {
         })
       }
     })
-  }
+  };
 
   handleParkDelete = (id) => {
     fetch(`${API_PARKS}/${id}`, {
@@ -419,7 +419,7 @@ class App extends React.Component {
         parks: newParks
       })
     })
-  }
+  };
 
   validateUserLogin = (event) => {
     event.preventDefault()
@@ -428,7 +428,7 @@ class App extends React.Component {
     } else {
       alert("Please complete both the email and password login fields")
     }
-  }
+  };
 
   loginUser = () => {
     fetch(API_LOGIN, {
@@ -461,7 +461,7 @@ class App extends React.Component {
         this.props.history.push('/')
       }
     })
-  }
+  };
 
   validateSignUpUser = (event) => {
     event.preventDefault()
@@ -471,7 +471,7 @@ class App extends React.Component {
     } else {
       alert("Please fill out all fields of the sign up form!")
     }
-  }
+  };
 
   signUpUser = () => {
     fetch(API_USERS, {
@@ -511,7 +511,7 @@ class App extends React.Component {
       })
       this.props.history.push('/')
     })
-  }
+  };
 
   // fileSelectedHandler = (event) => {
     // this.setState({
@@ -527,7 +527,7 @@ class App extends React.Component {
     this.resetUserObj()
     this.props.history.push('/')
     window.location.reload()
-  }
+  };
 
   resetUserObj = () => {
     localStorage.clear()
@@ -566,29 +566,29 @@ class App extends React.Component {
       // selectedFile: null,
       searchTerm: ""
     })
-  }
+  };
 
   handleLogoClick = () => {
     this.props.history.push('/')
-  }
+  };
 
   updateViewport = (viewport) => {
     this.setState({
       viewport: viewport
     })
-  }
+  };
 
   handleSearchChange = (event) => {
     this.setState({
       searchTerm: event.target.value
     })
-  }
+  };
 
   filteredSearch = () => {
     return this.state.tags.filter(tag => {
       return tag.name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
     })
-  }
+  };
 
   render() {
     return (
@@ -613,6 +613,6 @@ class App extends React.Component {
       </MuiThemeProvider>
     )
   }
-}
+};
 
-export default withRouter(App)
+export default withRouter(App);
