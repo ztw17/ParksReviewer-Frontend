@@ -19,4 +19,4 @@ export default function RenderStarRating(props) {
       </Box>
     </div>
   );
-}
+};

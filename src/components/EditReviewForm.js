@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Card, Paper, CssBaseline, TextField, Grid, Typography, withStyles, Container } from '@material-ui/core';
 import StarRating from './StarRating';
-import AddTag from './AddTag';
-import Tag from './Tag';
+// import AddTag from './AddTag';
+// import Tag from './Tag';
 import Image from '../images/Saguaro.jpg';
 
 const styles = theme => ({

@@ -9,10 +9,10 @@ import Map from '../components/Map';
 
 const styles = theme => ({
     root: {
-        padding: "50px",
+        padding: "10%",
         backgroundColor: "#dee0e3",
         fontColor: "#434C5C",
-        marginTop: 10,
+        // marginTop: 10,
     },
     cardDetails: {
         flex: 1,
@@ -107,7 +107,7 @@ class ParkContainer extends React.Component {
                                 <Card className={classes.cardDetails}>
                                     <CardContent>
                                         <Typography className={classes.bold} variant="h6">
-                                            Location <Button onClick={() => this.handleParkDeleteClick(this.props.showPark.id)}></Button>
+                                            Location
                                         </Typography>
                                         <Divider />
                                             <Typography>
@@ -122,7 +122,7 @@ class ParkContainer extends React.Component {
                                 <Card>
                                     <CardContent>
                                         <Typography className={classes.bold} variant="h6">
-                                            Weather
+                                            Weather <Button onClick={() => this.handleParkDeleteClick(this.props.showPark.id)}></Button>
                                         </Typography>
                                     <Divider/>
                                     <Typography>

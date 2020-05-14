@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, withStyles, Paper, Card, Grid, Divider, Box } from '@material-ui/core';
+import { Typography, withStyles, Paper, Card, Grid, Divider } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import { teal } from '@material-ui/core/colors';
 import ReviewContainer from './ReviewContainer';
@@ -8,7 +8,7 @@ import FavoritesParkCard from '../components/FavoritesParkCard';
 const styles = theme => ({
     root: {
         height: "100%",
-        padding: "50px",
+        padding: "10%",
         spacing: "25px",
         backgroundColor: "#DEE0E3",
         color: "#434C5C",
@@ -32,20 +32,20 @@ const styles = theme => ({
     paper: {
         padding: 20,
         margin: 'auto',
-        maxWidth: 1200,
+        // maxWidth: 1200,
     },
     paper2: {
         padding: theme.spacing(2),
         margin: "auto",
-        maxWidth: 1200,
+        // maxWidth: 1200,
         backgroundColor: '#434C5C',
         color: "white",
         fontWeight: "bold",
     },
     sectionHeader: {
         padding: theme.spacing(2),
-        margin: "auto",
-        maxWidth: 1100,
+        margin: "25px",
+        // maxWidth: 1100,
         backgroundColor: '#434C5C',
         color: "white",
         fontWeight: "bold",
@@ -147,7 +147,7 @@ export default  withStyles(styles)(UserProfile)
 // import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 // import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-{/* <div className={classes.root}>
+/* <div className={classes.root}>
     <ExpansionPanel expanded={this.state.expanded === 'panel1'} onChange={() => this.handleChange('panel1')}>
         <ExpansionPanelSummary
         expandIcon={<ExpandMoreIcon />}
@@ -176,7 +176,7 @@ export default  withStyles(styles)(UserProfile)
             </Grid>
         </ExpansionPanelDetails>
     </ExpansionPanel>
-</div> */}
+</div> */
 
 // handleChange = (panel) => {
 //     this.setState ({

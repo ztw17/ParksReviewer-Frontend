@@ -8,24 +8,21 @@ const styles = theme => ({
   root: {
     backgroundImage: `url(${Image})`,
     backgroundSize: 'cover',
-    // width: "100%",
-    // height: "100%",
+    width: "100vw",
+    height: "100vh",
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'fixed',
-    padding: 290,
-  },
-  imageIcon: {
-    height: "30px",
-    width: "30px",
   },
   introGrid: {
-    margin: "auto",
-    align: "center",
-    alignText: "center"
+    justifyContent: "center",
+    position: 'absolute', 
+    left: '50%', 
+    top: '50%',
+    transform: 'translate(-50%, -50%)'
   },
   introText: {
     color: "white",
-    fontFamily: font
+    fontFamily: font,
   },
 });
 

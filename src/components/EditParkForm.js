@@ -60,7 +60,7 @@ class EditParkForm extends React.Component {
             description: this.state.parkDescription,
             weather: this.state.parkWeather,
             longitude: this.state.parkLongitude,
-            latitude: this.state. parkLatitude,
+            latitude: this.state.parkLatitude,
             image: this.state.parkImage,
             creator_id: this.props.appState.userId,
             id: this.props.showPark.id
