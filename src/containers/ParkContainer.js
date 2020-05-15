@@ -1,5 +1,7 @@
 import React from 'react'
 import { withStyles, Typography, Divider, Card, CardContent, Grid, Box, Fab, Tooltip, Button } from '@material-ui/core';
+// import { makeStyles, Paper, Typography, Fab, Tooltip } from '@material-ui/core';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import EditIcon from '@material-ui/icons/Edit';
 import ParkBanner from '../components/ParkBanner';
 import Tag from '../components/Tag';
@@ -9,10 +11,12 @@ import Map from '../components/Map';
 
 const styles = theme => ({
     root: {
-        padding: "10%",
+        paddingTop: "5%",
+        paddingBottom: "10%",
+        paddingRight: "10%",
+        paddingLeft:  "10%",
         backgroundColor: "#dee0e3",
         fontColor: "#434C5C",
-        // marginTop: 10,
     },
     cardDetails: {
         flex: 1,
@@ -36,18 +40,25 @@ const styles = theme => ({
         spacing: "10px",
     },
     addReviewBtn: {
-        margin: 0,
-        top: 'auto',
-        right: 'auto',
-        bottom: '28px',
-        left: '60px',
-        position: 'relative',
+        // margin: 0,
+        // top: 'auto',
+        // right: 'auto',
+        // bottom: '28px',
+        // left: '60px',
+        // position: 'relative',
     },
     sectionHeader: {
         backgroundColor: '#434C5C',
         color: "white",
         padding: 8
     },
+    // buttonOverlay: {
+    //     position: 'relative',
+    //     top: 140,
+    //     bottom: 0,
+    //     right: 20,
+    //     left: 800,
+    // },
     content: {
         padding: 8
     },
@@ -70,6 +81,28 @@ class ParkContainer extends React.Component {
         this.props.history.push(`/review/park/${id}`)
     }
 
+    parkComparison = () => {
+        return (this.props.appState.userFavorites.some(favorite => {
+          return (favorite.park.name === this.props.showPark.name)
+        }))
+      }
+    
+    // favoriteButton = () => {
+    //     if (!this.props.appState.loggedIn) {
+    //       return null
+    //     } else if (this.parkComparison()) {
+    //       return <Tooltip title="Add park to favorites">
+    //       <Fab disabled color="secondary" aria-label="favorite" className={this.props.classes.buttonOverlay}>
+    //         <FavoriteIcon />
+    //       </Fab>
+    //   </Tooltip>
+    //     } else return <Tooltip title="Add park to favorites">
+    //     <Fab color="secondary" aria-label="favorite" className={this.props.classes.buttonOverlay}>
+    //       <FavoriteIcon onClick={() => this.props.handleFavoritesClick(this.props.showPark.id)}/>
+    //     </Fab>
+    //   </Tooltip>
+    // }
+
     handleParkEditClick = (id) => {
         this.props.history.push(`/park/${id}/edit`)
         const clickedParkObj = this.props.showPark
@@ -87,6 +120,7 @@ class ParkContainer extends React.Component {
 
         return (
             <React.Fragment>
+                {/* {this.favoriteButton()} */}
                 <main className={classes.root}>
                     <ParkBanner showPark={this.props.showPark} appState={this.props.appState} handleFavoritesClick={this.props.handleFavoritesClick} parks={this.props.parks} />
                         <Grid container spacing={2} className={classes.mainGrid}>

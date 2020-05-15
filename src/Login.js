@@ -9,9 +9,9 @@ export default function Login(props) {
     return (
       <Paper className={classes.backGroundImg}>
         <Container component="main" maxWidth="xs">
-          <Card className={classes.paper}>
-          <CssBaseline />
-            <div>
+          <Grid className={classes.cardGrid}>
+            <Card className={classes.paper}>
+            <CssBaseline />
               <Grid align="center">
                 <Avatar className={classes.avatar}>
                   <LockOutlinedIcon />
@@ -63,8 +63,8 @@ export default function Login(props) {
                   </Grid>
                 </Grid>
               </form>
-            </div>
-          </Card>
+            </Card>
+          </Grid>
         </Container>
       </Paper>
   );
@@ -91,11 +91,20 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(3, 0, 2),
       background: "#527CD0",
     },
+    cardGrid: {
+      justifyContent: "center",
+      position: 'absolute', 
+      left: '50%', 
+      top: '50%',
+      transform: 'translate(-50%, -50%)',
+      maxWidth: '30vw'
+    },
     backGroundImg: {
       backgroundImage: `url(${Image})`,
       backgroundSize: 'cover',
+      width: "100vw",
+      height: "100vh",
       backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'center',
-      padding: 132,
+      backgroundPosition: 'fixed',
     }
   }));

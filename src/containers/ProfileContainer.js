@@ -7,8 +7,11 @@ import FavoritesParkCard from '../components/FavoritesParkCard';
 
 const styles = theme => ({
     root: {
+        paddingTop: "4%",
+        paddingBottom: "9%",
+        paddingRight: "9%",
+        paddingLeft:  "9%",
         height: "100%",
-        padding: "10%",
         spacing: "25px",
         backgroundColor: "#DEE0E3",
         color: "#434C5C",

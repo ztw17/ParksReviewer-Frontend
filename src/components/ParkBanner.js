@@ -29,9 +29,9 @@ export default function ParkBanner(props) {
 
   return (
     <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${props.showPark.image})` }}>
-      {favoriteButton()}
       {<img style={{ display: 'none' }} src={props.showPark.image} alt={props.showPark.name} />}
       <div className={classes.overlay}>
+        {favoriteButton()}
         <Typography className={classes.text} variant="h2">
           {props.showPark.name}
         </Typography>
@@ -39,10 +39,6 @@ export default function ParkBanner(props) {
     </Paper>
   );
 }
-
-// component="h3"
-// color="inherit"
-// gutterBottom
 
 const font =  "'Amatic SC', cursive";
 
@@ -63,11 +59,9 @@ const useStyles = makeStyles((theme) => ({
       left: -100,
     },
     buttonOverlay: {
-      position: 'relative',
-      top: -125,
-      bottom: 800,
-      right: 0,
-      left: 960,
+      position: 'absolute',
+      bottom: 285,
+      left: 900,
     },
     text: {
       fontFamily: font
