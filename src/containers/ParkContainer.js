@@ -40,12 +40,12 @@ const styles = theme => ({
         spacing: "10px",
     },
     addReviewBtn: {
-        // margin: 0,
+        margin: 0,
         // top: 'auto',
         // right: 'auto',
-        // bottom: '28px',
-        // left: '60px',
-        // position: 'relative',
+        bottom: '28px',
+        left: '60px',
+        position: 'relative',
     },
     sectionHeader: {
         backgroundColor: '#434C5C',

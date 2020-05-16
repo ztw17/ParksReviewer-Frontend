@@ -21,10 +21,12 @@ const styles = theme => ({
     },
     favorites: {
         flexWrap:"wrap",
-        direction: "row",
+        direction: "column",
         margin: "auto",
         justify: "center",
         alignItems: "center",
+        paddingRight: "3%",
+        paddingLeft:  "1%",
     },
     reviews: {
         direction: "column",
@@ -128,7 +130,7 @@ class UserProfile extends React.Component {
                     <Grid item align="center" className={classes.reviews}>
                         {this.props.appState.userFavorites.length ? null : <Typography className={classes.text}>You haven't favorited any parks yet. Favorite one today!</Typography>}
                     </Grid>
-                    <Grid container align="center" spacing={2} className={classes.favorites}>
+                    <Grid container spacing={2} className={classes.favorites}>
                         {this.props.appState.userFavorites.length ? this.renderFavorites() : null }
                     </Grid>
                     <Paper variant="subtitle1" className={classes.sectionHeader}>

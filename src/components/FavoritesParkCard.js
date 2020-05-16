@@ -30,19 +30,22 @@ export default function FavoritesParkCard(props) {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <Button onClick={() => removeFavorite(props.favoriteInfo.id)}>Remove from Favorites</Button>
+            <Button align="right" onClick={() => removeFavorite(props.favoriteInfo.id)}>Remove from Favorites</Button>
         </Card>
     )
 }
 
 const useStyles = makeStyles({
     root: {
-        width: 550,
-        margin: 20,
+        width: "48%",
+        margin: 10,
         color: "#434C5C",
     },
     media: {
         height: 160,
     },
+    // button: {
+    //     align: "center"
+    // }
 });
   
