@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card, CardActionArea, Button, makeStyles, CardContent, CardMedia, Typography, Grid } from '@material-ui/core';
+import { Card, CardActionArea, IconButton, Button, makeStyles, CardContent, CardMedia, Typography, Grid } from '@material-ui/core';
+import HighlightOffOutlinedIcon from '@material-ui/icons/HighlightOffOutlined';
 
 export default function FavoritesParkCard(props) {
     const classes = useStyles();
@@ -31,7 +32,10 @@ export default function FavoritesParkCard(props) {
                 </CardContent>
             </CardActionArea>
             <Grid align="center">
-                <Button align="right" onClick={() => removeFavorite(props.favoriteInfo.id)}>Remove from Favorites</Button>
+                <IconButton className={classes.buttonText} onClick={() => removeFavorite(props.favoriteInfo.id)}> 
+                    Remove from Favorites
+                    <HighlightOffOutlinedIcon className={classes.button}/>
+                </IconButton>
             </Grid>
         </Card>
     )
@@ -46,8 +50,11 @@ const useStyles = makeStyles({
     media: {
         height: 160,
     },
-    // button: {
-    //     align: "center"
-    // }
+    button: {
+        padding: 3
+    },
+    buttonText: {
+        fontSize: 14
+    }
 });
   
