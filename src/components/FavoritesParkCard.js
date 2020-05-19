@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardActionArea, Button, makeStyles, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { Card, CardActionArea, Button, makeStyles, CardContent, CardMedia, Typography, Grid } from '@material-ui/core';
 
 export default function FavoritesParkCard(props) {
     const classes = useStyles();
@@ -30,7 +30,9 @@ export default function FavoritesParkCard(props) {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <Button align="right" onClick={() => removeFavorite(props.favoriteInfo.id)}>Remove from Favorites</Button>
+            <Grid align="center">
+                <Button align="right" onClick={() => removeFavorite(props.favoriteInfo.id)}>Remove from Favorites</Button>
+            </Grid>
         </Card>
     )
 }
