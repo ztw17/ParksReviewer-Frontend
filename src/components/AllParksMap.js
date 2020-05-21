@@ -1,11 +1,18 @@
 import React from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
-import { Button, Card, Typography } from '@material-ui/core';
+import { Button, Card, Typography, withStyles, Grid, Box } from '@material-ui/core';
+import AllTag from './AllTag';
 import marker from '../images/marker.png';
 
 const TOKEN = 'pk.eyJ1IjoienR3ZWIiLCJhIjoiY2s4ZXczajU3MDB2bjNqcGM3am5zbWYyayJ9.mt3i92tXRQywG9IhvuJWgw';
 
-export default class AllParksMap extends React.Component {
+const styles = theme => ({
+    goToButton: {
+        backgroundColor: "#AFC798"
+    },
+});
+
+class AllParksMap extends React.Component {
     constructor() {
         super()
         this.state = {
@@ -53,7 +60,13 @@ export default class AllParksMap extends React.Component {
         })
     }
 
+    renderTags = () => {
+        return this.state.selectedPark.tags.map(tag => <AllTag isClickable={false} tagInfo={tag} tags={this.props.tags}/>)
+    }
+
     render() {
+        const { classes } = this.props
+
         return (
         <div>
         <ReactMapGL
@@ -97,8 +110,11 @@ export default class AllParksMap extends React.Component {
                     <Typography align="center" variant="h5">{this.state.selectedPark.name}</Typography>
                     <Typography variant="h8">{this.state.selectedPark.description}</Typography>
                 </div>
+                <Grid align="center">
+                    <Box>{this.renderTags}</Box>
+                </Grid>
                 <div align="center">
-                <   Button onClick={() => this.handleBoxClick(this.state.selectedPark.id)}>Go to park!</Button>
+                    <Button className={classes.goToButton} onClick={() => this.handleBoxClick(this.state.selectedPark.id)}>Go to park!</Button>
                 </div>
             </Popup>
             </Card>
@@ -108,3 +124,5 @@ export default class AllParksMap extends React.Component {
         )
     }
 }
+
+export default withStyles(styles)(AllParksMap)

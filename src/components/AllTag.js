@@ -8,9 +8,6 @@ const styles = theme => ({
         // width: 200,
         // height: 60,
         // background: 'linear-gradient(to right bottom, #113649, #669D7A, #FCBD62)',
-
-        // background: 'linear-gradient(to right bottom, #452171, #D36B76, #F9A57A)',
-        // fontSize: "20px"
     }
 })
 
@@ -23,16 +20,33 @@ function AllTag(props) {
         props.handleTagClick(clickedTagObj)
     }
 
+    // { props.renderParkName ?
+    //     <Grid item xs={2} container direction="column">
+    //       { props.reviewInfo.user.id === props.appState.userId ? <Button onClick={() => handleEditClick(props.reviewInfo.id)}>Edit</Button> : null}
+    //       { props.reviewInfo.user.id === props.appState.userId ? <Button onClick={() => handleDeleteClick(props.reviewInfo.id)}>Delete</Button> : null}
+    //     </Grid>
+    //     : null }
+
     return (
         <React.Fragment>
         <CssBaseline />
+        { props.isClickable ?
             <Chip
-                // key={props.tagInfo.id}
+                key={props.tagInfo.id}
                 label={props.tagInfo.name}
                 onClick={() => clickedTag(props.tagInfo.id)}
                 clickable
                 className={classes.tag}
             />
+            :
+            <Chip
+                key={props.tagInfo.id}
+                label={props.tagInfo.name}
+                // onClick={() => clickedTag(props.tagInfo.id)}
+                // clickable
+                className={classes.tag}
+            />
+        }
         </React.Fragment>
     )
 }

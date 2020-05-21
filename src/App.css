@@ -5,9 +5,9 @@
 }
 
 .mapboxgl-popup {
-  max-width: 400px;
-  max-height: 300px;
-  font: 12px/20px 'Raleway', sans-serif;
+  max-width: 500px;
+  max-height: 500px;
+  font: 12px/20px 'Quicksand', sans-serif;
   border-radius: 5px;
 }
 

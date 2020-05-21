@@ -128,7 +128,7 @@ class ParkContainer extends React.Component {
                                 <Card className={classes.cardDetails}>
                                     <CardContent>
                                         <Typography className={classes.bold} variant="h6">
-                                            Overview <Button onClick={() => this.handleParkEditClick(this.props.showPark.id)}></Button>
+                                            Overview
                                         </Typography>
                                         <Divider/>
                                         <Typography varient="h6">
@@ -146,6 +146,8 @@ class ParkContainer extends React.Component {
                                         <Divider />
                                             <Typography>
                                                 {this.props.showPark.state}
+                                                <Button onClick={() => this.handleParkEditClick(this.props.showPark.id)}></Button>
+                                                <Button onClick={() => this.handleParkDeleteClick(this.props.showPark.id)}></Button>
                                             </Typography>
                                     </CardContent>
                                 </Card>
@@ -156,7 +158,7 @@ class ParkContainer extends React.Component {
                                 <Card>
                                     <CardContent>
                                         <Typography className={classes.bold} variant="h6">
-                                            Weather <Button onClick={() => this.handleParkDeleteClick(this.props.showPark.id)}></Button>
+                                            Weather
                                         </Typography>
                                     <Divider/>
                                     <Typography>

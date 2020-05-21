@@ -21,7 +21,7 @@ function AllTagsContainer(props) {
     const {classes} = props
 
     const renderTags = () => {
-        return props.tags.map(tag => <AllTag tagInfo={tag} tags={props.tags} handleTagClick={props.handleTagClick} history={props.history} />)
+        return props.tags.map(tag => <AllTag isClickable={true} tagInfo={tag} tags={props.tags} handleTagClick={props.handleTagClick} history={props.history} />)
     }
     
     return (
