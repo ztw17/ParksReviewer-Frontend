@@ -1,3 +1,15 @@
+/* .makeStyles-text-130 {
+  text-shadow: -.5px -.5px 0 #000, .5px -.5px 0 #000, -.5px .5px 0 #000, .5px .5px 0 #000;
+}
+
+.makeStyles-text-412 {
+  text-shadow: -.5px -.5px 0 #000, .5px -.5px 0 #000, -.5px .5px 0 #000, .5px .5px 0 #000;
+} */
+
+.MuiTypography-h2 {
+  text-shadow: -.5px -.5px 0 #000, .5px -.5px 0 #000, -.5px .5px 0 #000, .5px .5px 0 #000;
+}
+
 .marker-btn {
   background: none; 
   border: none;
@@ -45,9 +57,6 @@ body {
   }
 }
 
-.makeStyles-text-282 {
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-}
 
 /* .LandingPage-introText-952 {
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
