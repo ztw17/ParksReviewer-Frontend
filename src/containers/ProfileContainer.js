@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, withStyles, Paper, Card, Grid, Divider } from '@material-ui/core';
+import { Typography, withStyles, Paper, Card, Grid, Divider, Tooltip, IconButton } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import { teal } from '@material-ui/core/colors';
 import ReviewContainer from './ReviewContainer';
@@ -82,6 +82,13 @@ class UserProfile extends React.Component {
         return this.props.appState.userFavorites.map(favorite => <FavoritesParkCard favoriteInfo={favorite} parks={this.props.parks} handleParkClick={this.props.handleParkClick} handleFavoriteDelete={this.props.handleFavoriteDelete} history={this.props.history}/>)
     }
 
+    routeToProfileEdit = (id) => {
+        this.props.history.push(`users/${id}/edit`)
+        const clickedParkObj = this.props.users.find(user => user.id === this.props.appState.userId)
+        console.log(clickedParkObj)
+        this.props.editUser(clickedParkObj)
+    }
+
     render() {
         const DATE_OPTIONS = { year: 'numeric', month: 'long', day: 'numeric' }
         const createdAtDate = new Date(this.props.appState.createdAtDate).toLocaleDateString('en-US', DATE_OPTIONS)
@@ -98,7 +105,11 @@ class UserProfile extends React.Component {
                         <Paper className={classes.paper}>
                             <Grid container spacing={2}>
                             <Grid item>
-                                    <Avatar className={classes.teal}>{this.props.appState.firstName[0]}</Avatar>
+                                <Tooltip title="Edit Profile">
+                                    <IconButton onClick={() => this.routeToProfileEdit(this.props.appState.userId)}>
+                                        <Avatar className={classes.teal}>{this.props.appState.firstName[0]}{this.props.appState.lastName[0]}</Avatar>
+                                    </IconButton>
+                                </Tooltip>
                             </Grid>
                         <Grid item xs={12} sm container>
                             <Grid item xs container direction="column" spacing={2}>

@@ -110,7 +110,6 @@ class ParkContainer extends React.Component {
     }
 
     handleParkDeleteClick = (id) => {
-        console.log(id)
         this.props.history.push('/')
         this.props.handleParkDelete(id)
     }
