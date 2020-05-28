@@ -51,8 +51,8 @@ class App extends React.Component {
       userReviews: appState.userReviews || [],
       userFavorites: appState.userFavorites || [],
       loggedIn: appState.loggedIn || false,
-      loginEmail: appState.loginEmail || "",
-      loginPassword: appState.loginPassword || "",
+      loginEmail: appState.loginEmail || "zweb@email.com",
+      loginPassword: appState.loginPassword || "password",
       signUpFirstName: appState.signUpFirstName || "",
       signUpLastName: appState.signUpLastName || "",
       signUpUsername: appState.signUpUsername || "",
@@ -595,6 +595,17 @@ class App extends React.Component {
           return updatedUser
         }
       })
+      // const updatedUserReviews = this.state.userReviews
+      // if (this.state.)
+      // const newShowPark = this.state.showPark
+      // if ( this.state.showPark.reviews ) {
+      //   newShowPark.reviews = newShowPark.reviews.map(review => {
+      //     if (review.id !== editedReview.id) {
+      //       return review
+      //     } else {
+      //       return editedReview }
+      //   }
+      // )}  
       if (updatedUser.error) {
         alert(updatedUser.error)
       } else {
@@ -605,7 +616,8 @@ class App extends React.Component {
           email: updatedUser.email,
           username: updatedUser.username,
           password: updatedUser.password,
-          id: updatedUser.id
+          id: updatedUser.id,
+          userReviews: updatedUser.reviews,
         })
       }
     })

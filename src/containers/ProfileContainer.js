@@ -85,7 +85,7 @@ class UserProfile extends React.Component {
     routeToProfileEdit = (id) => {
         this.props.history.push(`users/${id}/edit`)
         const clickedParkObj = this.props.users.find(user => user.id === this.props.appState.userId)
-        console.log(clickedParkObj)
+        // console.log(clickedParkObj)
         this.props.editUser(clickedParkObj)
     }
 

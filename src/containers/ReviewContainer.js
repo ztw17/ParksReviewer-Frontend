@@ -52,7 +52,7 @@ export default function ReviewContainer(props) {
       <Paper className={classes.paper}>
         <Grid container spacing={3}>
           <Grid item>
-            <Avatar className={classes.teal}>{props.reviewInfo.user.first_name[0]}</Avatar>
+            <Avatar className={classes.teal}>{props.reviewInfo.user.first_name[0]}{props.reviewInfo.user.last_name[0]}</Avatar>
             <Typography className={classes.reviewUsername} variant="body2">
               {props.reviewInfo.user.username}
             </Typography>

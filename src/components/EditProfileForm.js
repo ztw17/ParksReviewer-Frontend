@@ -12,7 +12,6 @@ import {
   Container,
   Card, 
   withStyles } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Image from '../images/Acadia.jpg';
 
 const styles = theme => ({
@@ -24,10 +23,6 @@ const styles = theme => ({
       justify: 'center',
       backgroundColor: 'white',
       padding: '20px',
-    },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: 'Plum',
     },
     form: {
       width: '100%', 
@@ -109,7 +104,7 @@ class EditProfileForm extends React.Component {
                         </Avatar>
                     </Grid> */}
                     <Typography align="center" component="h1" variant="h5">
-                        Edit Profile
+                        Edit Account
                     </Typography>
                     <form className={classes.form} onSubmit={this.submitEditUser}>
                         <Grid container spacing={2}>
