@@ -595,17 +595,6 @@ class App extends React.Component {
           return updatedUser
         }
       })
-      // const updatedUserReviews = this.state.userReviews
-      // if (this.state.)
-      // const newShowPark = this.state.showPark
-      // if ( this.state.showPark.reviews ) {
-      //   newShowPark.reviews = newShowPark.reviews.map(review => {
-      //     if (review.id !== editedReview.id) {
-      //       return review
-      //     } else {
-      //       return editedReview }
-      //   }
-      // )}  
       if (updatedUser.error) {
         alert(updatedUser.error)
       } else {
@@ -659,7 +648,7 @@ class App extends React.Component {
               <Route path='/park/:id' render={() => <ParkContainer appState={this.state} showPark={this.state.showPark} updateViewport={this.updateViewport} handleFavoritesClick={this.handleFavoritesClick} handleTagClick={this.handleTagClick} handleTagAdd={this.handleTagAdd} handleTagDelete={this.handleTagDelete} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} editPark={this.editPark} handleParkDelete={this.handleParkDelete} viewport={this.state.viewport} tags={this.state.tags} parks={this.state.parks} reviews={this.state.reviews} users={this.state.users} history={this.props.history}/>}/>
               <Route path='/tag/:id' render={() => <TagPageContainer appState={this.state} showTag={this.state.showTag} handleParkClick={this.handleParkClick} parks={this.state.parks} history={this.props.history}/>}/>
               <Route path='/review/park/:id' render={() => <AddReviewForm appState={this.state} showPark={this.state.showPark} history={this.props.history} handleAddReview={this.handleAddReview} fileSelectedHandler={this.fileSelectedHandler}/>}/>
-              <Route path='/reviews/:id/edit' render={() => <EditReviewForm appState={this.state} editReview={this.state.editReview} handleEditedReview={this.handleEditedReview} showPark={this.state.showPark} handleParkClick={this.handleParkClick} reviewInfo={this.state.reviewInfo} parks={this.state.parks} history={this.props.history}/>}/>
+              <Route path='/review/:id/edit' render={() => <EditReviewForm appState={this.state} editReview={this.state.editReview} handleEditedReview={this.handleEditedReview} showPark={this.state.showPark} handleParkClick={this.handleParkClick} reviewInfo={this.state.reviewInfo} parks={this.state.parks} history={this.props.history}/>}/>
               <Route path='/map' render={() => <AllParksMap parks={this.state.parks} history={this.props.history} handleParkClick={this.handleParkClick}/>}/>
               <Route path='/tags' render={() => <AllTagsContainer tags={this.filteredSearch()} searchTerm={this.state.searchTerm} history={this.props.history} handleTagClick={this.handleTagClick} handleSearchChange={this.handleSearchChange} />}/>
               <Route path='/users/:id/edit' render={() => <EditProfileForm appState={this.state} editUser={this.state.editUser} history={this.props.history} handleUpdatedUser={this.handleUpdatedUser}/>}/>
