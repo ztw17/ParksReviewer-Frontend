@@ -32,6 +32,9 @@ const styles = theme => ({
       margin: theme.spacing(3, 0, 2),
       background: "#287179"
     },
+    // delete: {
+    //     background: 
+    // },
     cardGrid: {
       justifyContent: "center",
       position: 'absolute', 
@@ -66,6 +69,10 @@ class EditProfileForm extends React.Component {
         this.setState({
           [event.target.name]: event.target.value
         })
+    }
+
+    handleAccountDeleteClick = (id) => {
+        this.props.handleAccountDelete(id)
     }
 
     submitEditUser = (event) => {
@@ -175,16 +182,24 @@ class EditProfileForm extends React.Component {
                             />
                         </Grid>
                         </Grid>
-                        <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                        >
-                        Submit Changes
-                        </Button>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                className={classes.submit}
+                                >
+                                Submit Changes
+                            </Button>
                         <Grid container justify="flex-end">
+                            <Button
+                                onClick={() => this.handleAccountDeleteClick(this.props.appState.userId)}
+                                fullWidth
+                                variant="contained"
+                                color="secondary"
+                                >
+                                Delete Account
+                            </Button>
                         </Grid>
                     </form>
                 </Card>

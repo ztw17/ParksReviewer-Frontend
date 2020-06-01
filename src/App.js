@@ -612,6 +612,20 @@ class App extends React.Component {
     })
   };
 
+  handleAccountDelete = (id) => {
+    fetch(`${API_USERS}/${id}`, {
+      method: "DELETE"
+    })
+    .then( resp => resp.json() )
+    .then( deletedAccount => {
+      const newUsers = this.state.users.filter(user => user.id !== deletedAccount.id)
+      this.setState({
+        users: newUsers
+      })
+    })
+    this.handleLogout()
+  };
+
   handleLogoClick = () => {
     this.props.history.push('/')
   };
@@ -651,7 +665,7 @@ class App extends React.Component {
               <Route path='/review/:id/edit' render={() => <EditReviewForm appState={this.state} editReview={this.state.editReview} handleEditedReview={this.handleEditedReview} showPark={this.state.showPark} handleParkClick={this.handleParkClick} reviewInfo={this.state.reviewInfo} parks={this.state.parks} history={this.props.history}/>}/>
               <Route path='/map' render={() => <AllParksMap parks={this.state.parks} history={this.props.history} handleParkClick={this.handleParkClick}/>}/>
               <Route path='/tags' render={() => <AllTagsContainer tags={this.filteredSearch()} searchTerm={this.state.searchTerm} history={this.props.history} handleTagClick={this.handleTagClick} handleSearchChange={this.handleSearchChange} />}/>
-              <Route path='/users/:id/edit' render={() => <EditProfileForm appState={this.state} editUser={this.state.editUser} history={this.props.history} handleUpdatedUser={this.handleUpdatedUser}/>}/>
+              <Route path='/users/:id/edit' render={() => <EditProfileForm appState={this.state} editUser={this.state.editUser} history={this.props.history} handleUpdatedUser={this.handleUpdatedUser} handleAccountDelete={this.handleAccountDelete}/>} handleLogout={this.handleLogout}/>
               <Route path='/' render={() => <LandingPage appState={this.state} parks={this.state.parks} showPark={this.state.showpark} history={this.props.history} handleParkClick={this.handleParkClick}/>}/>
             </Switch>
         </div>

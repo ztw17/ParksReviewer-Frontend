@@ -105,7 +105,7 @@ class UserProfile extends React.Component {
                         <Paper className={classes.paper}>
                             <Grid container spacing={2}>
                             <Grid item>
-                                <Tooltip title="Edit Profile">
+                                <Tooltip title="Edit Account">
                                     <IconButton onClick={() => this.routeToProfileEdit(this.props.appState.userId)}>
                                         <Avatar className={classes.teal}>{this.props.appState.firstName[0]}{this.props.appState.lastName[0]}</Avatar>
                                     </IconButton>

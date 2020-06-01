@@ -32,7 +32,9 @@ export default function FavoritesParkCard(props) {
                 </CardContent>
             </CardActionArea>
             <Grid align="center">
-                <Button onClick={() => removeFavorite(props.favoriteInfo.id)}>Remove from Favorites</Button>
+                <Button 
+                    fullWidth
+                    onClick={() => removeFavorite(props.favoriteInfo.id)}>Remove from Favorites</Button>
                 {/* <IconButton className={classes.buttonText} onClick={() => removeFavorite(props.favoriteInfo.id)}> 
                     Remove from Favorites
                     <HighlightOffOutlinedIcon className={classes.button}/>
