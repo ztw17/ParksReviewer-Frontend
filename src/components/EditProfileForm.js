@@ -57,11 +57,11 @@ class EditProfileForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            firstName: props.editUser.first_name,
-            lastName: props.editUser.last_name,
-            email: props.editUser.email,
-            username: props.editUser.username,
-            password: props.editUser.password
+            firstName: props.appState.firstName,
+            lastName: props.appState.lastName,
+            email: props.appState.email,
+            username: props.appState.username,
+            password: props.appState.password
         }
     }
 

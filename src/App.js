@@ -47,6 +47,7 @@ class App extends React.Component {
       username: appState.username || "",
       email: appState.email || "",
       userId: appState.userId || "",
+      password: appState.password || "",
       createdAtDate: appState.createdAtDate || "",
       userReviews: appState.userReviews || [],
       userFavorites: appState.userFavorites || [],
@@ -73,7 +74,6 @@ class App extends React.Component {
       showTag: appState || {},
       editReview: appState.editReview || {},
       editPark: appState.editPark || {},
-      editUser: appState.editUser || {},
       // selectedFile: appState.selectedFile || null,
       searchTerm: appState.searchTerm || "",
     }
@@ -502,6 +502,7 @@ class App extends React.Component {
         username: resp.user.username,
         userId: resp.user.id,
         email: resp.user.email,
+        password: resp.user.password,
         signUpFirstName: "",
         signUpLastName: "",
         signUpUsername: "",
@@ -565,17 +566,16 @@ class App extends React.Component {
       showTag: {},
       editReview: {},
       editPark: {},
-      editUser: {},
       // selectedFile: null,
       searchTerm: ""
     })
   };
 
-  editUser = (user) => {
-    this.setState({
-      editUser: user
-    })
-  };
+  // editUser = (clickedUserObj) => {
+  //   this.setState({
+  //     editUser: clickedUserObj
+  //   })
+  // };
 
   handleUpdatedUser = (updatedUser) => {
     fetch(`${API_USERS}/${updatedUser.id}`, {
