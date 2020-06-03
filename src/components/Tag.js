@@ -11,7 +11,7 @@ const styles = theme => ({
 function Tag(props) {
 
     const clickedTag = (id) => {
-        props.history.push(`/tag/${id}`)
+        props.history.push(`/tags/${id}`)
         const clickedTagObj = props.tags.find(tag => tag.id === id)
         props.handleTagClick(clickedTagObj)
     }
