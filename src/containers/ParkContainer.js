@@ -104,7 +104,7 @@ class ParkContainer extends React.Component {
     // }
 
     handleParkEditClick = (id) => {
-        this.props.history.push(`/park/${id}/edit`)
+        this.props.history.push(`/parks/${id}/edit`)
         const clickedParkObj = this.props.showPark
         this.props.editPark(clickedParkObj)
     }
