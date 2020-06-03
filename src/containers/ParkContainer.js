@@ -77,8 +77,8 @@ class ParkContainer extends React.Component {
         return this.props.showPark.reviews.map(review => <ReviewContainer reviewInfo={review} reviews={this.props.reviews} appState={this.props.appState} history={this.props.history} users={this.props.users} handleEditReviewClick={this.props.handleEditReviewClick} handleDeleteReview={this.props.handleDeleteReview} />)
     }
 
-    handleAddReviewClick = (id) => {
-        this.props.history.push(`/review/park/${id}`)
+    handleAddReviewClick = () => {
+        this.props.history.push(`/review/new`)
     }
 
     parkComparison = () => {

@@ -78,7 +78,7 @@ class EditReviewForm extends React.Component {
     })
     const showPark = this.props.parks.find(park => park.id === editedReview.park_id)
     this.props.handleParkClick(showPark)
-    this.props.history.push(`/park/${this.props.editReview.park.id}`)
+    this.props.history.push(`/parks/${this.props.editReview.park.id}`)
   }
 
   render() {

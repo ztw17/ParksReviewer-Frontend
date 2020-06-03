@@ -35,7 +35,7 @@ export default function ReviewContainer(props) {
   const classes = useStyles();
 
   const handleEditClick = (id) => {
-    props.history.push(`/review/${id}/edit`)
+    props.history.push(`/reviews/${id}/edit`)
     const clickedReviewObj = props.reviewInfo
     props.handleEditReviewClick(clickedReviewObj)
   }
