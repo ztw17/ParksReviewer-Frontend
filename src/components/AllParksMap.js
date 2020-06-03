@@ -30,7 +30,7 @@ class AllParksMap extends React.Component {
     handleBoxClick = (id) => {
         const showPark = this.props.parks.find(park => park.id === id)
         this.props.handleParkClick(showPark)
-        this.props.history.push(`/park/${id}`)
+        this.props.history.push(`/parks/${id}`)
     }
 
     componentDidMount = () => {

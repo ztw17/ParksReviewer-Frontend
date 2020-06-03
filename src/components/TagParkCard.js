@@ -7,7 +7,7 @@ export default function TagParkCard(props) {
     const handleParkTagClick = (id) => {
         const showPark = props.parks.find(park => park.id === id)
         props.handleParkClick(showPark)
-        props.history.push(`/park/${id}`)
+        props.history.push(`/parks/${id}`)
     }
 
     return (

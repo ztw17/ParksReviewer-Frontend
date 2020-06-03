@@ -8,7 +8,7 @@ export default function FavoritesParkCard(props) {
     const handleFavoritedParkClick = (id) => {
         const showPark = props.parks.find(park => park.id === id)
         props.handleParkClick(showPark)
-        props.history.push(`/park/${id}`)
+        props.history.push(`/parks/${id}`)
     }
 
     const removeFavorite = (id) => {

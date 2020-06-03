@@ -33,7 +33,7 @@ class NavDropdownCard extends React.Component {
     };
 
     clickedPark = (id) => {
-        this.props.history.push(`/park/${id}`)
+        this.props.history.push(`/parks/${id}`)
         const clickedParkObj = this.props.parks.find(park => park.id === id)
         this.props.handleParkClick(clickedParkObj)
     }

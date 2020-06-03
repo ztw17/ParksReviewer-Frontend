@@ -80,7 +80,7 @@ class AddParkForm extends React.Component {
             parkLatitude: "",
             parkImage: "",
         })
-        this.props.history.push(`/park/${this.props.appState.showPark.id}`)
+        this.props.history.push(`/parks/${this.props.appState.showPark.id}`)
     }
 
     render() {
