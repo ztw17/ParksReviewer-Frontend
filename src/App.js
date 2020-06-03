@@ -652,11 +652,12 @@ class App extends React.Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div>
-          <NavbarContainer loggedIn={this.state.loggedIn} history={this.props.history} parks={this.state.parks} handleLogout={this.handleLogout} handleParkClick={this.handleParkClick} handleLogoClick={this.handleLogoClick}/>
+          <NavbarContainer loggedIn={this.state.loggedIn} history={this.props.history} appState={this.state} parks={this.state.parks} handleLogout={this.handleLogout} handleParkClick={this.handleParkClick} handleLogoClick={this.handleLogoClick}/>
             <Switch>
               <Route path='/login' render={() => <Login appState={this.state} handleInputChange={this.handleInputChange} validateUserLogin={this.validateUserLogin}/>}/>
               <Route path='/signup' render={() => <SignUp appState={this.state} handleInputChange={this.handleInputChange} validateSignUpUser={this.validateSignUpUser} fileSelectedHandler={this.fileSelectedHandler}/>}/>
-              <Route path='/profile' render={() => <ProfileContainer appState={this.state} userReviews={this.state.userReviews} parks={this.state.parks} users={this.state.users} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} handleParkClick={this.handleParkClick} handleFavoriteDelete={this.handleFavoriteDelete} editUser={this.editUser} history={this.props.history}/>}/>
+              <Route path='/users/:id/edit' render={() => <EditProfileForm appState={this.state} editUser={this.state.editUser} history={this.props.history} handleUpdatedUser={this.handleUpdatedUser} handleAccountDelete={this.handleAccountDelete}/>} handleLogout={this.handleLogout}/>
+              <Route path='/users/:id' render={() => <ProfileContainer appState={this.state} userReviews={this.state.userReviews} parks={this.state.parks} users={this.state.users} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} handleParkClick={this.handleParkClick} handleFavoriteDelete={this.handleFavoriteDelete} editUser={this.editUser} history={this.props.history}/>}/>
               <Route path='/park/new' render={() => <AddParkForm appState={this.state} history={this.props.history} handleAddPark={this.handleAddPark}/>}/>
               <Route path='/park/:id/edit' render={() => <EditParkForm appState={this.state} editPark={this.state.editPark} parks={this.state.parks} handleEditedPark={this.handleEditedPark} handleParkClick={this.handleParkClick} showPark={this.state.showPark} history={this.props.history} />}/>         
               <Route path='/park/:id' render={() => <ParkContainer appState={this.state} showPark={this.state.showPark} updateViewport={this.updateViewport} handleFavoritesClick={this.handleFavoritesClick} handleTagClick={this.handleTagClick} handleTagAdd={this.handleTagAdd} handleTagDelete={this.handleTagDelete} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} editPark={this.editPark} handleParkDelete={this.handleParkDelete} viewport={this.state.viewport} tags={this.state.tags} parks={this.state.parks} reviews={this.state.reviews} users={this.state.users} history={this.props.history}/>}/>
@@ -665,7 +666,6 @@ class App extends React.Component {
               <Route path='/review/:id/edit' render={() => <EditReviewForm appState={this.state} editReview={this.state.editReview} handleEditedReview={this.handleEditedReview} showPark={this.state.showPark} handleParkClick={this.handleParkClick} reviewInfo={this.state.reviewInfo} parks={this.state.parks} history={this.props.history}/>}/>
               <Route path='/map' render={() => <AllParksMap parks={this.state.parks} history={this.props.history} handleParkClick={this.handleParkClick}/>}/>
               <Route path='/tags' render={() => <AllTagsContainer tags={this.filteredSearch()} searchTerm={this.state.searchTerm} history={this.props.history} handleTagClick={this.handleTagClick} handleSearchChange={this.handleSearchChange} />}/>
-              <Route path='/users/:id/edit' render={() => <EditProfileForm appState={this.state} editUser={this.state.editUser} history={this.props.history} handleUpdatedUser={this.handleUpdatedUser} handleAccountDelete={this.handleAccountDelete}/>} handleLogout={this.handleLogout}/>
               <Route path='/' render={() => <LandingPage appState={this.state} parks={this.state.parks} showPark={this.state.showpark} history={this.props.history} handleParkClick={this.handleParkClick}/>}/>
             </Switch>
         </div>

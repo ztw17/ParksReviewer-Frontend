@@ -1,17 +1,5 @@
 import React from "react";
-import { 
-  Avatar, 
-  Button, 
-  CssBaseline, 
-  TextField, 
-  Link, 
-  Grid, 
-  Typography, 
-  makeStyles, 
-  Paper, 
-  Container,
-  Card, 
-  withStyles } from '@material-ui/core';
+import {Avatar, Button, CssBaseline, TextField, Grid, Typography, Paper, Container, Card, withStyles} from '@material-ui/core';
 import Image from '../images/Acadia.jpg';
 
 const styles = theme => ({
@@ -93,7 +81,7 @@ class EditProfileForm extends React.Component {
             username: "",
             password: ""
         })
-        this.props.history.push('/profile')
+        this.props.history.push(`users/${this.props.appState.userId}`)
     }
 
     render() {

@@ -69,6 +69,10 @@ class Navbar extends React.Component {
         this.props.history.push('/park/new')
     }
 
+    routeToProfile = (id) => {
+        this.props.history.push(`/users/${id}`)
+    }
+
     render() {
         const {classes} = this.props
 
@@ -108,16 +112,11 @@ class Navbar extends React.Component {
                         {
                             this.props.loggedIn ?
                             <Fragment>
-                                {/* <Tooltip title="Add a park">
-                                    <IconButton onClick={this.routeToParkAdd} className={classes.menuButton}>
-                                        <img className={classes.mapIcon} src={mountain} alt="mountain"/>
-                                    </IconButton>
-                                </Tooltip> */}
                                 <Tooltip title="Profile">
-                                    <IconButton>
-                                        <Link to="/profile" className={classes.navbarStyles}>
+                                    <IconButton onClick={() => this.routeToProfile(this.props.appState.userId)} className={classes.navbarStyles}>
+                                        {/* <Link to="/profile" className={classes.navbarStyles}> */}
                                             <img className={classes.icon} alt="profile" src={account}/>
-                                        </Link>
+                                        {/* </Link> */}
                                     </IconButton>
                                 </Tooltip>
                                 <Link to="/" className={classes.navbarStyles}>

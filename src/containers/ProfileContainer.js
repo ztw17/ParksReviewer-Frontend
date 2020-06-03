@@ -83,7 +83,7 @@ class UserProfile extends React.Component {
     }
 
     routeToProfileEdit = (id) => {
-        this.props.history.push(`users/${id}/edit`)
+        this.props.history.push(`/users/${id}/edit`)
         // const clickedUserObj = this.props.users.find(user => user.id === this.props.appState.userId)
         // this.props.editUser(clickedUserObj)
     }
