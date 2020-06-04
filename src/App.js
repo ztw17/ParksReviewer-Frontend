@@ -541,6 +541,7 @@ class App extends React.Component {
       username: "",
       email: "",
       userId: "",
+      password: "",
       createdAtDate: "",
       userReviews: [],
       userFavorites: [],

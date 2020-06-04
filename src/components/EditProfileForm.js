@@ -49,7 +49,7 @@ class EditProfileForm extends React.Component {
             lastName: props.appState.lastName,
             email: props.appState.email,
             username: props.appState.username,
-            password: props.appState.password
+            password: props.appState.loginPassword || props.appState.password
         }
     }
 
