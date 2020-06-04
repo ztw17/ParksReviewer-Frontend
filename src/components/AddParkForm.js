@@ -57,7 +57,7 @@ class AddParkForm extends React.Component {
         })
     }
 
-    createNewPark= (event) => {
+    createNewPark = (event) => {
         event.preventDefault()
         const newPark = {
             name: this.state.parkName,
@@ -68,7 +68,6 @@ class AddParkForm extends React.Component {
             latitude: this.state.parkLatitude,
             image: this.state.parkImage,
             creator_id: this.props.appState.userId,
-
         }
         this.props.handleAddPark(newPark)
         this.setState({
@@ -80,8 +79,7 @@ class AddParkForm extends React.Component {
             parkLatitude: "",
             parkImage: "",
         })
-        this.props.history.push(`/parks/${this.props.appState.showPark.id}`)
-    }
+    };
 
     render() {
         const { classes } = this.props

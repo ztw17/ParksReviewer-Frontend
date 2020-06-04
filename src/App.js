@@ -52,8 +52,8 @@ class App extends React.Component {
       userReviews: appState.userReviews || [],
       userFavorites: appState.userFavorites || [],
       loggedIn: appState.loggedIn || false,
-      loginEmail: appState.loginEmail || "",
-      loginPassword: appState.loginPassword || "",
+      loginEmail: appState.loginEmail || "zweb@email.com",
+      loginPassword: appState.loginPassword || "password",
       signUpFirstName: appState.signUpFirstName || "",
       signUpLastName: appState.signUpLastName || "",
       signUpUsername: appState.signUpUsername || "",
@@ -366,6 +366,7 @@ class App extends React.Component {
         })
       }
     })
+    this.props.history.push(`/parks/${this.state.showPark.id}`)
   };
 
   editPark = (park) => {
@@ -544,8 +545,8 @@ class App extends React.Component {
       userReviews: [],
       userFavorites: [],
       loggedIn: false,
-      loginEmail: "",
-      loginPassword: "",
+      loginEmail: "zweb@email.com",
+      loginPassword: "password",
       signUpFirstName: "",
       signUpLastName: "",
       signUpUsername: "",
@@ -570,12 +571,6 @@ class App extends React.Component {
       searchTerm: ""
     })
   };
-
-  // editUser = (clickedUserObj) => {
-  //   this.setState({
-  //     editUser: clickedUserObj
-  //   })
-  // };
 
   handleUpdatedUser = (updatedUser) => {
     fetch(`${API_USERS}/${updatedUser.id}`, {
@@ -656,16 +651,16 @@ class App extends React.Component {
             <Switch>
               <Route path='/login' render={() => <Login appState={this.state} handleInputChange={this.handleInputChange} validateUserLogin={this.validateUserLogin}/>}/>
               <Route path='/signup' render={() => <SignUp appState={this.state} handleInputChange={this.handleInputChange} validateSignUpUser={this.validateSignUpUser} fileSelectedHandler={this.fileSelectedHandler}/>}/>
-              <Route path='/users/:id/edit' render={() => <EditProfileForm appState={this.state} editUser={this.state.editUser} history={this.props.history} handleUpdatedUser={this.handleUpdatedUser} handleAccountDelete={this.handleAccountDelete}/>} handleLogout={this.handleLogout}/>
-              <Route path='/users/:id' render={() => <ProfileContainer appState={this.state} userReviews={this.state.userReviews} parks={this.state.parks} users={this.state.users} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} handleParkClick={this.handleParkClick} handleFavoriteDelete={this.handleFavoriteDelete} editUser={this.editUser} history={this.props.history}/>}/>
+              <Route path='/tags' render={() => <AllTagsContainer tags={this.filteredSearch()} searchTerm={this.state.searchTerm} history={this.props.history} handleTagClick={this.handleTagClick} handleSearchChange={this.handleSearchChange} />}/>
+              <Route path='/map' render={() => <AllParksMap parks={this.state.parks} history={this.props.history} handleParkClick={this.handleParkClick}/>}/>
+              <Route path='/users/:id/edit' render={() => <EditProfileForm appState={this.state} history={this.props.history} handleUpdatedUser={this.handleUpdatedUser} handleAccountDelete={this.handleAccountDelete}/>} handleLogout={this.handleLogout}/>
+              <Route path='/users/:id' render={() => <ProfileContainer appState={this.state} userReviews={this.state.userReviews} parks={this.state.parks} users={this.state.users} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} handleParkClick={this.handleParkClick} handleFavoriteDelete={this.handleFavoriteDelete} history={this.props.history}/>}/>
               <Route path='/park/new' render={() => <AddParkForm appState={this.state} history={this.props.history} handleAddPark={this.handleAddPark}/>}/>
               <Route path='/parks/:id/edit' render={() => <EditParkForm appState={this.state} editPark={this.state.editPark} parks={this.state.parks} handleEditedPark={this.handleEditedPark} handleParkClick={this.handleParkClick} showPark={this.state.showPark} history={this.props.history} />}/>         
               <Route path='/parks/:id' render={() => <ParkContainer appState={this.state} showPark={this.state.showPark} updateViewport={this.updateViewport} handleFavoritesClick={this.handleFavoritesClick} handleTagClick={this.handleTagClick} handleTagAdd={this.handleTagAdd} handleTagDelete={this.handleTagDelete} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} editPark={this.editPark} handleParkDelete={this.handleParkDelete} viewport={this.state.viewport} tags={this.state.tags} parks={this.state.parks} reviews={this.state.reviews} users={this.state.users} history={this.props.history}/>}/>
               <Route path='/tags/:id' render={() => <TagPageContainer appState={this.state} showTag={this.state.showTag} handleParkClick={this.handleParkClick} parks={this.state.parks} history={this.props.history}/>}/>
               <Route path='/review/new' render={() => <AddReviewForm appState={this.state} showPark={this.state.showPark} history={this.props.history} handleAddReview={this.handleAddReview} fileSelectedHandler={this.fileSelectedHandler}/>}/>
               <Route path='/reviews/:id/edit' render={() => <EditReviewForm appState={this.state} editReview={this.state.editReview} handleEditedReview={this.handleEditedReview} showPark={this.state.showPark} handleParkClick={this.handleParkClick} reviewInfo={this.state.reviewInfo} parks={this.state.parks} history={this.props.history}/>}/>
-              <Route path='/map' render={() => <AllParksMap parks={this.state.parks} history={this.props.history} handleParkClick={this.handleParkClick}/>}/>
-              <Route path='/tags' render={() => <AllTagsContainer tags={this.filteredSearch()} searchTerm={this.state.searchTerm} history={this.props.history} handleTagClick={this.handleTagClick} handleSearchChange={this.handleSearchChange} />}/>
               <Route path='/' render={() => <LandingPage appState={this.state} parks={this.state.parks} showPark={this.state.showpark} history={this.props.history} handleParkClick={this.handleParkClick}/>}/>
             </Switch>
         </div>
