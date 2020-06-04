@@ -649,10 +649,6 @@ class App extends React.Component {
         <div>
           <NavbarContainer loggedIn={this.state.loggedIn} history={this.props.history} appState={this.state} parks={this.state.parks} handleLogout={this.handleLogout} handleParkClick={this.handleParkClick} handleLogoClick={this.handleLogoClick}/>
             <Switch>
-              <Route path='/login' render={() => <Login appState={this.state} handleInputChange={this.handleInputChange} validateUserLogin={this.validateUserLogin}/>}/>
-              <Route path='/signup' render={() => <SignUp appState={this.state} handleInputChange={this.handleInputChange} validateSignUpUser={this.validateSignUpUser} fileSelectedHandler={this.fileSelectedHandler}/>}/>
-              <Route path='/tags' render={() => <AllTagsContainer tags={this.filteredSearch()} searchTerm={this.state.searchTerm} history={this.props.history} handleTagClick={this.handleTagClick} handleSearchChange={this.handleSearchChange} />}/>
-              <Route path='/map' render={() => <AllParksMap parks={this.state.parks} history={this.props.history} handleParkClick={this.handleParkClick}/>}/>
               <Route path='/users/:id/edit' render={() => <EditProfileForm appState={this.state} history={this.props.history} handleUpdatedUser={this.handleUpdatedUser} handleAccountDelete={this.handleAccountDelete}/>} handleLogout={this.handleLogout}/>
               <Route path='/users/:id' render={() => <ProfileContainer appState={this.state} userReviews={this.state.userReviews} parks={this.state.parks} users={this.state.users} handleEditReviewClick={this.handleEditReviewClick} handleDeleteReview={this.handleDeleteReview} handleParkClick={this.handleParkClick} handleFavoriteDelete={this.handleFavoriteDelete} history={this.props.history}/>}/>
               <Route path='/park/new' render={() => <AddParkForm appState={this.state} history={this.props.history} handleAddPark={this.handleAddPark}/>}/>
@@ -661,6 +657,10 @@ class App extends React.Component {
               <Route path='/tags/:id' render={() => <TagPageContainer appState={this.state} showTag={this.state.showTag} handleParkClick={this.handleParkClick} parks={this.state.parks} history={this.props.history}/>}/>
               <Route path='/review/new' render={() => <AddReviewForm appState={this.state} showPark={this.state.showPark} history={this.props.history} handleAddReview={this.handleAddReview} fileSelectedHandler={this.fileSelectedHandler}/>}/>
               <Route path='/reviews/:id/edit' render={() => <EditReviewForm appState={this.state} editReview={this.state.editReview} handleEditedReview={this.handleEditedReview} showPark={this.state.showPark} handleParkClick={this.handleParkClick} reviewInfo={this.state.reviewInfo} parks={this.state.parks} history={this.props.history}/>}/>
+              <Route path='/signup' render={() => <SignUp appState={this.state} handleInputChange={this.handleInputChange} validateSignUpUser={this.validateSignUpUser} fileSelectedHandler={this.fileSelectedHandler}/>}/>
+              <Route path='/login' render={() => <Login appState={this.state} handleInputChange={this.handleInputChange} validateUserLogin={this.validateUserLogin}/>}/>
+              <Route path='/map' render={() => <AllParksMap parks={this.state.parks} history={this.props.history} handleParkClick={this.handleParkClick}/>}/>
+              <Route path='/tags' render={() => <AllTagsContainer tags={this.filteredSearch()} searchTerm={this.state.searchTerm} history={this.props.history} handleTagClick={this.handleTagClick} handleSearchChange={this.handleSearchChange} />}/>
               <Route path='/' render={() => <LandingPage appState={this.state} parks={this.state.parks} showPark={this.state.showpark} history={this.props.history} handleParkClick={this.handleParkClick}/>}/>
             </Switch>
         </div>
