@@ -75,7 +75,7 @@ class UserProfile extends React.Component {
     }
 
     renderUserReviews = () => {
-        return this.props.userReviews.map(review => <ReviewContainer renderParkName={true} handleEditReviewClick={this.props.handleEditReviewClick} handleDeleteReview={this.props.handleDeleteReview} appState={this.props.appState} history={this.props.history} reviewInfo={review} reviews={this.props.reviews}/>)
+        return this.props.userReviews.map(review => <ReviewContainer renderParkName={true} parks={this.props.parks} handleEditReviewClick={this.props.handleEditReviewClick} handleDeleteReview={this.props.handleDeleteReview} handleParkClick={this.props.handleParkClick} appState={this.props.appState} history={this.props.history} reviewInfo={review} reviews={this.props.reviews}/>)
     }
 
     renderFavorites = () => {
@@ -84,8 +84,6 @@ class UserProfile extends React.Component {
 
     routeToProfileEdit = (id) => {
         this.props.history.push(`/users/${id}/edit`)
-        // const clickedUserObj = this.props.users.find(user => user.id === this.props.appState.userId)
-        // this.props.editUser(clickedUserObj)
     }
 
     render() {

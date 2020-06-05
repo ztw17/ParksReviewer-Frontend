@@ -1,7 +1,7 @@
 import React from 'react';
 import RenderStarRating from '../components/RenderStarRating'
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Button } from '@material-ui/core';
+import { Grid, Button, IconButton } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { Divider } from '@material-ui/core';
@@ -21,6 +21,11 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     fontWeight: "bold",
+    margin: 8
+  },
+  parkHeader: {
+    fontWeight: "bold",
+    // color: "black"
   },
   reviewUsername: {
     textAlign: 'center'
@@ -44,6 +49,12 @@ export default function ReviewContainer(props) {
     props.handleDeleteReview(id)
   }
 
+  const handleParkClick = (id) => {
+    const showPark = props.parks.find(park => park.id === id)
+    props.handleParkClick(showPark)
+    props.history.push(`/parks/${id}`)
+  }
+
   const DATE_OPTIONS = { year: 'numeric', month: 'long', day: 'numeric' }
   const visitDate = new Date(props.reviewInfo.visit_date).toLocaleDateString('en-US', DATE_OPTIONS)
 
@@ -61,9 +72,11 @@ export default function ReviewContainer(props) {
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 { props.renderParkName ?
-                  <Typography variant="h6" className={classes.header}>
-                    {props.reviewInfo.park.name}
-                  </Typography> 
+                  <IconButton>
+                    <Typography variant="h6" className={classes.parkHeader} onClick={() => handleParkClick(props.reviewInfo.park.id)}>
+                      {props.reviewInfo.park.name}
+                    </Typography> 
+                  </IconButton>
                 : null }
                 {/* <Typography align="left" className={classes.header}>
                   Review
