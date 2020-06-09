@@ -232,7 +232,6 @@ class App extends React.Component {
   };
 
   handleInputChange = (input, value) => {
-    // console.log(input, value) 
     this.setState({
       [input]: value
     })

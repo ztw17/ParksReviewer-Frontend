@@ -1,5 +1,6 @@
 import React from 'react'
 import { withStyles, Typography, Divider, Card, CardContent, Grid, Box, Fab, Tooltip, Button } from '@material-ui/core';
+import Rating from '@material-ui/lab/Rating';
 // import { makeStyles, Paper, Typography, Fab, Tooltip } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import EditIcon from '@material-ui/icons/Edit';
@@ -21,6 +22,10 @@ const styles = theme => ({
     cardDetails: {
         flex: 1,
         height: 170,
+    },
+    weatherAndRating: {
+        flex: 1,
+        height: 110
     },
     mainGrid: {
         marginTop: theme.spacing(2),
@@ -65,9 +70,17 @@ const styles = theme => ({
     bold: {
         fontWeight: "bold"
     },
+    starRating: {
+        justifyContent: "center",
+        alignItems: "center"
+    }
 })
 
 class ParkContainer extends React.Component {
+
+    getParkRating = () => {
+
+    }
     
     renderTags = () => {
         return this.props.showPark.tags.map(tag => <Tag tagInfo={tag} tags={this.props.tags} handleTagClick={this.props.handleTagClick} handleTagDelete={this.props.handleTagDelete} history={this.props.history}/>)
@@ -116,53 +129,73 @@ class ParkContainer extends React.Component {
 
     render() {
         const {classes} = this.props
+        console.log(this.props.showPark.reviews)
 
         return (
             <React.Fragment>
                 {/* {this.favoriteButton()} */}
                 <main className={classes.root}>
                     <ParkBanner showPark={this.props.showPark} appState={this.props.appState} handleFavoritesClick={this.props.handleFavoritesClick} parks={this.props.parks} />
+                        <Grid className={classes.mainGrid}>
+                            <Card className={classes.cardDetails}>
+                                <CardContent>
+                                    <Typography className={classes.bold} variant="h6">
+                                        Overview
+                                    </Typography>
+                                    <Divider/>
+                                    <Typography varient="h6">
+                                        {this.props.showPark.description}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid className={classes.mainGrid}>
+                            <Card>
+                                <CardContent>
+                                    <Typography className={classes.bold} variant="h6">
+                                        Weather
+                                    </Typography>
+                                <Divider/>
+                                <Typography>
+                                    {this.props.showPark.weather}
+                                </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
                         <Grid container spacing={2} className={classes.mainGrid}>
-                            <Grid item lg={10}>
-                                <Card className={classes.cardDetails}>
-                                    <CardContent>
-                                        <Typography className={classes.bold} variant="h6">
-                                            Overview
-                                        </Typography>
-                                        <Divider/>
-                                        <Typography varient="h6">
-                                            {this.props.showPark.description}
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                            <Grid item xs={2}>
-                                <Card className={classes.cardDetails}>
+                            <Grid item xs={6}>
+                                <Card className={classes.weatherAndRating}>
                                     <CardContent>
                                         <Typography className={classes.bold} variant="h6">
                                             Location
+                                            <Button onClick={() => this.handleParkEditClick(this.props.showPark.id)}></Button>
+                                            <Button onClick={() => this.handleParkDeleteClick(this.props.showPark.id)}></Button>
                                         </Typography>
                                         <Divider />
-                                            <Typography>
+                                            <Typography variant="h6" align="center">
                                                 {this.props.showPark.state}
-                                                <Button onClick={() => this.handleParkEditClick(this.props.showPark.id)}></Button>
-                                                <Button onClick={() => this.handleParkDeleteClick(this.props.showPark.id)}></Button>
+                                                {/* <Button onClick={() => this.handleParkEditClick(this.props.showPark.id)}></Button>
+                                                <Button onClick={() => this.handleParkDeleteClick(this.props.showPark.id)}></Button> */}
                                             </Typography>
                                     </CardContent>
                                 </Card>
                             </Grid>
-                        </Grid>
-                        <Grid className={classes.mainGrid}>
-                            <Grid>
-                                <Card>
+                            <Grid item xs={6}>
+                                <Card className={classes.weatherAndRating}>
                                     <CardContent>
                                         <Typography className={classes.bold} variant="h6">
-                                            Weather
+                                            User Rating
                                         </Typography>
-                                    <Divider/>
-                                    <Typography>
-                                        {this.props.showPark.weather}
-                                    </Typography>
+                                        <Divider />
+                                            <Grid container className={classes.starRating}>
+                                                <Rating
+                                                    value={4.5}
+                                                    name="rating"
+                                                    size="large"
+                                                    precision={0.5}
+                                                    readOnly="true"
+                                                />
+                                            </Grid>
                                     </CardContent>
                                 </Card>
                             </Grid>
