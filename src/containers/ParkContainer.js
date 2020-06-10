@@ -79,7 +79,9 @@ const styles = theme => ({
 class ParkContainer extends React.Component {
 
     getParkRating = () => {
-
+        const sum = (accumulator, currentValue) => accumulator + currentValue;
+        const ratingsArr = this.props.showPark.reviews.map(reviewObj => reviewObj.rating)
+            return ratingsArr.reduce(sum) / ratingsArr.length
     }
     
     renderTags = () => {
@@ -94,11 +96,11 @@ class ParkContainer extends React.Component {
         this.props.history.push(`/review/new`)
     }
 
-    parkComparison = () => {
-        return (this.props.appState.userFavorites.some(favorite => {
-          return (favorite.park.name === this.props.showPark.name)
-        }))
-      }
+    // parkComparison = () => {
+    //     return (this.props.appState.userFavorites.some(favorite => {
+    //       return (favorite.park.name === this.props.showPark.name)
+    //     }))
+    //   }
     
     // favoriteButton = () => {
     //     if (!this.props.appState.loggedIn) {
@@ -129,7 +131,8 @@ class ParkContainer extends React.Component {
 
     render() {
         const {classes} = this.props
-        console.log(this.props.showPark.reviews)
+        // console.log("consolelog", this.props.showPark.reviews)
+        // console.log(this.getParkRating())
 
         return (
             <React.Fragment>
@@ -137,7 +140,7 @@ class ParkContainer extends React.Component {
                 <main className={classes.root}>
                     <ParkBanner showPark={this.props.showPark} appState={this.props.appState} handleFavoritesClick={this.props.handleFavoritesClick} parks={this.props.parks} />
                         <Grid className={classes.mainGrid}>
-                            <Card className={classes.cardDetails}>
+                            <Card>
                                 <CardContent>
                                     <Typography className={classes.bold} variant="h6">
                                         Overview
@@ -189,7 +192,7 @@ class ParkContainer extends React.Component {
                                         <Divider />
                                             <Grid container className={classes.starRating}>
                                                 <Rating
-                                                    value={4.5}
+                                                    value={ this.props.showPark.reviews.content ? this.getParkRating() : 4.5 } 
                                                     name="rating"
                                                     size="large"
                                                     precision={0.5}
