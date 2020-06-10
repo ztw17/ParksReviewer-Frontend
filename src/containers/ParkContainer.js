@@ -96,28 +96,6 @@ class ParkContainer extends React.Component {
         this.props.history.push(`/review/new`)
     }
 
-    // parkComparison = () => {
-    //     return (this.props.appState.userFavorites.some(favorite => {
-    //       return (favorite.park.name === this.props.showPark.name)
-    //     }))
-    //   }
-    
-    // favoriteButton = () => {
-    //     if (!this.props.appState.loggedIn) {
-    //       return null
-    //     } else if (this.parkComparison()) {
-    //       return <Tooltip title="Add park to favorites">
-    //       <Fab disabled color="secondary" aria-label="favorite" className={this.props.classes.buttonOverlay}>
-    //         <FavoriteIcon />
-    //       </Fab>
-    //   </Tooltip>
-    //     } else return <Tooltip title="Add park to favorites">
-    //     <Fab color="secondary" aria-label="favorite" className={this.props.classes.buttonOverlay}>
-    //       <FavoriteIcon onClick={() => this.props.handleFavoritesClick(this.props.showPark.id)}/>
-    //     </Fab>
-    //   </Tooltip>
-    // }
-
     handleParkEditClick = (id) => {
         this.props.history.push(`/parks/${id}/edit`)
         const clickedParkObj = this.props.showPark
@@ -131,12 +109,9 @@ class ParkContainer extends React.Component {
 
     render() {
         const {classes} = this.props
-        // console.log("consolelog", this.props.showPark.reviews)
-        // console.log(this.getParkRating())
 
         return (
             <React.Fragment>
-                {/* {this.favoriteButton()} */}
                 <main className={classes.root}>
                     <ParkBanner showPark={this.props.showPark} appState={this.props.appState} handleFavoritesClick={this.props.handleFavoritesClick} parks={this.props.parks} />
                         <Grid className={classes.mainGrid}>
@@ -177,8 +152,6 @@ class ParkContainer extends React.Component {
                                         <Divider />
                                             <Typography variant="h6" align="center">
                                                 {this.props.showPark.state}
-                                                {/* <Button onClick={() => this.handleParkEditClick(this.props.showPark.id)}></Button>
-                                                <Button onClick={() => this.handleParkDeleteClick(this.props.showPark.id)}></Button> */}
                                             </Typography>
                                     </CardContent>
                                 </Card>
@@ -192,7 +165,7 @@ class ParkContainer extends React.Component {
                                         <Divider />
                                             <Grid container className={classes.starRating}>
                                                 <Rating
-                                                    value={ this.props.showPark.reviews.content ? this.getParkRating() : 4.5 } 
+                                                    value={ this.props.showPark.reviews.length >= 1 ? this.getParkRating() : 2 } 
                                                     name="rating"
                                                     size="large"
                                                     precision={0.5}
