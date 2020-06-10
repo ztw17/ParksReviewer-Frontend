@@ -165,7 +165,7 @@ class ParkContainer extends React.Component {
                                         <Divider />
                                             <Grid container className={classes.starRating}>
                                                 <Rating
-                                                    value={ this.props.showPark.reviews.length >= 1 ? this.getParkRating() : 2 } 
+                                                    value={ this.props.showPark.reviews.length >= 1 ? this.getParkRating() : 4.5 } 
                                                     name="rating"
                                                     size="large"
                                                     precision={0.5}
