@@ -93,11 +93,6 @@ class EditProfileForm extends React.Component {
                 <Grid className={classes.cardGrid}>
                 <Card className={classes.card}>
                 <CssBaseline />
-                    {/* <Grid align="center">
-                        <Avatar className={classes.avatar}>
-                        <LockOutlinedIcon />
-                        </Avatar>
-                    </Grid> */}
                     <Typography align="center" component="h1" variant="h5">
                         Edit Account
                     </Typography>

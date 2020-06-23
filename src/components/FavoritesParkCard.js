@@ -35,10 +35,6 @@ export default function FavoritesParkCard(props) {
                 <Button 
                     fullWidth
                     onClick={() => removeFavorite(props.favoriteInfo.id)}>Remove from Favorites</Button>
-                {/* <IconButton className={classes.buttonText} onClick={() => removeFavorite(props.favoriteInfo.id)}> 
-                    Remove from Favorites
-                    <HighlightOffOutlinedIcon className={classes.button}/>
-                </IconButton> */}
             </Grid>
         </Card>
     )

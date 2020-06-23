@@ -48,7 +48,7 @@ class TagPage extends React.Component {
                             <Typography align="center" variant="h5">
                                 Parks with the tag of
                             </Typography>
-                            <Typography align="center" variant="h2">
+                            <Typography align="center" variant="h3">
                                 {this.titleCase(this.props.appState.showTag.name)}
                             </Typography>
                             <Divider/>

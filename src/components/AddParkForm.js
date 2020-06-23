@@ -51,7 +51,6 @@ class AddParkForm extends React.Component {
     }
 
     handleInputChange = (event) => {
-        // console.log(event.target.value)
         this.setState({
           [event.target.name]: event.target.value
         })

@@ -13,8 +13,8 @@ const styles = theme => ({
 });
 
 class AllParksMap extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             viewport: {
                 latitude: 39.8283,
@@ -37,12 +37,12 @@ class AllParksMap extends React.Component {
         const listener = event => {
         if (event.key === "Escape") {
            this.setState({
-            selectedPark: null
-            })
+                selectedPark: null
+                })
             }
         };
         window.addEventListener("keydown", listener);
-        return () => {
+            return () => {
         window.removeEventListener("keydown", listener);
         };
     }

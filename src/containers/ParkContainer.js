@@ -2,7 +2,7 @@ import React from 'react'
 import { withStyles, Typography, Divider, Card, CardContent, Grid, Box, Fab, Tooltip, Button } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 // import { makeStyles, Paper, Typography, Fab, Tooltip } from '@material-ui/core';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+// import FavoriteIcon from '@material-ui/icons/Favorite';
 import EditIcon from '@material-ui/icons/Edit';
 import ParkBanner from '../components/ParkBanner';
 import Tag from '../components/Tag';

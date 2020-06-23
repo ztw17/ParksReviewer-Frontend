@@ -130,37 +130,12 @@ class EditReviewForm extends React.Component {
                       name="visitDate"
                       type="date"
                       defaultValue={this.state.visitDate}
-                      // onChange={(event) => this.onChange(event)}
                       className={classes.textField}
                       InputLabelProps={{
                         shrink: true,
                       }}
                     />
                   </Grid>
-                  {/* <Grid item xs={12}>
-                    <Typography>
-                      Add a tag
-                    </Typography> */}
-                    {/* <Box className={classes.tagBox}>
-                        {this.props.renderTags()}
-                    </Box> */}
-                    {/* <AddTag />
-                  </Grid> */}
-                  {/* <Grid item xs={12}>
-                    <Typography>
-                      Add a photo
-                    </Typography>
-                    <TextField
-                      onChange={event => this.props.fileSelectedHandler(event)}
-                      // variant="outlined"
-                      // required
-                      fullWidth
-                      name="reviewImage"
-                      // label="Add a photo"
-                      type="file"
-                      id="reviewImage"
-                    />
-                  </Grid> */}
                 </Grid>
                 <Button
                   type="submit"

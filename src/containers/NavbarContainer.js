@@ -114,9 +114,7 @@ class Navbar extends React.Component {
                             <Fragment>
                                 <Tooltip title="Profile">
                                     <IconButton onClick={() => this.routeToProfile(this.props.appState.userId)} className={classes.navbarStyles}>
-                                        {/* <Link to="/profile" className={classes.navbarStyles}> */}
                                             <img className={classes.icon} alt="profile" src={account}/>
-                                        {/* </Link> */}
                                     </IconButton>
                                 </Tooltip>
                                 <Link to="/" className={classes.navbarStyles}>
