@@ -21,7 +21,6 @@ const styles = theme => ({
     },
     cardDetails: {
         flex: 1,
-        height: 170,
     },
     weatherAndRating: {
         flex: 1,
