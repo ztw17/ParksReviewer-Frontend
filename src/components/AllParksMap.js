@@ -1,5 +1,6 @@
 import React from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import 'mapbox-gl/dist/mapbox-gl.css'
 import { Button, Card, Typography, withStyles, Grid, Box } from '@material-ui/core';
 import AllTag from './AllTag';
 import marker from '../images/marker.png';
@@ -8,7 +9,8 @@ const TOKEN = 'pk.eyJ1IjoienR3ZWIiLCJhIjoiY2s4ZXczajU3MDB2bjNqcGM3am5zbWYyayJ9.m
 
 const styles = theme => ({
     goToButton: {
-        backgroundColor: "#AFC798"
+        backgroundColor: "#AFC798",
+        margin: 10
     },
 });
 
@@ -84,6 +86,8 @@ class AllParksMap extends React.Component {
                 key={park.id}
                 latitude={park.latitude}
                 longitude={park.longitude}
+                // offsetTop={-20}
+                // offsetBottom={-10}
             >
                 <button
                 class="marker-btn"
