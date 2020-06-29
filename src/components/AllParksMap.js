@@ -12,6 +12,9 @@ const styles = theme => ({
         backgroundColor: "#AFC798",
         margin: 10
     },
+    pin: {
+        position: "absolute"
+    }
 });
 
 class AllParksMap extends React.Component {
@@ -86,8 +89,10 @@ class AllParksMap extends React.Component {
                 key={park.id}
                 latitude={park.latitude}
                 longitude={park.longitude}
-                // offsetTop={-20}
-                // offsetBottom={-10}
+                offsetLeft={-10}
+                offsetTop={-10}
+                offsetTop={-20}
+                offsetBottom={-10}
             >
                 <button
                 class="marker-btn"
