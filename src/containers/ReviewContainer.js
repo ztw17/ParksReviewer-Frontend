@@ -33,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
   teal: {
     color: theme.palette.getContrastText(teal[300]),
     backgroundColor: teal[300],
+    width: theme.spacing(6),
+    height: theme.spacing(6),
   },
 }));
 
@@ -64,7 +66,7 @@ export default function ReviewContainer(props) {
         <Grid container spacing={3}>
           <Grid item>
             <Avatar className={classes.teal}>{props.reviewInfo.user.first_name[0]}{props.reviewInfo.user.last_name[0]}</Avatar>
-            <Typography className={classes.reviewUsername} variant="body2">
+            <Typography className={classes.reviewUsername} variant="body1">
               {props.reviewInfo.user.username}
             </Typography>
           </Grid>

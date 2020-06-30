@@ -11,9 +11,6 @@ const styles = theme => ({
     goToButton: {
         backgroundColor: "#AFC798",
         margin: 10
-    },
-    pin: {
-        position: "absolute"
     }
 });
 
