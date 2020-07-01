@@ -37,7 +37,7 @@ export default function ParkBanner(props) {
         </Typography>
       </div>
     </Paper>
-  );
+  )
 }
 
 const font =  "'Amatic SC', cursive";

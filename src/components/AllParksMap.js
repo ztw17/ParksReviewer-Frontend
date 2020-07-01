@@ -106,23 +106,23 @@ class AllParksMap extends React.Component {
             ))}
 
             {this.state.selectedPark ? (
-                <Card>
-            <Popup
-                latitude={parseFloat(this.state.selectedPark.latitude)}
-                longitude={parseFloat(this.state.selectedPark.longitude)}
-                class="mapboxgl-popup"
-            >
-                <div>
-                    <Typography align="center" variant="h5">{this.state.selectedPark.name}</Typography>
-                    <Typography variant="h8">{this.state.selectedPark.description}</Typography>
-                </div>
-                <Grid align="center">
-                    <Box>{this.renderTags}</Box>
-                </Grid>
-                <div align="center">
-                    <Button className={classes.goToButton} onClick={() => this.handleBoxClick(this.state.selectedPark.id)}>Go to park!</Button>
-                </div>
-            </Popup>
+            <Card>
+                <Popup
+                    latitude={parseFloat(this.state.selectedPark.latitude)}
+                    longitude={parseFloat(this.state.selectedPark.longitude)}
+                    class="mapboxgl-popup"
+                >
+                    <div>
+                        <Typography align="center" variant="h5">{this.state.selectedPark.name}</Typography>
+                        <Typography variant="h8">{this.state.selectedPark.description}</Typography>
+                    </div>
+                    <Grid align="center">
+                        <Box>{this.renderTags}</Box>
+                    </Grid>
+                    <div align="center">
+                        <Button className={classes.goToButton} onClick={() => this.handleBoxClick(this.state.selectedPark.id)}>Go to park!</Button>
+                    </div>
+                </Popup>
             </Card>
             ) : null}
         </ReactMapGL>
