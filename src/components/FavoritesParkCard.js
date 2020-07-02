@@ -34,7 +34,9 @@ export default function FavoritesParkCard(props) {
             <Grid align="center">
                 <Button 
                     fullWidth
-                    onClick={() => removeFavorite(props.favoriteInfo.id)}>Remove from Favorites</Button>
+                    className={classes.button}
+                    onClick={() => removeFavorite(props.favoriteInfo.id)}>Remove from Favorites
+                </Button>
             </Grid>
         </Card>
     )
@@ -50,10 +52,15 @@ const useStyles = makeStyles({
         height: 160,
     },
     button: {
-        padding: 3
-    },
-    buttonText: {
-        fontSize: 14
+        backgroundColor: "primary",
+        color: "#434C5C",
+        "&:hover": {
+            backgroundColor: "#FF6452",
+            color: "#FFF"
+        }
     }
+    // buttonText: {
+    //     fontSize: 14
+    // }
 });
   
