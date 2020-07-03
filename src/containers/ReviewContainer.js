@@ -36,6 +36,18 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(6),
     height: theme.spacing(6),
   },
+  editButton: {
+    "&:hover": {
+      backgroundColor: "#6fb381",
+      color: "#FFF"
+    }
+  },
+  deleteButton: {
+    "&:hover": {
+      backgroundColor: "#FF6452",
+      color: "#FFF"
+    }
+  }
 }));
 
 export default function ReviewContainer(props) {
@@ -104,8 +116,8 @@ export default function ReviewContainer(props) {
           </Grid>
           { props.renderParkName ?
           <Grid item xs={2} container direction="column">
-            { props.reviewInfo.user.id === props.appState.userId ? <Button onClick={() => handleEditClick(props.reviewInfo.id)}>Edit</Button> : null}
-            { props.reviewInfo.user.id === props.appState.userId ? <Button onClick={() => handleDeleteClick(props.reviewInfo.id)}>Delete</Button> : null}
+            { props.reviewInfo.user.id === props.appState.userId ? <Button className={classes.editButton} variant="outlined" onClick={() => handleEditClick(props.reviewInfo.id)}>Edit</Button> : null}
+            { props.reviewInfo.user.id === props.appState.userId ? <Button className={classes.deleteButton} variant="outlined" onClick={() => handleDeleteClick(props.reviewInfo.id)}>Delete</Button> : null}
           </Grid>
           : null }
         </Grid>

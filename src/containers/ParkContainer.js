@@ -72,7 +72,7 @@ const styles = theme => ({
     starRating: {
         justifyContent: "center",
         alignItems: "center"
-    }
+    },
 })
 
 class ParkContainer extends React.Component {
