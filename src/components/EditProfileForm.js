@@ -1,5 +1,5 @@
 import React from "react";
-import {Avatar, Button, CssBaseline, TextField, Grid, Typography, Paper, Container, Card, withStyles} from '@material-ui/core';
+import {Button, CssBaseline, TextField, Grid, Typography, Paper, Container, Card, withStyles} from '@material-ui/core';
 import Image from '../images/Acadia.jpg';
 
 const styles = theme => ({

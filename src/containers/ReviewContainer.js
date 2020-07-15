@@ -40,13 +40,15 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: "#6fb381",
       color: "#FFF"
-    }
+    },
+    margin: 1
   },
   deleteButton: {
     "&:hover": {
       backgroundColor: "#FF6452",
       color: "#FFF"
-    }
+    },
+    margin: 1
   }
 }));
 

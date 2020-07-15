@@ -1,6 +1,5 @@
 import React from 'react';
-import { Card, CardActionArea, IconButton, Button, makeStyles, CardContent, CardMedia, Typography, Grid } from '@material-ui/core';
-import HighlightOffOutlinedIcon from '@material-ui/icons/HighlightOffOutlined';
+import { Card, CardActionArea, Button, makeStyles, CardContent, CardMedia, Typography, Grid } from '@material-ui/core';
 
 export default function FavoritesParkCard(props) {
     const classes = useStyles();

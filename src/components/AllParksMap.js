@@ -87,9 +87,9 @@ class AllParksMap extends React.Component {
                 latitude={park.latitude}
                 longitude={park.longitude}
                 offsetLeft={-10}
-                offsetTop={-10}
+                // offsetRight={-20}
                 offsetTop={-20}
-                offsetBottom={-10}
+                // offsetBottom={-10}
             >
                 <button
                 class="marker-btn"
