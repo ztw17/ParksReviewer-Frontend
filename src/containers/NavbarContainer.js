@@ -11,7 +11,7 @@ import mountain from '../images/mountain.png';
 
 const styles = theme => ({
     root: {
-      flexGrow: 1,
+    //   flexGrow: 1,
       backgroundColor: 'white',
       maxHeight: 60,
     //   backgroundColor: '#DEE0E3',
@@ -77,7 +77,7 @@ class Navbar extends React.Component {
         const {classes} = this.props
 
         return (
-        <div className={classes.root}>
+        <div>
             <Fragment>
                 <AppBar className={classes.root} position="fixed">
                     <Toolbar>

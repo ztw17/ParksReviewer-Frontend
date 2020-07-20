@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   parkHeader: {
     fontWeight: "bold",
-    // color: "black"
+    color: "black"
   },
   reviewUsername: {
     textAlign: 'center'
