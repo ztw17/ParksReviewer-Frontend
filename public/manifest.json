@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "MyParks Explorer",
+  "name": "A national and state parks finder, reviewer, tagger, and explorer app I built",
   "icons": [
     {
       "src": "favicon.ico",
