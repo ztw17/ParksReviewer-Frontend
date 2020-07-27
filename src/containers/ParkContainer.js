@@ -113,32 +113,6 @@ class ParkContainer extends React.Component {
             <React.Fragment>
                 <main className={classes.root}>
                     <ParkBanner showPark={this.props.showPark} appState={this.props.appState} handleFavoritesClick={this.props.handleFavoritesClick} parks={this.props.parks} />
-                        <Grid className={classes.mainGrid}>
-                            <Card>
-                                <CardContent>
-                                    <Typography className={classes.bold} variant="h6">
-                                        Overview
-                                    </Typography>
-                                    <Divider/>
-                                    <Typography varient="h6">
-                                        {this.props.showPark.description}
-                                    </Typography>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                        <Grid className={classes.mainGrid}>
-                            <Card>
-                                <CardContent>
-                                    <Typography className={classes.bold} variant="h6">
-                                        Weather
-                                    </Typography>
-                                <Divider/>
-                                <Typography>
-                                    {this.props.showPark.weather}
-                                </Typography>
-                                </CardContent>
-                            </Card>
-                        </Grid>
                         <Grid container spacing={2} className={classes.mainGrid}>
                             <Grid item xs={6}>
                                 <Card className={classes.weatherAndRating}>
@@ -174,6 +148,32 @@ class ParkContainer extends React.Component {
                                     </CardContent>
                                 </Card>
                             </Grid>
+                        </Grid>
+                        <Grid className={classes.mainGrid}>
+                            <Card>
+                                <CardContent>
+                                    <Typography className={classes.bold} variant="h6">
+                                        Overview
+                                    </Typography>
+                                    <Divider/>
+                                    <Typography varient="h6">
+                                        {this.props.showPark.description}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid className={classes.mainGrid}>
+                            <Card>
+                                <CardContent>
+                                    <Typography className={classes.bold} variant="h6">
+                                        Weather
+                                    </Typography>
+                                <Divider/>
+                                <Typography>
+                                    {this.props.showPark.weather}
+                                </Typography>
+                                </CardContent>
+                            </Card>
                         </Grid>
                         <Grid className={classes.mainGrid}>
                             <Grid>
