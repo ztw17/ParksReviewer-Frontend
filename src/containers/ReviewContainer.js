@@ -14,10 +14,10 @@ const useStyles = makeStyles((theme) => ({
     color: "#434C5C",
   },
   paper: {
-    padding: theme.spacing(2),
-    margin: 15,
+    padding: 20,
     maxWidth: 600,
-    marginBottom: 0,
+    marginTop: 0,
+    marginBottom: 30
   },
   header: {
     fontWeight: "bold",
@@ -94,10 +94,6 @@ export default function ReviewContainer(props) {
                     </Typography> 
                   </IconButton>
                 : null }
-                {/* <Typography align="left" className={classes.header}>
-                  Review
-                </Typography> */}
-                {/* <Divider/> */}
                 <Typography align="left" gutterBottom>
                   {props.reviewInfo.content}
                 </Typography>

@@ -42,9 +42,10 @@ const styles = theme => ({
         backgroundColor: '#434C5C',
         color: "white",
         spacing: "10px",
+        padding: 5
     },
     addReviewBtn: {
-        margin: 0,
+        // margin: 0,
         // top: 'auto',
         // right: 'auto',
         bottom: '28px',
@@ -63,9 +64,6 @@ const styles = theme => ({
     //     right: 20,
     //     left: 800,
     // },
-    content: {
-        padding: 8
-    },
     bold: {
         fontWeight: "bold"
     },
@@ -73,6 +71,9 @@ const styles = theme => ({
         justifyContent: "center",
         alignItems: "center"
     },
+    reviews: {
+        padding: 10
+    }
 })
 
 class ParkContainer extends React.Component {
@@ -206,21 +207,21 @@ class ParkContainer extends React.Component {
                                 <Map showPark={this.props.showPark} viewport={this.props.viewport} updateViewport={this.props.updateViewport} />
                             </Card>
                         </Grid>
-                        <Grid className={classes.mainGrid}>
+                        <Grid>
                             <Card>
                                 <Typography component="h3" variant="h4" className={classes.reviewTitle}>
                                     User Reviews
                                 </Typography>
                             </Card>
-                                { this.props.appState.loggedIn ? 
-                                <Tooltip title="Write a review">
-                                    <Fab color="secondary" className={classes.addReviewBtn}>
-                                        <EditIcon onClick={() => this.handleAddReviewClick(this.props.showPark.id)}/>
-                                    </Fab> 
-                                </Tooltip> : null }
-                                <Grid item align="center" className={classes.reviews}>
-                                    {this.reviewMessage()}
-                                </Grid>
+                            { this.props.appState.loggedIn ? 
+                            <Tooltip title="Write a review">
+                                <Fab color="secondary" className={classes.addReviewBtn}>
+                                    <EditIcon onClick={() => this.handleAddReviewClick(this.props.showPark.id)}/>
+                                </Fab> 
+                            </Tooltip> : null }
+                            <Grid item align="center" className={classes.reviews}>
+                                {this.reviewMessage()}
+                            </Grid>
                         </Grid>
                     </main>
             </React.Fragment>
