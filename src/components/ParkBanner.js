@@ -29,7 +29,6 @@ export default function ParkBanner(props) {
 
   return (
     <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${props.showPark.image})` }}>
-      {/* {<img style={{ display: 'none' }} src={props.showPark.image} alt={props.showPark.name} />} */}
       <div className={classes.overlay}>
         {favoriteButton()}
         <Typography className={classes.text} variant="h2">
