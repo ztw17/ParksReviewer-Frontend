@@ -1,5 +1,5 @@
 import React from 'react'
-import { withStyles, Typography, Divider, Card, CardContent, Grid, Box, Fab, Tooltip, Button } from '@material-ui/core';
+import { withStyles, Typography, Divider, Card, CardContent, Grid, Box, Fab, Tooltip, Button, Link } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 // import { makeStyles, Paper, Typography, Fab, Tooltip } from '@material-ui/core';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -112,7 +112,7 @@ class ParkContainer extends React.Component {
         } else if (this.props.reviews.length && this.props.appState.loggedIn) {
             return <Typography>No reviews for {this.props.showPark.name} yet. Write one today!</Typography>
         } else {
-            return <Typography>No reviews for {this.props.showPark.name} yet. Log in or create an account to write one today!</Typography> 
+            return <Typography>No reviews for {this.props.showPark.name} yet. <Link href="/login">Log in</Link> or <Link href="/signup">create an account</Link> to write one today!</Typography> 
         }
     }
 
