@@ -106,6 +106,16 @@ class ParkContainer extends React.Component {
         this.props.handleParkDelete(id)
     }
 
+    reviewMessage = () => {
+        if (this.props.showPark.reviews.length) {
+            return this.renderReviews()
+        } else if (this.props.reviews.length && this.props.appState.loggedIn) {
+            return <Typography>No reviews for {this.props.showPark.name} yet. Write one today!</Typography>
+        } else {
+            return <Typography>No reviews for {this.props.showPark.name} yet. Log in or create an account to write one today!</Typography> 
+        }
+    }
+
     render() {
         const {classes} = this.props
 
@@ -209,7 +219,7 @@ class ParkContainer extends React.Component {
                                     </Fab> 
                                 </Tooltip> : null }
                                 <Grid item align="center" className={classes.reviews}>
-                                    {this.props.showPark.reviews.length ? this.renderReviews() : <Typography>No reviews for {this.props.showPark.name} yet. Write one today!</Typography>}
+                                    {this.reviewMessage()}
                                 </Grid>
                         </Grid>
                     </main>
