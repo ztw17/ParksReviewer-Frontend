@@ -10,7 +10,6 @@ import { teal } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
     color: "#434C5C",
   },
   paper: {
