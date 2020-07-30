@@ -207,7 +207,7 @@ class ParkContainer extends React.Component {
                                 <Map showPark={this.props.showPark} viewport={this.props.viewport} updateViewport={this.props.updateViewport} />
                             </Card>
                         </Grid>
-                        <Grid>
+                        <Grid className={classes.mainGrid}>
                             <Card>
                                 <Typography component="h3" variant="h4" className={classes.reviewTitle}>
                                     User Reviews
