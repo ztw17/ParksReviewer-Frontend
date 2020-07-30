@@ -113,7 +113,7 @@ class ParkContainer extends React.Component {
         } else if (this.props.reviews.length && this.props.appState.loggedIn) {
             return <Typography>No reviews for {this.props.showPark.name} yet. Write one today!</Typography>
         } else {
-            return <Typography>No reviews for {this.props.showPark.name} yet. <Link href="/login">Log in</Link> or <Link href="/signup">create an account</Link> to write one today!</Typography> 
+            return <Typography>No reviews for {this.props.showPark.name} yet. <Link href="/login">Log in</Link> or <Link href="/signup">sign up</Link> to write one today!</Typography> 
         }
     }
 
