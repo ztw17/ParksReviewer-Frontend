@@ -50,7 +50,7 @@ const styles = theme => ({
         // right: 'auto',
         bottom: '28px',
         left: '60px',
-        position: 'relative',
+        position: 'relative'
     },
     sectionHeader: {
         backgroundColor: '#434C5C',
