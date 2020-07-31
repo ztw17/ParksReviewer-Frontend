@@ -108,12 +108,14 @@ class ParkContainer extends React.Component {
     }
 
     reviewMessage = () => {
-        if (this.props.showPark.reviews.length) {
-            return this.renderReviews()
-        } else if (this.props.reviews.length && this.props.appState.loggedIn) {
+        if (!this.props.showPark.reviews.length && !this.props.appState.loggedIn) {
+            return <Typography>No reviews for {this.props.showPark.name} yet. <Link href="/login">Log in</Link> or <Link href="/signup">sign up</Link> to write one today!</Typography> 
+        } else if (this.props.showPark.reviews.length && !this.props.appState.loggedIn) {
+            return [this.renderReviews(), <Typography><Link href="/login">Log in</Link> or <Link href="/signup">sign up</Link> to write a review today!</Typography>] 
+        } else if (!this.props.showPark.reviews.length && this.props.appState.loggedIn) {
             return <Typography>No reviews for {this.props.showPark.name} yet. Write one today!</Typography>
         } else {
-            return <Typography>No reviews for {this.props.showPark.name} yet. <Link href="/login">Log in</Link> or <Link href="/signup">sign up</Link> to write one today!</Typography> 
+            return this.renderReviews()
         }
     }
 
