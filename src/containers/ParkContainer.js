@@ -146,7 +146,7 @@ class ParkContainer extends React.Component {
                                         <Typography className={classes.bold} variant="h6">
                                             Location
                                             <Button onClick={() => this.handleParkEditClick(this.props.showPark.id)}></Button>
-                                            <Button onClick={() => this.handleParkDeleteClick(this.props.showPark.id)}></Button>
+                                            {/* <Button onClick={() => this.handleParkDeleteClick(this.props.showPark.id)}></Button> */}
                                         </Typography>
                                         <Divider />
                                             <Typography variant="h6" align="center">
