@@ -220,7 +220,12 @@ class ParkContainer extends React.Component {
                                 <Fab color="secondary" className={classes.addReviewBtn}>
                                     <EditIcon onClick={() => this.handleAddReviewClick(this.props.showPark.id)}/>
                                 </Fab> 
-                            </Tooltip> : null }
+                            </Tooltip> :
+                            <Tooltip title="Write a review">
+                                <Fab disabled color="secondary" className={classes.addReviewBtn}>
+                                    <EditIcon onClick={() => this.handleAddReviewClick(this.props.showPark.id)}/>
+                                </Fab> 
+                            </Tooltip> }
                             <Grid item align="center" className={classes.reviews}>
                                 {this.reviewMessage()}
                             </Grid>
