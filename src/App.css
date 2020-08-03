@@ -1,13 +1,9 @@
-/* .makeStyles-text-130 {
-  text-shadow: -.5px -.5px 0 #000, .5px -.5px 0 #000, -.5px .5px 0 #000, .5px .5px 0 #000;
+.MuiTypography-h2 {
+  text-shadow: -1.5px -1.5px 0 #000;
 }
 
-.makeStyles-text-412 {
-  text-shadow: -.5px -.5px 0 #000, .5px -.5px 0 #000, -.5px .5px 0 #000, .5px .5px 0 #000;
-} */
-
-.MuiTypography-h2 {
-  text-shadow: -.5px -.5px 0 #000, .5px -.5px 0 #000, -.5px .5px 0 #000, .5px .5px 0 #000;
+.MuiTypography-h1 {
+  text-shadow: -.5px -.5px 0 #000;
 }
 
 .marker-btn {
@@ -30,6 +26,7 @@ body {
 /* @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap"); */
 /* @import url("https://fonts.googleapis.com/css2?family=Quicksand&family=Shadows+Into+Light&display=swap"); */
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC&family=Quicksand&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap");
 
 .MuiChip-root {
   /* background: linear-gradient(200deg, rgb(90,107,133), rgb(118,92,117), rgb(189,138,124), rgb(193,198,202)); */
@@ -57,7 +54,6 @@ body {
   }
 }
 
-
-/* .LandingPage-introText-952 {
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-} */
+/* .makeStyles-text-412 {
+  text-shadow: -.5px -.5px 0 #000, .5px -.5px 0 #000, -.5px .5px 0 #000, .5px .5px 0 #000;
+}  */

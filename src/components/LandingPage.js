@@ -2,7 +2,8 @@ import React from 'react';
 import { Paper, Grid, Typography, IconButton, withStyles } from '@material-ui/core';
 import Image from '../images/Olympic.jpg';
 
-const font =  "'Amatic SC', cursive";
+// const font =  "'Amatic SC', cursive";
+const font =  "'Reenie Beanie', cursive";
 
 const styles = theme => ({
   root: {
