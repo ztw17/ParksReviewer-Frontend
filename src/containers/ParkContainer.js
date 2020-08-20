@@ -205,6 +205,22 @@ class ParkContainer extends React.Component {
                             </Grid>
                         </Grid>
                         <Grid className={classes.mainGrid}>
+                            <Grid>
+                                <Card className={classes.cardDetails}>
+                                    <CardContent>
+                                        <Typography className={classes.bold} variant="h6">
+                                            Popular Activities
+                                        </Typography>
+                                        <Divider/>
+                                        <Box className={classes.tagBox}>
+                
+                                        </Box>
+                                    
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        </Grid>
+                        <Grid className={classes.mainGrid}>
                             <Card>
                                 <Map showPark={this.props.showPark} viewport={this.props.viewport} updateViewport={this.props.updateViewport} />
                             </Card>
