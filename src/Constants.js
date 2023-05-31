@@ -1,11 +1,11 @@
 const prod = {
     url: {
-        API_FAVORITES: "https://warm-sands-18775.herokuapp.com/favorites",
-        API_LOGIN: "https://warm-sands-18775.herokuapp.com/login",
-        API_PARKS: "https://warm-sands-18775.herokuapp.com/parks",
-        API_REVIEWS: "https://warm-sands-18775.herokuapp.com/reviews",
-        API_TAGS: "https://warm-sands-18775.herokuapp.com/tags",
-        API_USERS: "https://warm-sands-18775.herokuapp.com/users"
+        API_FAVORITES: "https://myparks-test-heroku-22.herokuapp.com/favorites",
+        API_LOGIN: "https://myparks-test-heroku-22.herokuapp.com/login",
+        API_PARKS: "https://myparks-test-heroku-22.herokuapp.com/parks",
+        API_REVIEWS: "https://myparks-test-heroku-22.herokuapp.com/reviews",
+        API_TAGS: "https://myparks-test-heroku-22.herokuapp.com/tags",
+        API_USERS: "https://myparks-test-heroku-22.herokuapp.com/users"
     }
 };
 
